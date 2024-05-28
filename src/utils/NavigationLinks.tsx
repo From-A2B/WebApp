@@ -14,17 +14,7 @@ export const LINKS = {
       label: 'Home',
       href: '/',
       auth: false,
-    },
-    LinkA: {
-      label: 'Link A',
-      href: '/#',
-      auth: false,
-    },
-    LinkB: {
-      label: 'Link B',
-      href: '/#',
-      auth: false,
-    },
+    }
   },
   Auth: {
     SignIn: {
@@ -66,6 +56,12 @@ export const LINKS = {
     VerifyEmail: {
       label: 'Verify Email',
       href: '/account/verify-email',
+      auth: true,
+      icon: <IconMail />,
+    },
+    Travel: {
+      label: 'My travels',
+      href: '/account/travels',
       auth: true,
       icon: <IconMail />,
     },
@@ -113,11 +109,35 @@ export const LINKS = {
     href: '/other',
     auth: true,
   },
+  Informations: {
+    Testimonials: {
+      label: 'Testimonials',
+      href: '/testimonials',
+      auth: false,
+    },
+  },
+  Travels: {
+    Create: {
+      label: 'Create travel',
+      href: '/travels/create',
+      auth: true,
+    },
+  },
+  Support : {
+    Contact: {
+      label: 'Contact',
+      href: '/support',
+      auth: false,
+    },
+    FAQ: {
+      label: 'FAQ',
+      href: '/faq',
+      auth: false,
+    },
+  }
 };
 
 export const HEADER_LINKS: NavigationLinks = [
-  LINKS.Landing.LinkA,
-  LINKS.Landing.LinkB,
   LINKS.Other,
 ];
 
@@ -158,30 +178,24 @@ export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
 
 export const FOOTER_LINKS: NavigationLinksWithGroup = [
   {
-    title: 'About',
+    title: 'Account',
     links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.LinkA,
-      LINKS.Landing.LinkB,
-      LINKS.Other,
+      LINKS.Account.Profile,
+      LINKS.Account.Travel,
     ],
   },
   {
-    title: 'Project',
+    title: 'Informations',
     links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
+      LINKS.Informations.Testimonials,
+      LINKS.Travels.Create,
     ],
   },
   {
-    title: 'Community',
+    title: 'Support',
     links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
+      LINKS.Support.Contact,
+      LINKS.Support.FAQ,
     ],
   },
 ];

@@ -1,6 +1,6 @@
 export const SiteConfig = {
-  title: 'Mantine Lite',
-  description: 'A template for Next project with mantine',
+  title: 'From A2B',
+  description: 'From A2B is a simple and easy solution to manage your trips.',
   prodUrl: 'https://mantine-lite.dercraker.fr',
   domain: 'dercraker.fr',
   appIcon: '/images/icon.png',

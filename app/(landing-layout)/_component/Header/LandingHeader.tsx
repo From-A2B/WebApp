@@ -8,6 +8,7 @@ import { AppShell, Group, UnstyledButton } from '@mantine/core';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import styles from './Header.module.css';
+import SwitchThemeIcon from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 
 const LandingHeader = () => {
   const session = useSession();
@@ -41,6 +42,7 @@ const LandingHeader = () => {
         </Group>
         <Group>
           <Group gap="0">{links}</Group>
+          <SwitchThemeIcon />
           <AuthButtonClient />
         </Group>
       </Group>
