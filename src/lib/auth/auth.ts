@@ -4,7 +4,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { User } from '@prisma/client';
 import type { Session } from 'next-auth';
 import NextAuth from 'next-auth';
-import { setupResendCustomer, setupStripeCustomer } from './auth-config-setup';
+import { setupStripeCustomer } from './auth-config-setup';
 import {
   credentialsOverrideJwt,
   credentialsSignInCallback,
@@ -56,7 +56,6 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
       }
 
       const stripeCustomerId = await setupStripeCustomer(user);
-      const resendContactId = await setupResendCustomer(user);
 
       await prisma.user.update({
         where: {
@@ -64,7 +63,6 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
         },
         data: {
           stripeCustomerId,
-          resendContactId,
         },
       });
     },

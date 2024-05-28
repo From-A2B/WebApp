@@ -32,7 +32,6 @@ export const SignInProviders = () => {
         <Skeleton height={40} radius="xl" />
         <Divider label="Or" labelPosition="center" my="lg" />
         <Skeleton height={40} radius="xl" />
-        <Skeleton height={40} radius="xl" />
       </Stack>
     );
   }
@@ -63,8 +62,7 @@ export const SignInProviders = () => {
       ) : null}
       <div className="flex flex-col gap-2">
         {/* ℹ️ Add provider you want to support here */}
-        {providers.discord ? <ProviderButton providerId="discord" /> : null}
-        {providers.github ? <ProviderButton providerId="github" /> : null}
+        {providers.google ? <ProviderButton providerId="google" /> : null}
       </div>
       {providers.credentials ? (
         <Group>
