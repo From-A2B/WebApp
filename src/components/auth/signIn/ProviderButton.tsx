@@ -1,6 +1,6 @@
 import { getServerUrl } from '@/utils/server-url';
 import { Button } from '@mantine/core';
-import { IconBrandDiscord, IconBrandGithub } from '@tabler/icons-react';
+import { IconBrandGoogle } from '@tabler/icons-react';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
 import { useQueryState } from 'nuqs';
@@ -20,22 +20,14 @@ const ProviderButton = (props: ProviderButtonProps) => {
 
   return (
     <>
-      {props.providerId === 'discord' && (
+      {props.providerId === 'google' && (
         <Button
           fullWidth
-          leftSection={<IconBrandDiscord />}
+          leftSection={<IconBrandGoogle />}
           my="xs"
-          onClick={() => oAuthSignInMutation.mutate()}>
-          Sign in with Discord
-        </Button>
-      )}
-      {props.providerId === 'github' && (
-        <Button
-          fullWidth
-          leftSection={<IconBrandGithub />}
-          my="xs"
-          onClick={() => oAuthSignInMutation.mutate()}>
-          Sign in with Github
+          onClick={() => oAuthSignInMutation.mutate()}
+        >
+          Sign in with Google
         </Button>
       )}
     </>

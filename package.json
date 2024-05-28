@@ -1,6 +1,6 @@
 {
-  "name": "coucou",
-  "version": "0.1.0",
+  "name": "from-a2b",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
