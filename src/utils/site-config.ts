@@ -1,16 +1,16 @@
 export const SiteConfig = {
-  title: 'Mantine Lite',
-  description: 'A template for Next project with mantine',
-  prodUrl: 'https://mantine-lite.dercraker.fr',
-  domain: 'dercraker.fr',
+  title: 'From-A2B',
+  description: 'Best trip planner',
+  prodUrl: 'https://from-a2b.fr',
+  domain: 'from-a2b.fr',
   appIcon: '/images/icon.png',
   company: {
     name: 'Dercraker Inc.',
     address: 'In the cloud',
   },
   email: {
-    from: 'NowTS-Mantine <contact@nowts-mantine.dercraker.fr>',
-    contact: 'contact@dercraker.fr',
+    from: 'NOREPLY <contact@from-a2b.fr>',
+    contact: 'contact@from-a2b.fr',
   },
   maker: {
     image:
@@ -19,6 +19,6 @@ export const SiteConfig = {
     name: 'Dercraker',
   },
   auth: {
-    password: true as boolean,
+    password: false as boolean,
   },
 };
