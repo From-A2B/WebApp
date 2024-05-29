@@ -1,6 +1,6 @@
 'use client';
 
-import { SignInCard } from '@/components/auth/signIn/SignInCard';
+import { SignInCard } from '@/components/auth/signIn/signInCard';
 import { LINKS } from '@/utils/NavigationLinks';
 import { Modal } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
