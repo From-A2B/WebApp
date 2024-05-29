@@ -6,18 +6,14 @@ import {
   Alert,
   Container,
   Divider,
-  Group,
   Skeleton,
   Stack,
-  Text,
   Title,
 } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import MagicLinkForm from './MagicLinkForm';
-import ProviderButton from './ProviderButton';
-import { SignInCredentialsAndMagicLinkForm } from './SignInCredentialsAndMagicLinkForm';
+import ProviderButton from './providerButton';
+import { SignInCredentialsFrom } from './signInCredentialsFrom';
 
 export const SignInProviders = () => {
   const { data: providers, isPending } = useQuery({
@@ -48,39 +44,12 @@ export const SignInProviders = () => {
   }
   return (
     <Container>
-      {providers.resend && !providers.credentials ? (
-        <>
-          <MagicLinkForm />
-          <Divider label="Or" labelPosition="center" my="lg" />
-        </>
-      ) : null}
-      {providers.credentials ? (
-        <>
-          <SignInCredentialsAndMagicLinkForm />
-          <Divider label="Or" labelPosition="center" my="lg" />
-        </>
-      ) : null}
       <div className="flex flex-col gap-2">
         {/* ℹ️ Add provider you want to support here */}
         {providers.google ? <ProviderButton providerId="google" /> : null}
       </div>
-      {providers.credentials ? (
-        <Group>
-          <Text>
-            {"You don't have an account ? "}
-            <Text
-              component={Link}
-              href="/auth/signup"
-              fs="italic"
-              td="underline"
-              c="blue"
-              style={{ cursor: 'pointer' }}
-            >
-              Sign up
-            </Text>
-          </Text>
-        </Group>
-      ) : null}
+      <Divider label="Or" labelPosition="center" my="lg" />
+      <SignInCredentialsFrom />
     </Container>
   );
 };

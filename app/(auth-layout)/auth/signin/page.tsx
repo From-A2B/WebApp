@@ -1,4 +1,4 @@
-import { SignInCard } from '@/components/auth/signIn/SignInCard';
+import { SignInCard } from '@/components/auth/signIn/signInCard';
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
 import { RedirectType, redirect } from 'next/navigation';
