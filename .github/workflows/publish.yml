@@ -10,9 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build and push the image
+      - name: Log Docker version
+        run: docker --version
+
+      - name: Log in to GitHub Container Registry
+        id: docker_login
         run: |
-          echo my secret token is :: ${{secrets.FROMA2B}}
-          docker login --username baptiste-ferrand --password ${{secrets.FROMA2B}} ghcr.io
-          docker build . --tag ghcr.io/froma2b/webapp:latest
-          docker push ghcr.io/froma2b/webapp:latest
+          echo "Logging in to Docker..."
+          echo "${{secrets.FROMA2B}}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          if [ $? -ne 0 ]; then
+            echo "Docker login failed"
+            exit 1
+          fi
+
+      - name: Build Docker image
+        run: |
+          docker build . --tag ghcr.io/from-a2b/webapp:latest
+          if [ $? -ne 0 ]; then
+            echo "Docker build failed"
+            exit 1
+          fi
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/from-a2b/webapp:latest
+          if [ $? -ne 0 ]; then
+            echo "Docker push failed"
+            exit 1
+          fi
