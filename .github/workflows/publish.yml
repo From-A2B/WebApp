@@ -32,6 +32,7 @@ jobs:
           elif [ "${{ github.ref }}" == "refs/heads/features/publish-image" ]; then
             TAG=pre-prod
           fi
+          echo "Using TAG: ${TAG}"
           docker build . --tag ghcr.io/from-a2b/webapp:${TAG}
           if [ $? -ne 0 ]; then
             echo "Docker build failed"
@@ -40,10 +41,18 @@ jobs:
 
       - name: Tag Docker image as latest
         run: |
+          if [ -z "${TAG}" ]; then
+            echo "TAG is not set"
+            exit 1
+          fi
           docker tag ghcr.io/from-a2b/webapp:${TAG} ghcr.io/from-a2b/webapp:latest
 
       - name: Push Docker image
         run: |
+          if [ -z "${TAG}" ]; then
+            echo "TAG is not set"
+            exit 1
+          fi
           docker push ghcr.io/from-a2b/webapp:${TAG}
           docker push ghcr.io/from-a2b/webapp:latest
           if [ $? -ne 0 ]; then
