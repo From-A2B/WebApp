@@ -3,7 +3,8 @@ name: Publish Image
 on: 
   push:
     branches:
-      - features/publish-image
+      - main
+      - develop
 
 jobs:
   build_and_publish: 
@@ -25,7 +26,13 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build . --tag ghcr.io/from-a2b/webapp:latest
+          TAG=latest
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            TAG=release
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            TAG=pre-prod
+          fi
+          docker build . --tag ghcr.io/from-a2b/webapp:${TAG}
           if [ $? -ne 0 ]; then
             echo "Docker build failed"
             exit 1
@@ -33,7 +40,13 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/from-a2b/webapp:latest
+          TAG=latest
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            TAG=release
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            TAG=pre-prod
+          fi
+          docker push ghcr.io/from-a2b/webapp:${TAG}
           if [ $? -ne 0 ]; then
             echo "Docker push failed"
             exit 1
