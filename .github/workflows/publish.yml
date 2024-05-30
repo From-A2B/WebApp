@@ -24,7 +24,8 @@ jobs:
             exit 1
           fi
 
-      - name: Build Docker image
+      - name: Set TAG
+        id: set_tag
         run: |
           TAG=latest
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
@@ -33,7 +34,11 @@ jobs:
             TAG=pre-prod
           fi
           echo "Using TAG: ${TAG}"
-          docker build . --tag ghcr.io/from-a2b/webapp:${TAG}
+          echo "::set-output name=tag::${TAG}"
+
+      - name: Build Docker image
+        run: |
+          docker build . --tag ghcr.io/from-a2b/webapp:${{ steps.set_tag.outputs.tag }}
           if [ $? -ne 0 ]; then
             echo "Docker build failed"
             exit 1
@@ -41,19 +46,19 @@ jobs:
 
       - name: Tag Docker image as latest
         run: |
-          if [ -z "${TAG}" ]; then
+          if [ -z "${{ steps.set_tag.outputs.tag }}" ]; then
             echo "TAG is not set"
             exit 1
           fi
-          docker tag ghcr.io/from-a2b/webapp:${TAG} ghcr.io/from-a2b/webapp:latest
+          docker tag ghcr.io/from-a2b/webapp:${{ steps.set_tag.outputs.tag }} ghcr.io/from-a2b/webapp:latest
 
       - name: Push Docker image
         run: |
-          if [ -z "${TAG}" ]; then
+          if [ -z "${{ steps.set_tag.outputs.tag }}" ]; then
             echo "TAG is not set"
             exit 1
           fi
-          docker push ghcr.io/from-a2b/webapp:${TAG}
+          docker push ghcr.io/from-a2b/webapp:${{ steps.set_tag.outputs.tag }}
           docker push ghcr.io/from-a2b/webapp:latest
           if [ $? -ne 0 ]; then
             echo "Docker push failed"
