@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - developp
+      - features/publish-image
 
 jobs:
   build_and_publish: 
@@ -29,7 +29,7 @@ jobs:
           TAG=latest
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
             TAG=release
-          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+          elif [ "${{ github.ref }}" == "refs/heads/features/publish-image" ]; then
             TAG=pre-prod
           fi
           docker build . --tag ghcr.io/from-a2b/webapp:${TAG}
