@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - features/publish-image
+      - develop
 
 jobs:
   build_and_publish: 
@@ -30,7 +30,7 @@ jobs:
           TAG=latest
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
             TAG=release
-          elif [ "${{ github.ref }}" == "refs/heads/features/publish-image" ]; then
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
             TAG=pre-prod
           fi
           echo "Using TAG: ${TAG}"
