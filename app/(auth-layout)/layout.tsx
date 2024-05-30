@@ -4,7 +4,7 @@ import { AuthHeader } from './_component/AuthHeader';
 
 const RouteLayout = ({ children }: LayoutParams) => {
   return (
-    <AppShell header={{ height: 60 }} padding="md">
+    <AppShell header={{ height: 60 }}>
       <AuthHeader />
       <AppShellMain>{children}</AppShellMain>
     </AppShell>

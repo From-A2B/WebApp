@@ -1,6 +1,7 @@
 import { SignInCard } from '@/components/auth/signIn/signInCard';
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
+import { Box, Group } from '@mantine/core';
 import { RedirectType, redirect } from 'next/navigation';
 
 const RoutePage = async ({}: PageParams) => {
@@ -9,12 +10,15 @@ const RoutePage = async ({}: PageParams) => {
   if (user) redirect('/', RedirectType.push);
 
   return (
-    <SignInCard
-      withBorder
-      w={{ base: '90vw', xs: '50vw' }}
-      mx={{ base: 0, xs: '25%' }}
-      py="xl"
-    />
+    <Group grow justify="center" align="center" h="100vh">
+      <SignInCard withBorder py="xl" mx={{ base: '0', lg: 'xl' }} />
+
+      <Box
+        visibleFrom="lg"
+        className="h-screen bg-cover bg-right"
+        style={{ backgroundImage: `url("/assets/signinLogin.png")` }}
+      />
+    </Group>
   );
 };
 
