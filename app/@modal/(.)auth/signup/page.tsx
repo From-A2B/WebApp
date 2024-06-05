@@ -1,6 +1,6 @@
 'use client';
 
-import { SignInCard } from '@/components/auth/signIn/SignInCard';
+import { SignUpCard } from '@/components/auth/signUp/SignUpCard';
 import { LINKS } from '@/utils/NavigationLinks';
 import { Modal } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
@@ -11,13 +11,13 @@ const RoutePage = () => {
 
   return (
     <Modal.Root
-      opened={path.endsWith(LINKS.Auth.SignIn.href)}
+      opened={path.endsWith(LINKS.Auth.SignUp.href)}
       onClose={() => router.back()}
       size={'auto'}
     >
       <Modal.Overlay backgroundOpacity={0.55} blur={3} />
       <Modal.Content>
-        <SignInCard withBorder className="w-96" py="xl" />
+        <SignUpCard withBorder className="w-96" py="xl" />
       </Modal.Content>
     </Modal.Root>
   );
