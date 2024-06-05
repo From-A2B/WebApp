@@ -1,4 +1,4 @@
-import { SignInCard } from '@/components/auth/signIn/signInCard';
+import { SignInCard } from '@/components/auth/signIn/SignInCard';
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
 import { Box, Group } from '@mantine/core';
@@ -11,7 +11,9 @@ const RoutePage = async ({}: PageParams) => {
 
   return (
     <Group grow justify="center" align="center" h="100vh">
-      <SignInCard withBorder py="xl" mx={{ base: '0', lg: 'xl' }} />
+      <Group justify="center">
+        <SignInCard withBorder py="xl" className="w-96 min-w-96" />
+      </Group>
 
       <Box
         visibleFrom="lg"

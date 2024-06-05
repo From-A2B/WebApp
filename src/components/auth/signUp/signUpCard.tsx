@@ -1,21 +1,19 @@
 import { SiteName } from '@/components/layout/SiteName';
-import { Card, CardSection, Space, Stack, Text } from '@mantine/core';
+import type { PaperProps } from '@mantine/core';
+import { Paper, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
-import { SignUpCredentialsForm } from './SignUpCredentialsForm';
+import { SignUpCredentialsForm } from './signUpCredentialsForm';
 
-const SignUpCard = () => {
+type SignUpCardProps = {} & PaperProps;
+
+export const SignUpCard = ({ ...props }: SignUpCardProps) => {
   return (
-    <Card
-      withBorder
-      w={{ base: '90vw', xs: '50vw' }}
-      mx={{ base: 0, xs: '25%' }}
-      py="xl"
-    >
-      <CardSection>
+    <>
+      <Paper {...props} radius="lg">
         <Stack align="center">
           <SiteName logoSize={38} />
           <Text fw="700" size="2em">
-            Sign Up
+            Create your account
           </Text>
 
           <SignUpCredentialsForm />
@@ -34,10 +32,7 @@ const SignUpCard = () => {
             </Text>
           </Text>
         </Stack>
-      </CardSection>
-      <Space h="xl" />
-    </Card>
+      </Paper>
+    </>
   );
 };
-
-export default SignUpCard;
