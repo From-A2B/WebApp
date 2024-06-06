@@ -6,7 +6,7 @@ COPY package.json .
 
 RUN npm install -g pnpm
 
-COPY . .
+COPY ./.next .
 
 EXPOSE 3000
 
