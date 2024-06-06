@@ -1,6 +1,6 @@
 'use server';
 
-import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
+// import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
 import {
   hashStringWithSalt,
   validatePassword,
@@ -27,12 +27,12 @@ export const signUpAction = action(
         name,
       };
 
-      const resendContactId = await setupResendCustomer(userData);
+      // const resendContactId = await setupResendCustomer(userData);
 
       const user = await prisma.user.create({
         data: {
           ...userData,
-          resendContactId,
+          // resendContactId,
         },
       });
 

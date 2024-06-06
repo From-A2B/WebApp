@@ -1,7 +1,6 @@
 'use server';
 
 import { auth } from '@/lib/auth/helper';
-import { sendEmail } from '@/lib/mail/sendEmail';
 import { prisma } from '@/lib/prisma';
 import { action } from '@/lib/server-actions/safe-actions';
 import { SiteConfig } from '@/utils/site-config';
@@ -21,14 +20,6 @@ export const contactSupportAction = action(
         userId: user?.id,
         email,
       },
-    });
-
-    await sendEmail({
-      from: SiteConfig.email.from,
-      to: SiteConfig.email.contact,
-      subject: `New feedback from ${email}`,
-      text: `Review: ${feedback.review}\n\nMessage: ${feedback.message}`,
-      reply_to: email,
     });
 
     return { message: 'Your feedback has been sent to support.' };

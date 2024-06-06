@@ -1,6 +1,5 @@
 import { env } from '@/lib/env/server';
 import { prisma } from '@/lib/prisma';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { User } from '@prisma/client';
 import type { Session } from 'next-auth';
 import NextAuth from 'next-auth';
@@ -23,7 +22,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
   theme: {
     logo: '/images/logo-text.png',
   },
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   providers: getNextAuthConfigProviders(),
   session: {
     strategy: 'database',

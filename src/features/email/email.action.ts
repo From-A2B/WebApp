@@ -1,7 +1,7 @@
 'use server';
 
 import {
-  setupResendCustomer,
+  // setupResendCustomer,
   setupStripeCustomer,
 } from '@/lib/auth/auth-config-setup';
 import { prisma } from '@/lib/prisma';
@@ -15,13 +15,13 @@ export const addEmailAction = action(EmailActionSchema, async ({ email }) => {
     };
 
     const stripeCustomerId = await setupStripeCustomer(userData);
-    const resendContactId = await setupResendCustomer(userData);
+    // const resendContactId = await setupResendCustomer(userData);
 
     await prisma.user.create({
       data: {
         ...userData,
         stripeCustomerId,
-        resendContactId,
+        // resendContactId,
       },
     });
 

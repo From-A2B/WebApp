@@ -57,7 +57,9 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
                   <ActionIcon variant="transparent" radius="xl" size="xl">
                     <AvatarImage user={user} />
                   </ActionIcon>
-                  <Text>{displayName(user)}</Text>
+                  <Text>
+                    {displayName({ email: user.email!, name: user.name })}
+                  </Text>
                 </Group>
               </Paper>
             </Group>
