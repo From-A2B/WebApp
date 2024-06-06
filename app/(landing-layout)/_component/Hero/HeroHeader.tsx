@@ -4,7 +4,7 @@ import { Button, Container, Overlay, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import './HeroImageBackground.scss';
 
-const HeroImageBackground = () => {
+export const HeroImageBackground = () => {
   const router = useRouter();
 
   const handleButtonClick = () => {
@@ -35,5 +35,3 @@ const HeroImageBackground = () => {
     </div>
   );
 };
-
-export default HeroImageBackground;
