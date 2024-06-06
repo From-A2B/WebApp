@@ -19,6 +19,10 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconHelp, IconX } from '@tabler/icons-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+<<<<<<< HEAD
+=======
+import { contactSupportAction } from '../../../features/contact/support/contact-support.action';
+>>>>>>> 03871ad (fix de la honte)
 import type { ContactSupportSchemaType } from '../../../features/contact/support/contact-support.schema';
 import { ContactSupportSchema } from '../../../features/contact/support/contact-support.schema';
 
