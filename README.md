@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Dépendances
+- PNPM ()
+
+## Setup du projet
+
+- Cloner le projet `git clone https://github.com/From-A2B/WebApp.git`
+- Installer les dépendances `pnpm i`
+- Copier et modifier selon la convenance le ficher .env-template en .env
+- Génère le client prisma `pnpm postinstall`
+- Applique la migration `pnpm prisma migrate dev`
+- Démarrer le projet `pnpm dev`
+- À vous de jouer 🎉
+
 ## Getting Started
 
 First, run the development server:
