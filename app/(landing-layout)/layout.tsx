@@ -1,7 +1,7 @@
 import Footer from '@/components/layout/footer/Footer';
 import type { LayoutParams } from '@/types/next';
 import { AppShell, AppShellMain } from '@mantine/core';
-import LandingHeader from './_component/Header/LandingHeader';
+import { LandingHeader } from './_component/Header/LandingHeader';
 
 const RouteLayout = ({ children }: LayoutParams) => {
 

@@ -1,10 +1,10 @@
 'use client';
 
-import type { MantineColorsTuple} from '@mantine/core';
+import type { MantineColorsTuple } from '@mantine/core';
 import { DEFAULT_THEME, createTheme, mergeMantineTheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 
-const myColor: MantineColorsTuple = [
+const customColor: MantineColorsTuple = [
   '#ecfef8',
   '#d8faf0',
   '#acf7df',
@@ -20,9 +20,9 @@ const myColor: MantineColorsTuple = [
 const themeOverride = createTheme({
   defaultRadius: 'md',
   fontFamily: 'Poppins, sans-serif',
-  primaryColor: 'myColor',
+  primaryColor: 'customColor',
   colors: {
-    myColor,
+    customColor,
     dark: [
       DEFAULT_THEME.colors.dark[0],
       DEFAULT_THEME.colors.dark[1],
