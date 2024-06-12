@@ -9,7 +9,6 @@ export const LogoSvg = ({ size = 32, ...props }: LogoSvgProps) => {
       height={size}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="logo-svg"
       {...props}
       viewBox="0 0 104 104"
     >
