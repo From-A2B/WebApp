@@ -6,7 +6,7 @@ import {
 } from '@mantine/core';
 import { IconSun, IconMoon } from '@tabler/icons-react';
 
-const SwitchThemeIcon = ({ asButton = false }) => {
+export const SwitchThemeIcon = ({ asButton = false }) => {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', {
     getInitialValueInEffect: true,
@@ -44,5 +44,3 @@ const SwitchThemeIcon = ({ asButton = false }) => {
     </ActionIcon>
   );
 };
-
-export default SwitchThemeIcon;

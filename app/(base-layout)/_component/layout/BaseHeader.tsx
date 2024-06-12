@@ -1,6 +1,6 @@
 import AuthButton from '@/components/auth/AuthButton';
 import { SiteName } from '@/components/layout/SiteName';
-import SwitchThemeIcon from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
+import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 import { LINKS } from '@/utils/NavigationLinks';
 import { AppShellHeader, Box, Container, Group } from '@mantine/core';
 import Link from 'next/link';
