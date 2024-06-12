@@ -11,18 +11,18 @@ import {
   Flex,
   SimpleGrid,
 } from '@mantine/core';
-import { FeatureCard } from '../FeatureCard/FeatureCard';
 import { IconCompass, IconDownload, IconGlobe, IconMap, IconTicket, IconTimeline } from '@tabler/icons-react';
-import { ClientReviews } from '../FeatureCard/ClientReviews/ClientReviews';
+import { FeatureCard } from '../featureCard/FeatureCard';
+import { ClientReviews } from '../featureCard/ClientReviews/ClientReviews';
 
 export const Content = () => {
   return (
     <>
-      <Container size="xl" mt={50}>
-        <Stack w={400}>
+      <Container size="xl" py={50}>
+        <Stack w="100%" maw={400}>
           <Title order={1} c="teal" fw={900}>Create your trip easily!</Title>
         </Stack>
-        <Stack w={600}>
+        <Stack  w="100%" maw={600}>
           <Text size="lg" c="teal" mt="sm">
             By using our web application, you can plan and customize your trip easily in a few steps.
           </Text>
@@ -48,8 +48,8 @@ export const Content = () => {
             </div>
             <div className="h-0.5 w-full bg-green-400"></div>
           </div>
-          <div className="flex justify-between mt-4">
-            <Box w="32%">
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-4 mt-4">
+            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
               <Card shadow="sm" p="lg" radius="md" withBorder>
                 <div className="flex items-center mb-2 lg:hidden">
                   <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-full text-white font-bold">
@@ -62,7 +62,7 @@ export const Content = () => {
                 </Text>
               </Card>
             </Box>
-            <Box w="32%">
+            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
               <Card shadow="sm" p="lg" radius="md" withBorder>
                 <div className="flex items-center mb-2 lg:hidden">
                   <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-full text-white font-bold">
@@ -75,7 +75,7 @@ export const Content = () => {
                 </Text>
               </Card>
             </Box>
-            <Box w="32%">
+            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
               <Card shadow="sm" p="lg" radius="md" withBorder>
                 <div className="flex items-center mb-2 lg:hidden">
                   <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-full text-white font-bold">
@@ -92,14 +92,14 @@ export const Content = () => {
         </div>
       </Container>
       <Divider size={70} color="teal" />
-      <Container size="xl" mt={50}>
-        <Grid align="center">
-          <GridCol span={12}>
+      <Container size="xl" py={{ xs: 20, md: 50 }}>
+        <Grid gutter="xl">
+          <GridCol span={{ xs: 12, md: 6 }} mt={{ base: 20, md: 0 }}>
             <iframe src="https://giphy.com/embed/BcubuDnDW0uze" width="100%" height="326" className="giphy-embed rounded-md" allowFullScreen></iframe>
           </GridCol>
-          <GridCol span={12}>
+          <GridCol span={{ xs: 12, md: 6 }}>
             <Title order={1} c="teal" fw={900}>Interact with the map</Title>
-            <Flex direction="row" gap="md" mt={20} align="flex-start">
+            <Flex direction="row" gap="md" mt={{ xs: 20, md: 0 }} align={{ xs: 'center', md: 'flex-start' }}>
               <Text>
                 <strong className="text-xl">Destination</strong><br />
                 Choose your destination
@@ -113,12 +113,12 @@ export const Content = () => {
                 Add the details of your step
               </Text>
             </Flex>
-            <Title order={2} fw={700} mt="xl">
+            <Title order={2} fw={700} mt={{ xs: 20, md: 'xl' }}>
               Confirm and the map updates!
             </Title>
           </GridCol>
         </Grid>
-        <Divider size={2} mt="xl" pb="xl" color="teal" />
+        <Divider size={2} color="teal" mt="xl" />
       </Container>
       <Container size="xl" mt="sm">
         <Stack w="100%" maw={400}>
@@ -163,7 +163,7 @@ export const Content = () => {
         </SimpleGrid>
       </Container>
       <Divider size={70} color="teal" />
-      <Container size="xl" mt={50}>
+      <Container size="xl" py={50}>
         <Stack w="100%" maw={400}>
           <Title order={1} c="teal" fw={900}>What people say about us</Title>
         </Stack>
