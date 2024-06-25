@@ -21,7 +21,6 @@ export const SiteName = ({
       td="inherit"
       c="inherit"
     >
-      <div data-name="toto" className="toto align-center"></div>
       <Group gap="xs">
         <LogoSvg size={logoSize} />
         <Title

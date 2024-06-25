@@ -67,6 +67,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
         </MenuTarget>
         <MenuDropdown>
           <MenuItem
+            key="UserProfileSection"
             rightSection={
               <IconChevronRight
                 style={{ width: rem(16), height: rem(16) }}

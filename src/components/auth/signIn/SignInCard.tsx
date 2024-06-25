@@ -1,6 +1,6 @@
 import type { PaperProps } from '@mantine/core';
 import { Paper, Space, Stack, Text } from '@mantine/core';
-import { SignInProviders } from './signInProviders';
+import { SignInProviders } from './SignInProviders';
 
 type SignInCardProps = {} & PaperProps;
 
