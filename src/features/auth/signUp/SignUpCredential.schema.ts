@@ -35,6 +35,7 @@ export const SignUpCredentialSchema = z
       ),
 
     verifyPassword: z.string(),
+    acceptTow: z.boolean(),
   })
   .refine((data) => data.password === data.verifyPassword, {
     message: "Password does't match",
