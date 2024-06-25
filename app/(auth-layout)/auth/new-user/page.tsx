@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import type { PageParams } from '@/types/next';
 import { LINKS } from '@/utils/NavigationLinks';
 import { Button, Container, Paper, Stack, Text, Title } from '@mantine/core';
@@ -5,6 +6,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 const RoutePage = ({ searchParams }: PageParams) => {
+  logger.info('toto');
+
   const callbackUrl =
     typeof searchParams.callbackUrl === 'string'
       ? searchParams.callbackUrl

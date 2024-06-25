@@ -55,6 +55,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
       }
 
       const stripeCustomerId = await setupStripeCustomer(user);
+      const resendContactId = await setupResendCustomer(user);
 
       await prisma.user.update({
         where: {
@@ -62,6 +63,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
         },
         data: {
           stripeCustomerId,
+          resendContactId,
         },
       });
     },
