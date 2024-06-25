@@ -12,8 +12,8 @@ import {
 } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import ProviderButton from './providerButton';
 import { SignInCredentialsFrom } from './signInCredentialsFrom';
+import ProviderButton from './ProviderButton';
 
 export const SignInProviders = () => {
   const { data: providers, isPending } = useQuery({

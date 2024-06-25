@@ -3,7 +3,7 @@
 import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
 import { prisma } from '@/lib/prisma';
 import { ActionError, action } from '@/lib/server-actions/safe-actions';
-import { EmailActionSchema } from './email.schema';
+import { EmailActionSchema } from './addEmail.schema';
 
 export const addEmailAction = action(EmailActionSchema, async ({ email }) => {
   try {
