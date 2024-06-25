@@ -1,3 +1,4 @@
+import { LINKS } from '@/utils/NavigationLinks';
 import {
   createSearchParamsCache,
   parseAsBoolean,
@@ -7,4 +8,5 @@ import {
 export const searchParamsCache = createSearchParamsCache({
   token: parseAsString.withDefault(''),
   success: parseAsBoolean.withDefault(false),
+  callbackUrl: parseAsString.withDefault(LINKS.Landing.Landing.href),
 });

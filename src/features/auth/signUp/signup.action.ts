@@ -1,5 +1,6 @@
 'use server';
 
+import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
 import {
   hashStringWithSalt,
   validatePassword,
@@ -9,10 +10,6 @@ import { prisma } from '@/lib/prisma';
 import { ActionError, action } from '@/lib/server-actions/safe-actions';
 import type { SignUpCredentialSchemaType } from './SignUpCredential.schema';
 import { SignUpCredentialSchema } from './SignUpCredential.schema';
-import {
-  setupResendCustomer,
-  setupStripeCustomer,
-} from '@/lib/auth/auth-config-setup';
 
 export const signUpAction = action(
   SignUpCredentialSchema,
@@ -30,13 +27,14 @@ export const signUpAction = action(
         name,
       };
 
-      const stripeCustomerId = await setupStripeCustomer(userData);
+      // TODO: Setup Stripe
+      // const stripeCustomerId = await setupStripeCustomer(userData);
       const resendContactId = await setupResendCustomer(userData);
 
       const user = await prisma.user.create({
         data: {
           ...userData,
-          stripeCustomerId,
+          // stripeCustomerId,
           resendContactId,
         },
       });

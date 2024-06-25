@@ -4,7 +4,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { User } from '@prisma/client';
 import type { Session } from 'next-auth';
 import NextAuth from 'next-auth';
-import { setupStripeCustomer } from './auth-config-setup';
+import { setupResendCustomer } from './auth-config-setup';
 import {
   credentialsOverrideJwt,
   credentialsSignInCallback,
@@ -17,7 +17,6 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
     signOut: '/auth/signout',
     error: '/auth/error',
     verifyRequest: '/auth/verify-request',
-    // ℹ️ Add this line if you want to add an onboarding page
     newUser: '/auth/new-user',
   },
   theme: {
@@ -55,7 +54,8 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
         return;
       }
 
-      const stripeCustomerId = await setupStripeCustomer(user);
+      // TODO: Setup Stripe
+      // const stripeCustomerId = await setupStripeCustomer(user);
       const resendContactId = await setupResendCustomer(user);
 
       await prisma.user.update({
@@ -63,7 +63,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
           id: user.id,
         },
         data: {
-          stripeCustomerId,
+          // stripeCustomerId,
           resendContactId,
         },
       });
