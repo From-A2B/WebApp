@@ -8,6 +8,7 @@ import { AppShell, Group, UnstyledButton } from '@mantine/core';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import styles from './Header.module.css';
+import { CreateTripBouton } from '../../../../src/components/trip/createTripBouton';
 
 const LandingHeader = () => {
   const session = useSession();
@@ -41,6 +42,8 @@ const LandingHeader = () => {
         </Group>
         <Group>
           <Group gap="0">{links}</Group>
+
+          {session.status === 'authenticated' && <CreateTripBouton />}
           <AuthButtonClient />
         </Group>
       </Group>
