@@ -9,11 +9,122 @@ import {
   Grid,
   GridCol,
   Flex,
-  SimpleGrid,
 } from '@mantine/core';
 import { IconCompass, IconDownload, IconGlobe, IconMap, IconTicket, IconTimeline } from '@tabler/icons-react';
-import { FeatureCard } from '../featureCard/FeatureCard';
 import { ClientReviews } from '../featureCard/ClientReviews/ClientReviews';
+import Globe from '@/components/magicui/globe';
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
+import {
+  BellIcon,
+  CalendarIcon,
+  FileTextIcon,
+  GlobeIcon,
+  InputIcon,
+} from "@radix-ui/react-icons";
+
+const features = [
+  {
+    Icon: FileTextIcon,
+    name: "Save your files",
+    description: "We automatically save your files as you type.",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2",
+  },
+  {
+    Icon: InputIcon,
+    name: "Full text search",
+    description: "Search through all your files in one place.",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-1 lg:row-end-2 lg:col-start-2 lg:col-end-3",
+  },
+  {
+    Icon: GlobeIcon,
+    name: "Multilingual",
+    description: "Supports 100+ languages and counting.",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-2 lg:row-end-3 lg:col-start-2 lg:col-end-3",
+  },
+  {
+    Icon: CalendarIcon,
+    name: "Calendar",
+    description: "Use the calendar to filter your files by date.",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-1 lg:row-end-2 lg:col-start-3 lg:col-end-4",
+  },
+  {
+    Icon: BellIcon,
+    name: "Notifications",
+    description:
+      "Get notified when someone shares a file or mentions you in a comment.",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-2 lg:row-end-3 lg:col-start-3 lg:col-end-4",
+  },
+  {
+    Icon: IconGlobe,
+    name: "A customized journey",
+    description: "Find destinations for your next trip",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3",
+  },
+  {
+    Icon: IconMap,
+    name: "Plan your itinerary",
+    description: "Create your itinerary from start to finish",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-3 lg:row-end-5 lg:col-start-3 lg:col-end-4",
+  },
+  {
+    Icon: IconCompass,
+    name: "Activity suggestions",
+    description: "Receive activity suggestions based on your preferences",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-4 lg:row-end-5 lg:col-start-1 lg:col-end-2",
+  },
+  {
+    Icon: IconTimeline,
+    name: "Time estimate calculation",
+    description: "Calculate the estimated time for each activity",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-4 lg:row-end-5 lg:col-start-2 lg:col-end-3",
+  },
+  {
+    Icon: IconTicket,
+    name: "Book your tickets",
+    description: "Book your flight, train, or bus tickets",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-5 lg:row-end-6 lg:col-start-1 lg:col-end-3",
+  },
+  {
+    Icon: IconDownload,
+    name: "Download your itinerary",
+    description: "Download your itinerary for offline use",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    className: "lg:row-start-5 lg:row-end-6 lg:col-start-3 lg:col-end-4",
+  },
+];
+
 
 export const Content = () => {
   return (
@@ -95,7 +206,10 @@ export const Content = () => {
       <Container size="xl" py={{ xs: 20, md: 50 }}>
         <Grid gutter="xl">
           <GridCol span={{ xs: 12, md: 6 }} mt={{ base: 20, md: 0 }}>
-            <iframe src="https://giphy.com/embed/BcubuDnDW0uze" width="100%" height="326" className="giphy-embed rounded-md" allowFullScreen></iframe>
+            <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg px-40 pb-40 pt-8 md:pb-60">
+              <Globe className='w-64' />
+              <div className="pointer-events-none absolute inset-0 h-full" />
+            </div>
           </GridCol>
           <GridCol span={{ xs: 12, md: 6 }}>
             <Title order={1} c="teal" fw={900}>Interact with the map</Title>
@@ -129,38 +243,11 @@ export const Content = () => {
             Here is the list of features included in our application and which you can discover.
           </Text>
         </Stack>
-        <SimpleGrid cols={{ base: 1, lg: 2 }} spacing={{ base: 10, sm: 'xl' }} verticalSpacing={{ base: 'md' }} my="xl">
-          <FeatureCard
-            icon={<IconGlobe color="teal" size={24} />}
-            title="A customized journey"
-            description="Find destinations for your next trip"
-          />
-          <FeatureCard
-            icon={<IconMap color="teal" size={24} />}
-            title="Plan your itinerary"
-            description="Create your itinerary from start to finish"
-          />
-          <FeatureCard
-            icon={<IconCompass color="teal" size={24} />}
-            title="Activity suggestions"
-            description="Receive activity suggestions based on your preferences"
-          />
-          <FeatureCard
-            icon={<IconTimeline color="teal" size={24} />}
-            title="Time estimate calculation"
-            description="Calculate the estimated time for each activity"
-          />
-          <FeatureCard
-            icon={<IconTicket color="teal" size={24} />}
-            title="Book your tickets"
-            description="Book your flight, train, or bus tickets"
-          />
-          <FeatureCard
-            icon={<IconDownload color="teal" size={24} />}
-            title="Download your itinerary"
-            description="Download your itinerary for offline use"
-          />
-        </SimpleGrid>
+        <BentoGrid className="lg:grid-rows-3 mb-3">
+          {features.map((feature) => (
+            <BentoCard key={feature.name} {...feature} />
+          ))}
+        </BentoGrid>
       </Container>
       <Divider size={70} color="teal" />
       <Container size="xl" py={50}>
