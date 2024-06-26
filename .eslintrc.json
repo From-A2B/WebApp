@@ -14,7 +14,7 @@
   },
   "rules": {
     "react/no-unescaped-entities": "off",
-    "no-console": "error",
+    "no-console": "warn",
     "complexity": ["error", 10],
     "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
     "no-await-in-loop": 1,

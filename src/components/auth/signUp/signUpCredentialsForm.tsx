@@ -1,13 +1,16 @@
 'use client';
 
-import type {
-  SignUpCredentialSchemaType} from '@/features/auth/signUp/SignUpCredential.schema';
-import {
-  SignUpCredentialSchema
-} from '@/features/auth/signUp/SignUpCredential.schema';
+import type { SignUpCredentialSchemaType } from '@/features/auth/signUp/SignUpCredential.schema';
+import { SignUpCredentialSchema } from '@/features/auth/signUp/SignUpCredential.schema';
 import { signUpAction } from '@/features/auth/signUp/signup.action';
 import useNotify from '@/hook/useNotify';
-import { Button, PasswordInput, Stack, TextInput } from '@mantine/core';
+import {
+  Button,
+  Checkbox,
+  PasswordInput,
+  Stack,
+  TextInput,
+} from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
@@ -22,6 +25,7 @@ export const SignUpCredentialsForm = () => {
       email: '',
       password: '',
       verifyPassword: '',
+      acceptTow: false,
     },
     validate: zodResolver(SignUpCredentialSchema),
   });
@@ -35,6 +39,7 @@ export const SignUpCredentialsForm = () => {
           message: serverError,
         });
       }
+
       await signIn('credentials', {
         email: values.email,
         password: values.password,
@@ -75,9 +80,18 @@ export const SignUpCredentialsForm = () => {
             label="Verify Password"
             withAsterisk
           />
+          <Checkbox
+            label="Accept Terms Of Service"
+            variant="outline"
+            {...registerForm.getInputProps('acceptTow')}
+          />
           <Button
             fullWidth
-            disabled={!registerForm.isValid() || submitMutation.isPending}
+            disabled={
+              !registerForm.isValid() ||
+              submitMutation.isPending ||
+              !registerForm.values.acceptTow
+            }
             onClick={handleSubmitForm}
           >
             Sign Up
