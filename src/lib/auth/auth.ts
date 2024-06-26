@@ -3,7 +3,6 @@ import { prisma } from '@/lib/prisma';
 import type { User } from '@prisma/client';
 import type { NextAuthConfig, Session } from 'next-auth';
 import NextAuth from 'next-auth';
-import { setupResendCustomer } from './auth-config-setup';
 import {
   credentialsOverrideJwt,
   credentialsSignInCallback,
