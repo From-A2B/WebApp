@@ -1,6 +1,6 @@
 'use client';
 
-import PlusCircle from '@/components/Icons/plusCircle';
+import { PlusCircleIcon } from '@/components/Icons/plusCircleIcon';
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { CreateTripModal } from './createTripModal';
@@ -17,7 +17,7 @@ export const CreateTripBouton = ({}: createTripBoutonProps) => {
     <>
       <Button
         variant="transparent"
-        leftSection={<PlusCircle isHover={hovered} loop />}
+        leftSection={<PlusCircleIcon isHover={hovered} loop />}
         onMouseEnter={open}
         onMouseLeave={close}
         onClick={openCreateTripModal}
