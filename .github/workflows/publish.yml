@@ -8,6 +8,7 @@ on:
     types: [opened, closed, synchronize]
   release:
     types: [published]
+  workflow_dispatch:
 
 
 jobs:
@@ -46,9 +47,9 @@ jobs:
             esac
           fi
   
-    build_project
-      name: install dependencies and build
-      runs-on: ubuntu-latest
+  build_project:
+    name: install dependencies and build
+    runs-on: ubuntu-latest
       
       steps:
         - name: Checkout repo
