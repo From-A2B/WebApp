@@ -1,5 +1,9 @@
 const RoutePage = () => {
-  return <></>;
+  return (
+    <>
+      <div>Page</div>
+    </>
+  );
 };
 
 export default RoutePage;
