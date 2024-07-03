@@ -11,7 +11,7 @@ export const CreateTripBouton = ({}: createTripBoutonProps) => {
   const [hovered, { open, close }] = useDisclosure(false);
 
   const [opened, { open: openCreateTripModal, close: closeCreateTripModal }] =
-    useDisclosure(true);
+    useDisclosure(false);
 
   return (
     <>

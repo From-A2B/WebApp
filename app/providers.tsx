@@ -13,10 +13,13 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SessionProvider } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import './globals.scss';
+import '@mantine/core/styles.css';
+import '@mantine/core/styles.layer.css';
+import '@mantine/notifications/styles.css';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
-    <MantineProvider theme={themes} defaultColorScheme="dark" withGlobalClasses>
+    <MantineProvider theme={themes} defaultColorScheme="auto" withGlobalClasses>
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           <Notifications limit={5} position="top-right" />

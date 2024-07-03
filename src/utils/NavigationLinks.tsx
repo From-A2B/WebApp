@@ -6,6 +6,7 @@ import {
   IconLayoutDashboard,
   IconMail,
   IconUser,
+  IconUsers,
 } from '@tabler/icons-react';
 
 export const LINKS = {
@@ -13,16 +14,6 @@ export const LINKS = {
     Landing: {
       label: 'Home',
       href: '/',
-      auth: false,
-    },
-    LinkA: {
-      label: 'Link A',
-      href: '/#',
-      auth: false,
-    },
-    LinkB: {
-      label: 'Link B',
-      href: '/#',
       auth: false,
     },
   },
@@ -69,6 +60,12 @@ export const LINKS = {
       auth: true,
       icon: <IconMail />,
     },
+    Travel: {
+      label: 'My travels',
+      href: '/account/travels',
+      auth: true,
+      icon: <IconMail />,
+    },
   },
   Dashboard: {
     Dashboard: {
@@ -82,6 +79,12 @@ export const LINKS = {
       href: '/users',
       auth: true,
       icon: <IconUser />,
+    },
+    Trips: {
+      label: 'Trips',
+      href: '/dashboard/trips',
+      auth: true,
+      icon: <IconUsers />,
     },
   },
   Legal: {
@@ -108,29 +111,41 @@ export const LINKS = {
       auth: true,
     },
   },
-  Other: {
-    label: 'Other',
-    href: '/other',
-    auth: true,
+  Informations: {
+    Testimonials: {
+      label: 'Testimonials',
+      href: '/testimonials',
+      auth: false,
+    },
+  },
+  Travels: {
+    Create: {
+      label: 'Create travel',
+      href: '/travels/create',
+      auth: true,
+    },
+  },
+  Support: {
+    Contact: {
+      label: 'Contact',
+      href: '/support',
+      auth: false,
+    },
+    FAQ: {
+      label: 'FAQ',
+      href: '/faq',
+      auth: false,
+    },
   },
 };
 
-export const HEADER_LINKS: NavigationLinks = [
-  LINKS.Landing.LinkA,
-  LINKS.Landing.LinkB,
-  LINKS.Other,
-];
+export const HEADER_LINKS: NavigationLinks = [];
 
 export const ACCOUNT_LINKS: NavigationLinks = [
   LINKS.Account.Profile,
   LINKS.Account.Delete,
   LINKS.Account.Billing,
   LINKS.Account.Settings,
-  // {
-  //   href: '/account/support',
-  //   title: 'Contact Support',
-  //   icon: <IconHelpOctagon />,
-  // },
 ];
 
 export const DASHBOARD_LINKS: NavigationLinks = [
@@ -152,36 +167,21 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Other',
-    links: [LINKS.Dashboard.Users],
+    links: [LINKS.Dashboard.Users, LINKS.Dashboard.Trips],
   },
 ];
 
 export const FOOTER_LINKS: NavigationLinksWithGroup = [
   {
-    title: 'About',
-    links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.LinkA,
-      LINKS.Landing.LinkB,
-      LINKS.Other,
-    ],
+    title: 'Account',
+    links: [LINKS.Account.Profile, LINKS.Account.Travel],
   },
   {
-    title: 'Project',
-    links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-    ],
+    title: 'Informations',
+    links: [LINKS.Informations.Testimonials, LINKS.Travels.Create],
   },
   {
-    title: 'Community',
-    links: [
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-      LINKS.Landing.Landing,
-    ],
+    title: 'Support',
+    links: [LINKS.Support.Contact, LINKS.Support.FAQ],
   },
 ];

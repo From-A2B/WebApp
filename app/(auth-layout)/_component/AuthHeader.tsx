@@ -1,4 +1,5 @@
 import { SiteName } from '@/components/layout/SiteName';
+import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 import { AppShellHeader, Group } from '@mantine/core';
 
 export const AuthHeader = () => {
@@ -10,7 +11,7 @@ export const AuthHeader = () => {
         </Group>
         <Group visibleFrom="sm">
           {/* <AuthButtonClient /> */}
-          {/* <SwitchThemeIcon /> */}
+            <SwitchThemeIcon />
         </Group>
       </Group>
     </AppShellHeader>
