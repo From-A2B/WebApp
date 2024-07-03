@@ -13,7 +13,7 @@ type BaseHeaderProps = {
 export const BaseHeader = ({ size, fluid }: BaseHeaderProps) => {
   return (
     <AppShellHeader>
-      <Container size={size ? size : '90vh'} h="100%" fluid={fluid}>
+      <Container size={size ? size : '90vw'} h="100%" fluid={fluid}>
         <Group h="100%" justify="space-between" px="md">
           <Box
             component={Link}
