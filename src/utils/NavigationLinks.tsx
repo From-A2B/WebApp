@@ -6,6 +6,8 @@ import {
   IconLayoutDashboard,
   IconMail,
   IconUser,
+  IconRestore,
+  IconRoute
 } from '@tabler/icons-react';
 
 export const LINKS = {
@@ -63,8 +65,14 @@ export const LINKS = {
       label: 'My travels',
       href: '/account/travels',
       auth: true,
-      icon: <IconMail />,
+      icon: <IconRoute />,
     },
+    ResetPassword: {
+      label: 'Reset Password',
+      href: '/account/reset-password',
+      auth: false,
+      icon: <IconRestore />,
+    }
   },
   Dashboard: {
     Dashboard: {
@@ -171,8 +179,8 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
-    title: 'Other',
-    links: [LINKS.Dashboard.Users],
+    title: 'Dashboard',
+    links: [LINKS.Dashboard.Users, LINKS.Account.ResetPassword, LINKS.Account.Profile, LINKS.Account.Travel],
   },
 ];
 
