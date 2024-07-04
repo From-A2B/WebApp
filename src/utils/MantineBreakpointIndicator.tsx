@@ -19,7 +19,7 @@ export const MantineBreakpointIndicator = () => {
         left={0}
         bottom={0}
         style={{ zIndex: 9999 }}
-        bg="var(--mantine-color-black)"
+        bg="light-dark(var(--mantine-color-white), var(--mantine-color-black))"
         fw={700}
         m="sm"
       >
