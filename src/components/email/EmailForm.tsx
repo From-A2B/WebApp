@@ -1,8 +1,8 @@
 'use client';
 
-import { addEmailAction } from '@/features/email/email.action';
-import type { EmailActionSchemaType } from '@/features/email/email.schema';
-import { EmailActionSchema } from '@/features/email/email.schema';
+import { addEmailAction } from '@/features/email/addEmail.action';
+import type { EmailActionSchemaType } from '@/features/email/addEmail.schema';
+import { EmailActionSchema } from '@/features/email/addEmail.schema';
 import useNotify from '@/hook/useNotify';
 import { Alert, Button, Group, Text, TextInput } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';

@@ -1,6 +1,6 @@
 export const SiteConfig = {
   title: 'From-A2B',
-  description: 'Best trip planner',
+  description: 'From A2B is a simple and easy solution to manage your trips.',
   prodUrl: 'https://from-a2b.fr',
   domain: 'from-a2b.fr',
   appIcon: '/images/icon.png',
@@ -19,6 +19,6 @@ export const SiteConfig = {
     name: 'Dercraker',
   },
   auth: {
-    password: false as boolean,
+    password: true as boolean,
   },
 };

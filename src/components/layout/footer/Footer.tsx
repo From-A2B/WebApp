@@ -2,8 +2,7 @@ import LinksGroup from '@/components/linksGroup/LinksGroup';
 import { LogoSvg } from '@/components/svg/LogoSvg';
 import { FOOTER_LINKS } from '@/utils/NavigationLinks';
 import { SiteConfig } from '@/utils/site-config';
-import { ActionIcon, Container, Group, Text } from '@mantine/core';
-import { IconBrandGithub, IconMail } from '@tabler/icons-react';
+import { Container, Group, Text } from '@mantine/core';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -36,12 +35,6 @@ const Footer = () => {
           justify="flex-end"
           wrap="nowrap"
         >
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandGithub stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconMail stroke={1.5} />
-          </ActionIcon>
         </Group>
       </Container>
     </footer>

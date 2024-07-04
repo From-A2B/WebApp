@@ -1,27 +1,21 @@
-import { SiteName } from '@/components/layout/SiteName';
-import type { CardProps } from '@mantine/core';
-import { Card, CardSection, Group, Space, Stack, Text } from '@mantine/core';
+import type { PaperProps } from '@mantine/core';
+import { Paper, Space, Stack, Text } from '@mantine/core';
 import { SignInProviders } from './SignInProviders';
 
-type SignInCardProps = {} & CardProps;
+type SignInCardProps = {} & PaperProps;
 
 export const SignInCard = ({ ...props }: SignInCardProps) => {
   return (
-    <Card {...props}>
-      <CardSection>
+    <>
+      <Paper {...props} radius="lg">
         <Stack align="center">
-          <Group>
-            <SiteName logoSize={38} />
-          </Group>
           <Text fw="700" size="2em" ta="center">
-            Sign in to your account
+            Sign In
           </Text>
         </Stack>
-      </CardSection>
-      <Space h="xl" />
-      <CardSection>
+        <Space h="xl" />
         <SignInProviders />
-      </CardSection>
-    </Card>
+      </Paper>
+    </>
   );
 };

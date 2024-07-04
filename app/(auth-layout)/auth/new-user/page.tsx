@@ -1,14 +1,18 @@
+import { createVerifyEmailAction } from '@/features/account/verify-email/verify-email.action';
+import { requiredAuth } from '@/lib/auth/helper';
+import { searchParamsCache } from '@/lib/searchParams';
 import type { PageParams } from '@/types/next';
 import { LINKS } from '@/utils/NavigationLinks';
 import { Button, Container, Paper, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const RoutePage = ({ searchParams }: PageParams) => {
-  const callbackUrl =
-    typeof searchParams.callbackUrl === 'string'
-      ? searchParams.callbackUrl
-      : LINKS.Landing.Landing.href;
+const RoutePage = async ({ searchParams }: PageParams) => {
+  const user = await requiredAuth();
+
+  if (!user.emailVerified) await createVerifyEmailAction('');
+
+  const { callbackUrl } = searchParamsCache.parse(searchParams);
 
   redirect(callbackUrl);
 
