@@ -1,9 +1,9 @@
 import { prisma } from '@/lib/prisma';
-import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 export const DeleteTripByIdQuerySchema = z.object({
   tripId: z.string(),
+  userId: z.string(),
 });
 
 export type DeleteTripByIdQuerySchema = z.infer<
@@ -12,14 +12,12 @@ export type DeleteTripByIdQuerySchema = z.infer<
 
 export const DeleteTripByIdQuery = async ({
   tripId,
+  userId,
 }: DeleteTripByIdQuerySchema) => {
   await prisma.trip.delete({
     where: {
       id: tripId,
+      userId,
     },
   });
 };
-
-export type DeleteTripByIdQuery = NonNullable<
-  Prisma.PromiseReturnType<typeof DeleteTripByIdQuery>
->;

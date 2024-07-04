@@ -17,6 +17,12 @@ export const GetAllTripsByUserQuery = async ({
     where: {
       userId,
     },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      image: true,
+    },
   });
 
   return trips;
