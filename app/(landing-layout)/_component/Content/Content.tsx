@@ -1,18 +1,13 @@
-'use client';
-import React from 'react';
+'use client'; 
 import {
   Container,
   Stack,
   Text,
   Title,
-  Card,
-  Box,
   Divider,
   Grid,
   GridCol,
   Flex,
-  Group,
-  Center,
   useMantineTheme,
 } from '@mantine/core';
 import { IconCompass, IconDownload, IconGlobe, IconMap, IconTicket, IconTimeline } from '@tabler/icons-react';
@@ -26,7 +21,8 @@ import {
   GlobeIcon,
   InputIcon,
 } from "@radix-ui/react-icons";
-import useScrollTrigger from '@/hook/useScrollTrigger';
+import { TimelineAnimation } from '../TimelineAnimation';
+
 const features = [
   {
     Icon: FileTextIcon as React.ElementType,
@@ -121,8 +117,6 @@ const features = [
 
 export const Content = () => {
   const theme = useMantineTheme();
-  useScrollTrigger();
-
   return (
     <>
       <Container size="xl" py={50}>
@@ -134,63 +128,13 @@ export const Content = () => {
             By using our web application, you can plan and customize your trip easily in a few steps.
           </Text>
         </Stack>
-        <Box className="w-full p-4 fade-in">
-          <Flex align="center" justify="space-between" className="w-full invisible lg:visible">
-            <Box className="h-0.5 w-full" style={{ background: theme.colors.primaryColor[9] }} />
-            <Group>
-              <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>1</Center>
-            </Group>
-            <Box className="h-0.5 w-full" style={{ background: theme.colors.primaryColor[9] }} />
-            <Group>
-              <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>2</Center>
-            </Group>
-            <Box className="h-0.5 w-full" style={{ background: theme.colors.primaryColor[9] }} />
-            <Group>
-              <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>3</Center>
-            </Group>
-          </Flex>
-          <Flex direction={{ base: "column", lg: "row" }} justify={{ lg: "space-between" }} mt="xl">
-            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
-              <Card shadow="sm" p="lg" radius="md" withBorder>
-                <Flex align="center" mb="md" hiddenFrom="lg">
-                  <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>1</Center>
-                </Flex>
-                <Title order={3} fw={900}>Create a trip</Title>
-                <Text size="sm" mt="sm" c='dimmed'>
-                  Create your trip easily by filling in the various form fields to make your experience complete. Once your trip is created, you can then add steps.
-                </Text>
-              </Card>
-            </Box>
-            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
-              <Card shadow="sm" p="lg" radius="md" withBorder>
-                <Flex align="center" mb="md" hiddenFrom="lg">
-                  <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>2</Center>
-                </Flex>
-                <Title order={3} fw={900}>Add steps</Title>
-                <Text size="sm" mt="sm" c='dimmed'>
-                  Add new steps or activities to your trip in a few clicks. Whether it's sightseeing, dining, or adventure, you can create a detailed itinerary for your trip.
-                </Text>
-              </Card>
-            </Box>
-            <Box w={{ base: "100%", lg: "32%" }} mt={{ base: "xl", lg: 0 }}>
-              <Card shadow="sm" p="lg" radius="md" withBorder>
-                <Flex align="center" mb="md" hiddenFrom="lg">
-                  <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>3</Center>
-                </Flex>
-                <Title order={3} fw={900}>AI Recommendations</Title>
-                <Text size="sm" mt="sm" c='dimmed'>
-                  Our AI technology analyzes your preferences and suggests the best steps and activities for you. Discover hidden gems, popular attractions, and more.
-                </Text>
-              </Card>
-            </Box>
-          </Flex>
-        </Box>
+        <TimelineAnimation theme={theme} />
         <Divider size={2} color="teal" mt="xl" />
       </Container>
       <Container size="xl" py={{ xs: 20, md: 50 }}>
         <Grid gutter="xl">
           <GridCol span={{ xs: 12, md: 6 }} mt={{ base: 20, md: 0 }}>
-            <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg px-40 pb-40 pt-8 md:pb-60 fade-in">
+            <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg px-40 pb-40 pt-8 md:pb-60">
               <Globe className='w-64' />
               <div className="pointer-events-none absolute inset-0 h-full" />
             </div>
