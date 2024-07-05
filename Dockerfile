@@ -6,8 +6,10 @@ COPY package.json .
 
 RUN npm install -g pnpm
 
-COPY ./.next .
+COPY . .
+
+RUN pnpm install
 
 EXPOSE 3000
 
-CMD ["pnpm", "vercel-build"]
+CMD ["pnpm", "vercel-build-start"]
