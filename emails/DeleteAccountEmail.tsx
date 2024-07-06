@@ -2,7 +2,7 @@ import { SiteConfig } from '@/utils/site-config';
 import { Link, Section, Text } from '@react-email/components';
 import { EmailLayout } from './utils/EmailLayout';
 
-export default function DeleteAccountEmail({ email }: { email: string }) {
+const DeleteAccountEmail = ({ email }: { email: string }) => {
   return (
     <EmailLayout>
       <Section className="my-6">
@@ -29,4 +29,6 @@ export default function DeleteAccountEmail({ email }: { email: string }) {
       </Text>
     </EmailLayout>
   );
-}
+};
+
+export default DeleteAccountEmail;

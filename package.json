@@ -30,6 +30,7 @@
     "@react-email/components": "0.0.17",
     "@react-email/html": "0.0.8",
     "@react-email/tailwind": "0.0.16",
+    "react-email": "2.1.2",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.4.0",
     "@stylexjs/stylex": "^0.6.1",
