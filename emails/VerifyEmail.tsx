@@ -2,7 +2,7 @@ import { SiteConfig } from '@/utils/site-config';
 import { Link, Preview, Section, Text } from '@react-email/components';
 import { EmailLayout } from './utils/EmailLayout';
 
-export default function VerifyEmail({ url }: { url: string }) {
+const VerifyEmail = ({ url }: { url: string }) => {
   return (
     <EmailLayout>
       <Preview>Please click the link below to sign in to your account.</Preview>
@@ -24,4 +24,6 @@ export default function VerifyEmail({ url }: { url: string }) {
       </Text>
     </EmailLayout>
   );
-}
+};
+
+export default VerifyEmail;
