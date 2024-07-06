@@ -1,6 +1,6 @@
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
-import { Group, Paper, Stack, Text, Title } from '@mantine/core';
+import { Group, Paper, Stack, Title } from '@mantine/core';
 import { ContactForm } from './_component.tsx/contact.form';
 
 const RoutePage = async ({}: PageParams) => {
@@ -11,9 +11,8 @@ const RoutePage = async ({}: PageParams) => {
       <Title>Contact us</Title>
       <Paper withBorder p="xl">
         <Group>
-          <div></div>
           <Stack>
-            <Text>Send us a message</Text>
+            <Title order={3}>Send us a message</Title>
             <ContactForm name={user?.name} email={user?.email} />
           </Stack>
         </Group>
