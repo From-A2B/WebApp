@@ -9,6 +9,7 @@ export const SiteConfig = {
     address: 'In the cloud',
   },
   email: {
+    supportFrom: 'SUPPORT <contact@from-a2b.fr>',
     from: 'NOREPLY <contact@from-a2b.fr>',
     contact: 'contact@from-a2b.fr',
   },
