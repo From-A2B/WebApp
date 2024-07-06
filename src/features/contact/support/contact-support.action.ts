@@ -9,11 +9,11 @@ export const contactSupportAction = action(
   ContactSupportSchema,
   async (data) => {
     await sendEmail({
-      from: SiteConfig.email.from,
+      from: SiteConfig.email.supportFrom,
       to: SiteConfig.email.contact,
       cc: data.email,
 
-      subject: `[Staracter] Support needed from ${data.email} - ${data.subject}`,
+      subject: `[From-A2B] Support needed from ${data.name} ${data.email} - ${data.subject}`,
       text: data.message,
     });
     return { message: 'Your message has been sent to support.' };
