@@ -14,6 +14,9 @@ dependencies:
   '@dicebear/core':
     specifier: ^8.0.1
     version: 8.0.1
+  '@lordicon/react':
+    specifier: ^1.6.0
+    version: 1.6.0(lottie-web@5.12.2)(react@18.3.1)
   '@mantine/core':
     specifier: ^7.9.0
     version: 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
@@ -65,6 +68,9 @@ dependencies:
   jiti:
     specifier: ^1.21.0
     version: 1.21.0
+  lottie-web:
+    specifier: ^5.12.2
+    version: 5.12.2
   mantine-form-zod-resolver:
     specifier: ^1.1.0
     version: 1.1.0(@mantine/form@7.9.1)(zod@3.23.8)
@@ -766,6 +772,30 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@lordicon/helpers@1.6.0:
+    resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
+    dev: false
+
+  /@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1):
+    resolution: {integrity: sha512-SqDdc9/ReRpO3D8t1WG+yOKAFwQsewuw9hf6++faJhGk/ZgUOA4mqPke4R/pc0pMhXHOeET9DPgvNi1dmRpxxw==}
+    peerDependencies:
+      lottie-react-native: '*'
+      lottie-web: '*'
+      react: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      lottie-react-native:
+        optional: true
+      lottie-web:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@lordicon/helpers': 1.6.0
+      lottie-web: 5.12.2
+      react: 18.3.1
+    dev: false
 
   /@mantine/core@7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-UXK11t1fAQ2ROQ9HTIZfyU52XdwS8sFJ2SRUh5uHMWSahJo3wTdKzaCvYN7wg+ONM9p6ENT0hC0dfv5qXoKU4w==}
@@ -3373,6 +3403,10 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+
+  /lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
+    dev: false
 
   /lru-cache@10.2.2:
     resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
