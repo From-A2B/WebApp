@@ -8,8 +8,9 @@ import { AppShell, Group, UnstyledButton } from '@mantine/core';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import styles from './Header.module.css';
+import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 
-const LandingHeader = () => {
+export const LandingHeader = () => {
   const session = useSession();
 
   const links = HEADER_LINKS.map((link: NavigationLink) => {
@@ -41,11 +42,10 @@ const LandingHeader = () => {
         </Group>
         <Group>
           <Group gap="0">{links}</Group>
+          <SwitchThemeIcon />
           <AuthButtonClient />
         </Group>
       </Group>
     </AppShell.Header>
   );
 };
-
-export default LandingHeader;
