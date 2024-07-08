@@ -30,7 +30,9 @@ const SupportEmail = ({ content, email, name, subject }: SupportEmailProps) => {
           </Column>
         </Row>
         <Row>
-          <Text>{moment().format('yyyy, MMM - DD HH:mm')}</Text>
+          <Text className="font-bold text-base">
+            Date : {moment().format('yyyy, MMM - DD HH:mm')}
+          </Text>
         </Row>
       </Section>
       <h1>Subject : {subject}</h1>

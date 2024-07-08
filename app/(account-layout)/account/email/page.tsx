@@ -22,7 +22,7 @@ const ErrorComponent = () => {
   return (
     <Paper radius="lg" p="xl" withBorder my="md">
       <Badge color="red">Error</Badge>
-      <Title>Resend Not Found</Title>
+      <Title>Resend Account Not Found</Title>
       <Text>{`We couldn't find your Resend contact. Please contact support.`}</Text>
       <ContactSupportDialog />
     </Paper>

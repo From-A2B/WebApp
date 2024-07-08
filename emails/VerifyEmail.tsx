@@ -18,10 +18,7 @@ const VerifyEmail = ({ url }: { url: string }) => {
           </Link>
         </Text>
       </Section>
-      <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
-      </Text>
+      <Text className="text-lg leading-6">Best</Text>
     </EmailLayout>
   );
 };

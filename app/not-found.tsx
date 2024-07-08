@@ -1,4 +1,5 @@
 import { GoBackButton } from '@/features/button/GoBackButton';
+import { LINKS } from '@/utils/NavigationLinks';
 import {
   Badge,
   Button,
@@ -27,11 +28,22 @@ const NotFoundPage = () => {
               <GoBackButton
                 buttonProps={{ variant: 'outline', fullWidth: true }}
               />
-              <Button variant="outline" fullWidth component={Link} href="/">
+              <Button
+                variant="outline"
+                fullWidth
+                component={Link}
+                href={LINKS.Landing.Landing.href}
+              >
                 Go home
               </Button>
             </ButtonGroup>
-            <Button variant="outline">Contact Support</Button>
+            <Button
+              variant="outline"
+              component={Link}
+              href={LINKS.Support.Contact.href}
+            >
+              Contact Support
+            </Button>
           </Group>
         </Stack>
       </Center>

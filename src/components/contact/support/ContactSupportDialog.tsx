@@ -1,5 +1,6 @@
 'use client';
 
+import { TrashIcon } from '@/components/icons/trash.icon';
 import useNotify from '@/hook/useNotify';
 import { SiteConfig } from '@/utils/site-config';
 import type { ButtonProps } from '@mantine/core';
@@ -27,9 +28,11 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
     useDisclosure(false);
   const session = useSession();
   const email = session.data?.user.email ?? null;
-  const form = useForm<ContactSupportSchemaType>({
+  const name = session.data?.user.name ?? null;
+  const form = useForm<ContactSupportSchema>({
     validateInputOnChange: true,
     initialValues: {
+      name: name ?? '',
       email: email ?? '',
       subject: '',
       message: '',
@@ -57,8 +60,14 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
 
   const handleOpenModal = () => {
     if (email) form.setFieldValue('email', email);
+    if (name) form.setFieldValue('name', name);
 
     openModal();
+  };
+
+  const handleCloseModal = () => {
+    form.reset();
+    closeModal();
   };
 
   return (
@@ -74,7 +83,7 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
       </Stack>
       <Modal.Root
         opened={isModalOpen}
-        onClose={closeModal}
+        onClose={handleCloseModal}
         centered
         size="auto"
       >
@@ -99,6 +108,13 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
             <form onReset={() => form.reset()}>
               <Stack>
                 <Box>
+                  {!name && (
+                    <TextInput
+                      withAsterisk
+                      label="Name"
+                      {...form.getInputProps('name')}
+                    />
+                  )}
                   {!email && (
                     <TextInput
                       withAsterisk
@@ -110,13 +126,29 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
                     withAsterisk
                     label="Subject"
                     {...form.getInputProps('subject')}
+                    rightSection={
+                      form.values.subject.length > 0 && (
+                        <TrashIcon
+                          onClick={() => form.setFieldValue('subject', '')}
+                        />
+                      )
+                    }
                   />
                   <Textarea
                     withAsterisk
                     resize="vertical"
                     label="Message"
                     autosize
+                    minRows={2}
+                    maxRows={10}
                     {...form.getInputProps('message')}
+                    rightSection={
+                      form.values.message.length > 0 && (
+                        <TrashIcon
+                          onClick={() => form.setFieldValue('message', '')}
+                        />
+                      )
+                    }
                   />
                 </Box>
                 <Button
