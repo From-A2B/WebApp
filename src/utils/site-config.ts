@@ -5,7 +5,7 @@ export const SiteConfig = {
   domain: 'from-a2b.fr',
   appIcon: '/images/icon.png',
   company: {
-    name: 'Dercraker Inc.',
+    name: 'From-A2B Inc.',
     address: 'In the cloud',
   },
   email: {
