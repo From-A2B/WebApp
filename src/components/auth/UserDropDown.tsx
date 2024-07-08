@@ -14,11 +14,7 @@ import {
   rem,
   Text,
 } from '@mantine/core';
-import {
-  IconChevronRight,
-  IconSettings,
-  IconShieldLock,
-} from '@tabler/icons-react';
+import { IconChevronRight, IconShieldLock } from '@tabler/icons-react';
 import type { User } from 'next-auth';
 import Link from 'next/link';
 import LogoutMenuItem from './LogoutMenuItem';
@@ -75,7 +71,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
               />
             }
             component={Link}
-            href={LINKS.Account.Profile.href}
+            href={LINKS.Account.MyAccount.href}
           >
             <Group>
               <AvatarImage user={user} />
@@ -105,18 +101,6 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
           </MenuItem>
 
           <MenuLabel>Settings</MenuLabel>
-          <MenuItem
-            leftSection={
-              <IconSettings
-                style={{ width: rem(16), height: rem(16) }}
-                stroke={1.5}
-              />
-            }
-            component={Link}
-            href={LINKS.Account.Settings.href}
-          >
-            Settings
-          </MenuItem>
           <LogoutMenuItem />
         </MenuDropdown>
       </Menu>
