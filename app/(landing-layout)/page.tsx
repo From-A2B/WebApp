@@ -1,11 +1,17 @@
-import { Content } from './_component/Content/Content';
+import { FeaturesSection } from './_component/FeaturesSection';
+import { GlobeSection } from './_component/GlobeSection';
 import { HeroImageBackground } from './_component/Hero/HeroHeader';
+import { StepSection } from './_component/StepSection';
+import { TestimonialsSection } from './_component/TestimonialsSection';
 
 const RoutePage = () => {
   return (
     <>
       <HeroImageBackground />
-      <Content />
+      <StepSection />
+      <GlobeSection />
+      <FeaturesSection />
+      <TestimonialsSection />
     </>
   );
 };
