@@ -5,6 +5,7 @@ import { TrashIcon } from '@/components/icons/trash.icon';
 import { contactSupportAction } from '@/features/contact/support/contact-support.action';
 import { ContactSupportSchema } from '@/features/contact/support/contact-support.schema';
 import useNotify from '@/hook/useNotify';
+import { cn } from '@/lib/utils';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
   Box,
@@ -111,23 +112,35 @@ export const ContactForm = ({ email, name }: ContactFormProps) => {
           }
           {...contactForm.getInputProps('subject')}
         />
-        <Textarea
-          withAsterisk
-          label="Message"
-          placeholder="the subject of your message"
-          autosize
-          minRows={2}
-          maxRows={10}
-          resize="vertical"
-          rightSection={
-            contactForm.values.message && (
-              <TrashIcon
-                onClick={() => contactForm.setFieldValue('message', '')}
-              />
-            )
-          }
-          {...contactForm.getInputProps('message')}
-        />
+        <Box>
+          <Textarea
+            withAsterisk
+            label="Message"
+            placeholder="the subject of your message"
+            autosize
+            minRows={2}
+            maxRows={10}
+            resize="vertical"
+            rightSection={
+              contactForm.values.message && (
+                <TrashIcon
+                  onClick={() => contactForm.setFieldValue('message', '')}
+                />
+              )
+            }
+            {...contactForm.getInputProps('message')}
+          />
+          <p
+            className={cn(
+              contactForm.values.message.length >= 500
+                ? 'text-red-500'
+                : 'text-zinc-600',
+              'text-right mt-0'
+            )}
+          >
+            {contactForm.values.message.length} / 500
+          </p>
+        </Box>
       </Box>
       <div className="flex flex-row justify-end">
         <ButtonGroup>
