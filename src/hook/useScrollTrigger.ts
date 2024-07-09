@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const useScrollTrigger = () => {
   useEffect(() => {
-    // Cible les sections ou conteneurs individuels
     const sections = document.querySelectorAll('.fade-in');
 
     sections.forEach(section => {
