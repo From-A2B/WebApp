@@ -36,6 +36,7 @@ export const EditProfilForm = ({ defaultValues }: EditProfilFormProps) => {
           SuccessNotify({
             message:
               'You have updated your email. We have sent you a new email verification link.',
+            autoClose: 7000,
           });
         return;
       }
