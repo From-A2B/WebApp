@@ -20,13 +20,7 @@ const Page = async ({}: PageParams) => {
   });
 
   return (
-    <Paper
-      radius="lg"
-      p="xl"
-      my="md"
-      withBorder
-      bg="var(--mantine-color-dark-5)"
-    >
+    <Paper radius="lg" p="xl" my="md" withBorder>
       <Stack>
         <Group>
           <AvatarImage user={user} />
