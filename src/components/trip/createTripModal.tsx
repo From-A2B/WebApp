@@ -116,8 +116,8 @@ export const CreateTripModal = ({ opened, close }: CreateTripModalProps) => {
             />
             <DatePickerInput
               withAsterisk
-              label="Departure date"
-              description="Enter your departure date"
+              label="Beginning date"
+              description="Enter your beginning date"
               placeholder={moment().format('YYYY, MMMM D')}
               valueFormat="YYYY, MMMM D"
               clearable
