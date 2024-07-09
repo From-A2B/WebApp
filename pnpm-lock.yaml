@@ -4,118 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@auth/prisma-adapter':
-    specifier: ^2.0.0
-    version: 2.1.0(@prisma/client@5.13.0)
-  '@dicebear/collection':
-    specifier: ^8.0.1
-    version: 8.0.1(@dicebear/core@8.0.1)
-  '@dicebear/core':
-    specifier: ^8.0.1
-    version: 8.0.1
-  '@lordicon/react':
-    specifier: ^1.6.0
-    version: 1.6.0(lottie-web@5.12.2)(react@18.3.1)
-  '@mantine/core':
-    specifier: ^7.9.0
-    version: 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
-  '@mantine/dates':
-    specifier: ^7.11.0
-    version: 7.11.0(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1)
-  '@mantine/form':
-    specifier: ^7.9.0
-    version: 7.9.1(react@18.3.1)
-  '@mantine/hooks':
-    specifier: ^7.9.0
-    version: 7.9.1(react@18.3.1)
-  '@mantine/notifications':
-    specifier: ^7.9.0
-    version: 7.9.1(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(react-dom@18.3.1)(react@18.3.1)
-  '@prisma/client':
-    specifier: ^5.13.0
-    version: 5.13.0(prisma@5.13.0)
-  '@react-email/components':
-    specifier: 0.0.17
-    version: 0.0.17(@types/react@18.3.2)(react@18.3.1)
-  '@react-email/html':
-    specifier: 0.0.8
-    version: 0.0.8(react@18.3.1)
-  '@react-email/tailwind':
-    specifier: 0.0.16
-    version: 0.0.16(react@18.3.1)
-  '@stripe/react-stripe-js':
-    specifier: ^2.7.1
-    version: 2.7.1(@stripe/stripe-js@3.4.0)(react-dom@18.3.1)(react@18.3.1)
-  '@stripe/stripe-js':
-    specifier: ^3.4.0
-    version: 3.4.0
-  '@stylexjs/stylex':
-    specifier: ^0.6.1
-    version: 0.6.1
-  '@t3-oss/env-nextjs':
-    specifier: ^0.10.1
-    version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
-  '@tabler/icons-react':
-    specifier: ^3.3.0
-    version: 3.3.0(react@18.3.1)
-  '@tanstack/react-query':
-    specifier: ^5.35.5
-    version: 5.36.0(react@18.3.1)
-  cookies:
-    specifier: ^0.9.1
-    version: 0.9.1
-  dayjs:
-    specifier: ^1.11.11
-    version: 1.11.11
-  framer-motion:
-    specifier: ^11.1.9
-    version: 11.1.9(react-dom@18.3.1)(react@18.3.1)
-  jiti:
-    specifier: ^1.21.0
-    version: 1.21.0
-  lottie-web:
-    specifier: ^5.12.2
-    version: 5.12.2
-  moment:
-    specifier: ^2.30.1
-    version: 2.30.1
-  nanoid:
-    specifier: ^5.0.7
-    version: 5.0.7
-  next:
-    specifier: 14.2.3
-    version: 14.2.3(react-dom@18.3.1)(react@18.3.1)(sass@1.77.1)
-  next-auth:
-    specifier: 5.0.0-beta.11
-    version: 5.0.0-beta.11(next@14.2.3)(react@18.3.1)
-  next-safe-action:
-    specifier: ^6.2.0
-    version: 6.2.0(next@14.2.3)(react@18.3.1)
-  nuqs:
-    specifier: ^1.17.2
-    version: 1.17.2(next@14.2.3)
-  react:
-    specifier: ^18.3.1
-    version: 18.3.1
-  react-dom:
-    specifier: ^18
-    version: 18.3.1(react@18.3.1)
-  resend:
-    specifier: ^3.2.0
-    version: 3.2.0
-  stripe:
-    specifier: ^15.6.0
-    version: 15.6.0
-  tslog:
-    specifier: ^4.9.2
-    version: 4.9.2
-  zod:
-    specifier: ^3.23.8
-    version: 3.23.8
-  zustand:
-    specifier: ^4.5.2
-    version: 4.5.2(@types/react@18.3.2)(react@18.3.1)
+importers:
 
   .:
     dependencies:
@@ -128,9 +17,15 @@ dependencies:
       '@dicebear/core':
         specifier: ^8.0.1
         version: 8.0.1
+      '@lordicon/react':
+        specifier: ^1.6.0
+        version: 1.6.0(lottie-web@5.12.2)(react@18.3.1)
       '@mantine/core':
         specifier: ^7.9.0
         version: 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      '@mantine/dates':
+        specifier: ^7.11.0
+        version: 7.11.1(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1)
       '@mantine/form':
         specifier: ^7.9.0
         version: 7.9.1(react@18.3.1)
@@ -173,12 +68,18 @@ dependencies:
       cookies:
         specifier: ^0.9.1
         version: 0.9.1
+      dayjs:
+        specifier: ^1.11.11
+        version: 1.11.11
       framer-motion:
         specifier: ^11.1.9
         version: 11.1.9(react-dom@18.3.1)(react@18.3.1)
       jiti:
         specifier: ^1.21.0
         version: 1.21.0
+      lottie-web:
+        specifier: ^5.12.2
+        version: 5.12.2
       moment:
         specifier: ^2.30.1
         version: 2.30.1
@@ -651,11 +552,10 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  /@lordicon/helpers@1.6.0:
+  '@lordicon/helpers@1.6.0':
     resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
-    dev: false
 
-  /@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1):
+  '@lordicon/react@1.6.0':
     resolution: {integrity: sha512-SqDdc9/ReRpO3D8t1WG+yOKAFwQsewuw9hf6++faJhGk/ZgUOA4mqPke4R/pc0pMhXHOeET9DPgvNi1dmRpxxw==}
     peerDependencies:
       lottie-react-native: '*'
@@ -669,37 +569,24 @@ packages:
         optional: true
       react-native:
         optional: true
-    dependencies:
-      '@lordicon/helpers': 1.6.0
-      lottie-web: 5.12.2
-      react: 18.3.1
-    dev: false
 
-  /@mantine/core@7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
+  '@mantine/core@7.9.1':
     resolution: {integrity: sha512-UXK11t1fAQ2ROQ9HTIZfyU52XdwS8sFJ2SRUh5uHMWSahJo3wTdKzaCvYN7wg+ONM9p6ENT0hC0dfv5qXoKU4w==}
     peerDependencies:
       '@mantine/hooks': 7.9.1
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  /@mantine/dates@7.11.0(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-4wKzOyOvDDh8/TV1SYGHDWydflweRiem4cJt3S49LO1Forpy2SiJ18Gn4ylGiqZdWxz1HY4Jb5kl7GAzxLD4tQ==}
+  '@mantine/dates@7.11.1':
+    resolution: {integrity: sha512-Km0WGaftHPK+oqCjvg2gdzxWsDS7seZdUx6VFQE0m35zouiSaRRFCrfo/NOKGS8ctKC/VsYdFQr+EkDxG+EEjg==}
     peerDependencies:
-      '@mantine/core': 7.11.0
-      '@mantine/hooks': 7.11.0
+      '@mantine/core': 7.11.1
+      '@mantine/hooks': 7.11.1
       dayjs: '>=1.0.0'
       react: ^18.2.0
       react-dom: ^18.2.0
-    dependencies:
-      '@mantine/core': 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
-      '@mantine/hooks': 7.9.1(react@18.3.1)
-      clsx: 2.1.1
-      dayjs: 1.11.11
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: false
 
-  /@mantine/form@7.9.1(react@18.3.1):
+  '@mantine/form@7.9.1':
     resolution: {integrity: sha512-6Z4LkACT1ouoTvtI9hH/rT+L7qvfKnCypUyaCtYpPkA57ANamK7qkmeXXBmbGGOf8mJB+ZSgOvpDVKKRz5iH3Q==}
     peerDependencies:
       react: ^18.2.0
@@ -1426,6 +1313,9 @@ packages:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
 
+  dayjs@1.11.11:
+    resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
+
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     peerDependencies:
@@ -2083,6 +1973,9 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
+
+  lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
 
   lru-cache@10.2.2:
     resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
@@ -3269,6 +3162,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
+  '@lordicon/helpers@1.6.0': {}
+
+  '@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1)':
+    dependencies:
+      '@lordicon/helpers': 1.6.0
+      lottie-web: 5.12.2
+      react: 18.3.1
+
   '@mantine/core@7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.26.14(react-dom@18.3.1)(react@18.3.1)
@@ -3282,6 +3183,15 @@ snapshots:
       type-fest: 4.18.2
     transitivePeerDependencies:
       - '@types/react'
+
+  '@mantine/dates@7.11.1(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1)':
+    dependencies:
+      '@mantine/core': 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      '@mantine/hooks': 7.9.1(react@18.3.1)
+      clsx: 2.1.1
+      dayjs: 1.11.11
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@mantine/form@7.9.1(react@18.3.1)':
     dependencies:
@@ -3978,9 +3888,7 @@ snapshots:
 
   clsx@2.1.0: {}
 
-  /clsx@2.1.1:
-    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
-    engines: {node: '>=6'}
+  clsx@2.1.1: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -4038,17 +3946,9 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
-  /dayjs@1.11.11:
-    resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
-    dev: false
+  dayjs@1.11.11: {}
 
-  /debug@3.2.7:
-    resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
+  debug@3.2.7:
     dependencies:
       ms: 2.1.3
 
@@ -4848,13 +4748,9 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  /lottie-web@5.12.2:
-    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
-    dev: false
+  lottie-web@5.12.2: {}
 
-  /lru-cache@10.2.2:
-    resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
-    engines: {node: 14 || >=16.14}
+  lru-cache@10.2.2: {}
 
   marked@7.0.4: {}
 
