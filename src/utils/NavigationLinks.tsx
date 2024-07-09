@@ -63,7 +63,7 @@ export const LINKS = {
     },
     Travel: {
       label: 'My travels',
-      href: '/account/travels',
+      href: '/dashboard/travels',
       auth: true,
       icon: <IconRoute />,
     },
@@ -180,7 +180,7 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Dashboard',
-    links: [LINKS.Dashboard.Users, LINKS.Account.ResetPassword, LINKS.Account.Profile, LINKS.Account.Travel],
+    links: [LINKS.Account.Travel, LINKS.Dashboard.Users, LINKS.Account.ResetPassword, LINKS.Account.Profile],
   },
 ];
 
