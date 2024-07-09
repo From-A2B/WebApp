@@ -5,13 +5,13 @@ import { TrashIcon } from '@/components/icons/trash.icon';
 import { contactSupportAction } from '@/features/contact/support/contact-support.action';
 import { ContactSupportSchema } from '@/features/contact/support/contact-support.schema';
 import useNotify from '@/hook/useNotify';
-import { cn } from '@/lib/utils';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
   Box,
   Button,
   ButtonGroup,
   Group,
+  Text,
   TextInput,
   Textarea,
 } from '@mantine/core';
@@ -130,19 +130,20 @@ export const ContactForm = ({ email, name }: ContactFormProps) => {
             }
             {...contactForm.getInputProps('message')}
           />
-          <p
-            className={cn(
+          <Text
+            c={
               contactForm.values.message.length >= 500
-                ? 'text-red-500'
-                : 'text-zinc-600',
-              'text-right mt-0'
-            )}
+                ? 'var(--mantine-color-red-5)'
+                : 'var(--mantine-color-dimmed)'
+            }
+            ta="right"
+            mt={0}
           >
             {contactForm.values.message.length} / 500
-          </p>
+          </Text>
         </Box>
       </Box>
-      <div className="flex flex-row justify-end">
+      <Group justify="end">
         <ButtonGroup>
           <Button
             color="var(--mantine-color-red-5)"
@@ -175,7 +176,7 @@ export const ContactForm = ({ email, name }: ContactFormProps) => {
             Send
           </Button>
         </ButtonGroup>
-      </div>
+      </Group>
     </>
   );
 };
