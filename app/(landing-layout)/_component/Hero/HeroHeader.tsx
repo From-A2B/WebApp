@@ -1,12 +1,11 @@
 'use client';
 
-import { Button, Container, Overlay, Text, Title } from '@mantine/core';
+import { Button, Container, Text, Title, Overlay } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import './HeroImageBackground.scss';
-import BackgroundVideo from 'next-video/background-video';
-import Video from '../../../../videos/header-backgroud-video.mp4'
+import { Video } from '@/components/video/Video';
 
-export const HeroImageBackground = () => {
+export const HeroImageBackground: React.FC = () => {
   const router = useRouter();
 
   const handleButtonClick = () => {
@@ -14,7 +13,7 @@ export const HeroImageBackground = () => {
   }
 
   return (
-    <BackgroundVideo src={Video} sizes='1rem' controls={false}>
+    <Video source='https://videos.pexels.com/video-files/5379990/5379990-uhd_2560_1440_24fps.mp4'>
       <Overlay color="#000" opacity={0.65} zIndex={1} />
       <div className="hero__inner">
         <Title className="hero__title">Create your dream trip</Title>
@@ -33,7 +32,7 @@ export const HeroImageBackground = () => {
             Start
           </Button>
         </div>
-    </div>
-    </BackgroundVideo>
+      </div>
+    </Video>
   );
 };
