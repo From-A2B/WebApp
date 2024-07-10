@@ -1,0 +1,25 @@
+{
+    "name": "Web App",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:0-20",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-tslint-plugin"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+                "typescript.validate.enable": false,
+                "eslint.alwaysShowStatus": true,
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": true
+                }
+            }
+        }
+    },
+    "postCreateCommand": "npm install -g pnpm && pnpm install && pnpm vercel-build && pnpm dev",
+    "remoteUser": "node",
+    "runArgs": ["--name", "WebApp", "--network", "mynetwork"]
+}
