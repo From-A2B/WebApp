@@ -1,0 +1,17 @@
+services:
+  db:
+    container_name: POSTGRES_DB
+    image: postgres
+    networks:
+      mynetwork:
+        ipv4_address: 172.28.0.3
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+
+networks:
+  mynetwork:
+    external: true
