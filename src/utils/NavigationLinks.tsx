@@ -6,6 +6,7 @@ import {
   IconLayoutDashboard,
   IconMail,
   IconUser,
+  IconUsers,
   IconRestore,
   IconRoute
 } from '@tabler/icons-react';
@@ -16,7 +17,7 @@ export const LINKS = {
       label: 'Home',
       href: '/',
       auth: false,
-    }
+    },
   },
   Auth: {
     SignIn: {
@@ -87,6 +88,12 @@ export const LINKS = {
       auth: true,
       icon: <IconUser />,
     },
+    Trips: {
+      label: 'Trips',
+      href: '/dashboard/trips',
+      auth: true,
+      icon: <IconUsers />,
+    },
   },
   Legal: {
     Privacy: {
@@ -112,11 +119,6 @@ export const LINKS = {
       auth: true,
     },
   },
-  Other: {
-    label: 'Other',
-    href: '/other',
-    auth: true,
-  },
   Informations: {
     Testimonials: {
       label: 'Testimonials',
@@ -131,7 +133,7 @@ export const LINKS = {
       auth: true,
     },
   },
-  Support : {
+  Support: {
     Contact: {
       label: 'Contact',
       href: '/support',
@@ -142,23 +144,16 @@ export const LINKS = {
       href: '/faq',
       auth: false,
     },
-  }
+  },
 };
 
-export const HEADER_LINKS: NavigationLinks = [
-  LINKS.Other,
-];
+export const HEADER_LINKS: NavigationLinks = [];
 
 export const ACCOUNT_LINKS: NavigationLinks = [
   LINKS.Account.Profile,
   LINKS.Account.Delete,
   LINKS.Account.Billing,
   LINKS.Account.Settings,
-  // {
-  //   href: '/account/support',
-  //   title: 'Contact Support',
-  //   icon: <IconHelpOctagon />,
-  // },
 ];
 
 export const DASHBOARD_LINKS: NavigationLinks = [
@@ -187,23 +182,14 @@ export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
 export const FOOTER_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Account',
-    links: [
-      LINKS.Account.Profile,
-      LINKS.Account.Travel,
-    ],
+    links: [LINKS.Account.Profile, LINKS.Account.Travel],
   },
   {
     title: 'Informations',
-    links: [
-      LINKS.Informations.Testimonials,
-      LINKS.Travels.Create,
-    ],
+    links: [LINKS.Informations.Testimonials, LINKS.Travels.Create],
   },
   {
     title: 'Support',
-    links: [
-      LINKS.Support.Contact,
-      LINKS.Support.FAQ,
-    ],
+    links: [LINKS.Support.Contact, LINKS.Support.FAQ],
   },
 ];
