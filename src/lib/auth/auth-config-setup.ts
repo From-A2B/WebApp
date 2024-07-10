@@ -1,5 +1,7 @@
 import { stripe } from '@/lib/stripe';
 import type { User } from 'next-auth';
+import { env } from '../env/server';
+import { resend } from '../mail/resend';
 
 export const setupStripeCustomer = async (user: User) => {
   if (!user.email) {
@@ -12,4 +14,25 @@ export const setupStripeCustomer = async (user: User) => {
   });
 
   return customer.id;
+};
+
+export const setupResendCustomer = async (user: User) => {
+  if (!user.email) {
+    return;
+  }
+
+  if (!env.RESEND_AUDIENCE_ID) {
+    return;
+  }
+
+  const contact = await resend.contacts.create({
+    audienceId: env.RESEND_AUDIENCE_ID,
+    email: user.email,
+    firstName: user.name ?? '',
+    unsubscribed: false,
+  });
+
+  if (!contact.data) return;
+
+  return contact.data.id;
 };

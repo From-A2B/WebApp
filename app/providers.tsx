@@ -3,7 +3,11 @@ import { env } from '@/lib/env/server';
 import { themes } from '@/styles/themes';
 import { MantineBreakpointIndicator } from '@/utils/MantineBreakpointIndicator';
 import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+import '@mantine/core/styles.layer.css';
+import '@mantine/dates/styles.css';
 import { Notifications } from '@mantine/notifications';
+import '@mantine/notifications/styles.css';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { SessionProvider } from 'next-auth/react';
@@ -12,6 +16,7 @@ import './globals.scss';
 import '@mantine/core/styles.css';
 import '@mantine/core/styles.layer.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/carousel/styles.css';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
