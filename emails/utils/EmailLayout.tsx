@@ -12,17 +12,13 @@ import {
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
 import type { PropsWithChildren } from 'react';
+import tailwindConfig from '~/tailwind.config';
 
 export const EmailLayout = ({ children }: PropsWithChildren) => {
   const baseUrl = getServerUrl();
   return (
-    <Tailwind
-      config={
-        {
-          // Theme can go here
-        }
-      }
-    >
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    <Tailwind config={tailwindConfig}>
       <Html>
         <Head />
         <Body className="bg-white font-sans">
@@ -52,7 +48,12 @@ export const EmailLayout = ({ children }: PropsWithChildren) => {
               className="inline"
               alt={`${SiteConfig.company.name}'s logo`}
             />
-            <Link href={`${baseUrl}/api/emails/unsubscribe`}>Unsubscribe</Link>
+            <Link
+              href={`${baseUrl}/api/emails/unsubscribe`}
+              className="text-primary-800 pl-2"
+            >
+              Unsubscribe
+            </Link>
             <Text className="ml-1 text-sm text-gray-500">
               {SiteConfig.company.name}
             </Text>
