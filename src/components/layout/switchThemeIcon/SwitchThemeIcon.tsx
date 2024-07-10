@@ -1,10 +1,12 @@
+'use client';
+
 import {
   ActionIcon,
   Button,
-  useMantineColorScheme,
   useComputedColorScheme,
+  useMantineColorScheme,
 } from '@mantine/core';
-import { IconSun, IconMoon } from '@tabler/icons-react';
+import { IconMoon, IconSun } from '@tabler/icons-react';
 
 export const SwitchThemeIcon = ({ asButton = false }) => {
   const { setColorScheme } = useMantineColorScheme();
@@ -28,7 +30,8 @@ export const SwitchThemeIcon = ({ asButton = false }) => {
           ) : (
             <IconMoon stroke={1.5} />
           )
-        }>
+        }
+      >
         Switch theme
       </Button>
     );

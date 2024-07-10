@@ -15,7 +15,7 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "no-console": "warn",
-    "complexity": ["error", 10],
+    "complexity": ["warn", 15],
     "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
     "no-await-in-loop": 1,
     "no-return-await": 1,

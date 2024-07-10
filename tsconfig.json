@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "~/*": ["./*"],
       "@/*": ["./src/*"],
       "@public/*": ["./public/*"],
       "@email/*": ["./emails/*"]
@@ -30,7 +31,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "postcss.config.js",
-    "tests/**/*"
+    "tests/**/*",
+    "app/(base-layout)/support/_component"
   ],
   "exclude": ["node_modules", ".next"]
 }

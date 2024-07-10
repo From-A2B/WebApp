@@ -1,4 +1,4 @@
-import { SignUpCard } from '@/components/auth/signUp/SignUpCard';
+import { SignUpCard } from '@/components/auth/signUp/signUpCard';
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
 import { SiteConfig } from '@/utils/site-config';
