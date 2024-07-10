@@ -19,6 +19,7 @@
     "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
     "no-await-in-loop": 1,
     "no-return-await": 1,
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "no-eval": 1,
     "no-implied-eval": 1,
     "prefer-promise-reject-errors": 1,
