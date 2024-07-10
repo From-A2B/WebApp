@@ -1,6 +1,7 @@
-// import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
+import { ContactSupportDialog } from '@/components/contact/support/ContactSupportDialog';
 import { getError } from '@/features/auth/error/auth-error-mapping';
 import type { PageParams } from '@/types/next';
+import { LINKS } from '@/utils/NavigationLinks';
 import {
   Badge,
   Button,
@@ -23,9 +24,10 @@ const AuthErrorPage = ({ searchParams }: PageParams) => {
         <Badge color="red">{error}</Badge>
         <Title order={2}>{errorMessage}</Title>
         <Group>
-          <Button component={Link} href="/">
+          <Button component={Link} href={LINKS.Landing.Landing.href}>
             Home
           </Button>
+          <ContactSupportDialog />
         </Group>
       </Paper>
     </Container>

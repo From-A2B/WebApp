@@ -4,17 +4,15 @@ import {
   Body,
   Container,
   Head,
-  Hr,
   Html,
   Img,
-  Link,
+  Tailwind,
   Text,
 } from '@react-email/components';
-import { Tailwind } from '@react-email/tailwind';
 import type { PropsWithChildren } from 'react';
 import tailwindConfig from '~/tailwind.config';
 
-export const EmailLayout = ({ children }: PropsWithChildren) => {
+export const EmailLayoutWithoutFooter = ({ children }: PropsWithChildren) => {
   const baseUrl = getServerUrl();
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -40,26 +38,6 @@ export const EmailLayout = ({ children }: PropsWithChildren) => {
               </tr>
             </table>
             {children}
-            <Hr className="mt-12 border-gray-300" />
-            <Img
-              src={`${baseUrl}${SiteConfig.appIcon}`}
-              width={32}
-              height={32}
-              className="inline"
-              alt={`${SiteConfig.company.name}'s logo`}
-            />
-            <Link
-              href={`${baseUrl}/api/emails/unsubscribe`}
-              className="text-primary-800 pl-2"
-            >
-              Unsubscribe
-            </Link>
-            <Text className="ml-1 text-sm text-gray-500">
-              {SiteConfig.company.name}
-            </Text>
-            <Text className="ml-1 text-sm text-gray-500">
-              {SiteConfig.company.address}
-            </Text>
           </Container>
         </Body>
       </Html>

@@ -2,7 +2,7 @@ import { SiteConfig } from '@/utils/site-config';
 import { Link, Preview, Section, Text } from '@react-email/components';
 import { EmailLayout } from './utils/EmailLayout';
 
-export default function VerifyEmail({ url }: { url: string }) {
+const VerifyEmail = ({ url }: { url: string }) => {
   return (
     <EmailLayout>
       <Preview>Please click the link below to sign in to your account.</Preview>
@@ -13,15 +13,14 @@ export default function VerifyEmail({ url }: { url: string }) {
         </Text>
         <Text>If you didn't request this, please ignore this email.</Text>
         <Text className="text-lg leading-6">
-          <Link className="text-sky-500 hover:underline" href={url}>
+          <Link className="text-teal-600 hover:underline" href={url}>
             👉 Click here to verify your email 👈
           </Link>
         </Text>
       </Section>
-      <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
-      </Text>
+      <Text className="text-lg leading-6">Best</Text>
     </EmailLayout>
   );
-}
+};
+
+export default VerifyEmail;
