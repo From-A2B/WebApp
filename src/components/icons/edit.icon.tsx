@@ -52,11 +52,7 @@ export const EditIcon = ({
         icon={ICON}
         size={size}
         onComplete={handleComplete}
-        colorize={
-          disabled
-            ? 'var(--mantine-color-grey-5)'
-            : colorize || 'var(--mantine-primary-color-3)'
-        }
+        colorize={disabled ? 'var(--mantine-color-grey-5)' : colorize}
       />
     </ActionIcon>
   );
