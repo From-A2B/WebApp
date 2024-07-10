@@ -1,8 +1,8 @@
 import { auth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
 import { Group, Paper, Stack, Title } from '@mantine/core';
-import { ContactForm } from './_component.tsx/contact.form';
-import { ContactInformation } from './_component.tsx/contactInformation';
+import { ContactForm } from './_component/contact.form';
+import { ContactInformation } from './_component/contactInformation';
 
 const RoutePage = async ({}: PageParams) => {
   const user = await auth();
