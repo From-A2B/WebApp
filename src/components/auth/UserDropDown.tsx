@@ -1,4 +1,4 @@
-import AvatarImage from '@/components/ui/Avatar';
+import { AvatarIcon } from '@/components/profile/avatarIcon';
 import { displayName } from '@/utils/format/displayName';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
@@ -40,7 +40,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
         <MenuTarget>
           {variant === 'minimal' ? (
             <ActionIcon variant="transparent" radius="xl" size="xl">
-              <AvatarImage user={user} />
+              <AvatarIcon user={user} />
             </ActionIcon>
           ) : (
             <Group
@@ -51,7 +51,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
               <Paper>
                 <Group>
                   <ActionIcon variant="transparent" radius="xl" size="xl">
-                    <AvatarImage user={user} />
+                    <AvatarIcon user={user} />
                   </ActionIcon>
                   <Text>
                     {displayName({ email: user.email!, name: user.name })}
@@ -74,7 +74,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
             href={LINKS.Account.MyAccount.href}
           >
             <Group>
-              <AvatarImage user={user} />
+              <AvatarIcon user={user} />
               <div>
                 <Text fw={500}>{user.name}</Text>
                 <Text size="xs" c="dimmed">

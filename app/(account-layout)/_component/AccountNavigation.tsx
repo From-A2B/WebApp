@@ -32,6 +32,11 @@ export const AccountNavigation = (props: PropsWithChildren) => {
               value={link.href}
               leftSection={link.icon}
               onClick={() => router.push(link.href)}
+              c={
+                activeTab === link.href
+                  ? 'var(--mantine-primary-color-6)'
+                  : 'var(--mantine-color-text)'
+              }
             >
               {link.label}
             </Tabs.Tab>
