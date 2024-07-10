@@ -6,21 +6,17 @@ import {
   Head,
   Html,
   Img,
+  Tailwind,
   Text,
 } from '@react-email/components';
-import { Tailwind } from '@react-email/tailwind';
 import type { PropsWithChildren } from 'react';
+import tailwindConfig from '~/tailwind.config';
 
 export const EmailLayoutWithoutFooter = ({ children }: PropsWithChildren) => {
   const baseUrl = getServerUrl();
   return (
-    <Tailwind
-      config={
-        {
-          // Theme can go here
-        }
-      }
-    >
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    <Tailwind config={tailwindConfig}>
       <Html>
         <Head />
         <Body className="bg-white font-sans">

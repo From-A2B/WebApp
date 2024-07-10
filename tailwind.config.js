@@ -8,6 +8,19 @@ module.exports = {
         'mantine-primary-color-contrast':
           'var(--mantine-primary-color-contrast)',
 
+        primary: {
+          50: '#ecfef8',
+          100: '#d8faf0',
+          200: '#acf7df',
+          300: '#7ef4ce',
+          400: '#5cf1c0',
+          500: '#4bf0b6',
+          600: '#40efb1',
+          700: '#34d59b',
+          800: '#27bd89',
+          900: '#0aa374',
+        },
+
         'mantine-color-text': 'var(--mantine-color-text)',
         'mantine-color-bright': 'var(--mantine-color-bright)',
         'mantine-color-body': 'var(--mantine-color-body)',
