@@ -23,7 +23,7 @@ const Page = async ({}: PageParams) => {
     <Paper radius="lg" p="xl" my="md" withBorder>
       <Stack>
         <Group>
-          <AvatarImage user={user} />
+          <AvatarImage user={user} editable />
           <Title order={3}>{displayName(user)}</Title>
         </Group>
 
