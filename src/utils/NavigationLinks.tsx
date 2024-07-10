@@ -9,6 +9,7 @@ import {
   IconLayoutDashboard,
   IconMail,
   IconUser,
+  IconUsers,
 } from '@tabler/icons-react';
 
 export const LINKS = {
@@ -82,6 +83,12 @@ export const LINKS = {
       auth: true,
       icon: <IconUser />,
     },
+    Trips: {
+      label: 'Trips',
+      href: '/dashboard/trips',
+      auth: true,
+      icon: <IconUsers />,
+    },
   },
   Legal: {
     Privacy: {
@@ -107,11 +114,6 @@ export const LINKS = {
       href: '/payment/cancel',
       auth: true,
     },
-  },
-  Other: {
-    label: 'Other',
-    href: '/other',
-    auth: true,
   },
   Informations: {
     Testimonials: {
@@ -141,7 +143,7 @@ export const LINKS = {
   },
 };
 
-export const HEADER_LINKS: NavigationLinks = [LINKS.Other];
+export const HEADER_LINKS: NavigationLinks = [];
 
 export const ACCOUNT_LINKS: NavigationLinks = [
   LINKS.Account.MyAccount,
@@ -173,7 +175,7 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Other',
-    links: [LINKS.Dashboard.Users],
+    links: [LINKS.Dashboard.Users, LINKS.Dashboard.Trips],
   },
 ];
 

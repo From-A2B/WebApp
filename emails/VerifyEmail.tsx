@@ -13,7 +13,7 @@ const VerifyEmail = ({ url }: { url: string }) => {
         </Text>
         <Text>If you didn't request this, please ignore this email.</Text>
         <Text className="text-lg leading-6">
-          <Link className="text-sky-500 hover:underline" href={url}>
+          <Link className="text-teal-600 hover:underline" href={url}>
             👉 Click here to verify your email 👈
           </Link>
         </Text>
