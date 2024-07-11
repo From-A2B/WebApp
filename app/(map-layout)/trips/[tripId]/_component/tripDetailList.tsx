@@ -13,7 +13,7 @@ import { IconAlertCircle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import { GetOneTripByIdAction } from '~/src/features/trips/get/getOneTripById.action';
 import useNotify from '~/src/hook/useNotify';
-import { StepListSortableItem } from './stepListSortableItem';
+import { StepListSortable } from './stepListSortable';
 
 export type TripDetailListProps = {
   tripId: string;
@@ -38,22 +38,6 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
     },
   });
 
-  if (error)
-    return (
-      <Alert
-        title="Error when fetching trip"
-        color="var(--mantine-color-red-5)"
-        variant="outline"
-        icon={<IconAlertCircle />}
-        //TODO: Change this icon with LordIcon
-      >
-        <Text>
-          Unfortunately it is impossible to retrieve the details of this trip.
-        </Text>
-        <Text>Please try again later</Text>
-      </Alert>
-    );
-
   if (isFetchingTrip)
     return (
       <Center flex={1}>
@@ -72,25 +56,28 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
       </Center>
     );
 
+  if (error || !trip)
+    return (
+      <Alert
+        title="Error when fetching trip"
+        color="var(--mantine-color-red-5)"
+        variant="outline"
+        icon={<IconAlertCircle />}
+        //TODO: Change this icon with LordIcon
+      >
+        <Text>
+          Unfortunately it is impossible to retrieve the details of this trip.
+        </Text>
+        <Text>Please try again later</Text>
+      </Alert>
+    );
+
   return (
     <Stack flex={1}>
       <Center>
-        <Title ta="center">{trip?.name}</Title>
+        <Title ta="center">{trip.name}</Title>
       </Center>
-      <ScrollArea h="83vh" w="100%">
-        <Center>
-          <Stack gap="md" w="100%">
-            {trip?.steps.map((step) => (
-              <StepListSortableItem
-                key={step.id}
-                stepId={step.id}
-                order={step.order}
-                name={step.name}
-              />
-            ))}
-          </Stack>
-        </Center>
-      </ScrollArea>
+      <StepListSortable trip={trip} />
     </Stack>
   );
 };
