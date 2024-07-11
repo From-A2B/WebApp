@@ -1,11 +1,11 @@
 import type { LayoutParams } from '@/types/next';
 import { AppShell, AppShellMain, Container } from '@mantine/core';
-import { BaseHeader } from '../(base-layout)/_component/layout/BaseHeader';
+import { MapHeader } from './_components/layout/mapHeader';
 
 const RouteLayout = ({ children }: LayoutParams) => {
   return (
     <AppShell header={{ height: 60 }} padding="md">
-      <BaseHeader />
+      <MapHeader fluid />
       <AppShellMain
         style={{
           background:

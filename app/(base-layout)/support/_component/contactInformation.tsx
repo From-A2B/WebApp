@@ -1,13 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import {
-  Box,
-  Stack,
-  Title,
-  useComputedColorScheme,
-  useMantineColorScheme,
-} from '@mantine/core';
+import { Box, Stack, Title, useMantineColorScheme } from '@mantine/core';
 import { IconMail, IconMapPin, IconPhone, IconSun } from '@tabler/icons-react';
 import { InformationContactField } from './informationContactField';
 
@@ -15,15 +9,12 @@ export type ContactInformationProps = {};
 
 export const ContactInformation = ({}: ContactInformationProps) => {
   const { colorScheme } = useMantineColorScheme();
-  const colorSchemeDark = useComputedColorScheme('dark');
 
   return (
     <Box
       visibleFrom="md"
       mr="md"
       p="md"
-      // className="rounded-2xl bg-gradient-to-tr from-[var(--mantine-color-black)] to-[var(--mantine-primary-color-9)]"
-      // className="rounded-2xl bg-gradient-to-tr from-[#282a29] to-[var(--mantine-primary-color-9)]"
       className={cn(
         'rounded-2xl bg-gradient-to-tr',
         colorScheme === 'light'

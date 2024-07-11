@@ -17,6 +17,27 @@ export const GetOneTripByIdQuery = async ({
     where: {
       id: tripId,
     },
+
+    select: {
+      id: true,
+      name: true,
+      startDate: true,
+      endDate: true,
+      description: true,
+      image: true,
+      steps: {
+        select: {
+          id: true,
+          order: true,
+          name: true,
+          startDate: true,
+          endDate: true,
+          description: true,
+          latitude: true,
+          longitude: true,
+        },
+      },
+    },
   });
 
   return trip;

@@ -3,6 +3,7 @@
 import { Box } from '@mantine/core';
 import { useState } from 'react';
 import { Map } from 'react-map-gl';
+import { env } from '~/src/lib/env/client';
 
 export type MapContainerProps = {};
 
@@ -17,14 +18,14 @@ export const MapContainer = ({}: MapContainerProps) => {
 
   return (
     <>
-      <Box pos="relative" h={'90vh'} w={'50vw'}>
+      <Box pos="relative" h={'90vh'} w={'50vw'} flex={2}>
         <Map
           {...viewState}
           onMove={(evt) => setViewState(evt.viewState)}
           minZoom={2}
           dragRotate={true}
           mapStyle="mapbox://styles/mapbox/streets-v12"
-          mapboxAccessToken="pk.eyJ1IjoiZGVyY3Jha2VyIiwiYSI6ImNsdHVnczc4dTB6N2QyanFwZDR1N2c2eHoifQ.arP7tBErlINY3-uiwfb7Ww"
+          mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_TOKEN}
           attributionControl={true}
           style={{
             height: '100%',

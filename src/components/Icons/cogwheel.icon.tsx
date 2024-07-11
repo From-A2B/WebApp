@@ -3,11 +3,12 @@
 import { Player } from '@lordicon/react';
 import { useRef } from 'react';
 
+import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-31-check.json';
+import ICON from '@public/assets/system-regular-63-settings-cog.json';
 
-type CheckIconProps = {
+type CogWheelIconProps = {
   onClick?: () => void;
 
   isHover?: boolean;
@@ -15,15 +16,17 @@ type CheckIconProps = {
   size?: number;
   colorize?: string;
   disabled?: boolean;
-};
-export const CheckIcon = ({
+} & ActionIconProps;
+export const CogWheelIcon = ({
   onClick,
   isHover,
   size = 32,
   loop,
   colorize,
   disabled,
-}: CheckIconProps) => {
+
+  ...props
+}: CogWheelIconProps) => {
   const [hovered, { open: openHover, close: closeHover }] =
     useDisclosure(false);
 
@@ -31,7 +34,6 @@ export const CheckIcon = ({
 
   if ((isHover || hovered) && !playerRef.current?.isPlaying)
     playerRef.current?.playFromBeginning();
-  else playerRef.current?.goToLastFrame();
 
   const handleComplete = () => {
     if ((isHover || hovered) && loop) playerRef.current?.playFromBeginning();
@@ -44,6 +46,7 @@ export const CheckIcon = ({
       onMouseLeave={closeHover}
       onClick={onClick}
       disabled={disabled}
+      {...props}
     >
       <Player
         ref={playerRef}

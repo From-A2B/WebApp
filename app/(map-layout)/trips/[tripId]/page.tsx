@@ -1,33 +1,20 @@
-'use client';
-
 import type { PageParams } from '@/types/next';
 import { Group } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { MapContainer } from '~/src/components/map/mapContainer';
-import { GetOneTripByIdAction } from '~/src/features/trips/get/getOneTripById.action';
+import { IsTripExistByIdQuery } from '~/src/features/trips/isTripExistById.query';
 import { TripDetailList } from './_component/tripDetailList';
 
 type tripParams = PageParams<{ tripId: string }>;
 
-const RoutePage = ({ params: { tripId } }: tripParams) => {
-  const router = useRouter();
+const RoutePage = async ({ params: { tripId } }: tripParams) => {
+  const isTripExist = await IsTripExistByIdQuery({ tripId });
 
-  const { data: trip } = useQuery({
-    queryKey: ['trip'],
-    queryFn: async () => {
-      const { data: trip, serverError } = await GetOneTripByIdAction({
-        tripId,
-      });
-      if (!trip) router.back();
-
-      return trip;
-    },
-  });
+  if (!isTripExist) return notFound();
 
   return (
     <Group justify="space-between" align="start">
-      <TripDetailList trip={trip!} />
+      <TripDetailList tripId={tripId} />
       <MapContainer />
     </Group>
   );
