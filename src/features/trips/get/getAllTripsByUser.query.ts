@@ -22,6 +22,7 @@ export const GetAllTripsByUserQuery = async ({
       name: true,
       description: true,
       image: true,
+      startDate: true,
     },
   });
 

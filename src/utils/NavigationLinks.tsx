@@ -8,7 +8,8 @@ import {
   IconUser,
   IconUsers,
   IconRestore,
-  IconRoute
+  IconRoute,
+  IconChartDots3
 } from '@tabler/icons-react';
 
 export const LINKS = {
@@ -82,18 +83,18 @@ export const LINKS = {
       auth: true,
       icon: <IconLayoutDashboard />,
     },
-    Users: {
-      label: 'Users',
-      href: '/users',
-      auth: true,
-      icon: <IconUser />,
-    },
     Trips: {
       label: 'Trips',
       href: '/dashboard/trips',
       auth: true,
       icon: <IconUsers />,
     },
+    Stats: {
+      label: 'Stats',
+      href: '/dashboard/stats',
+      auth: true,
+      icon: <IconChartDots3 />,
+    }
   },
   Legal: {
     Privacy: {
@@ -157,8 +158,7 @@ export const ACCOUNT_LINKS: NavigationLinks = [
 ];
 
 export const DASHBOARD_LINKS: NavigationLinks = [
-  LINKS.Dashboard.Dashboard,
-  LINKS.Dashboard.Users,
+  LINKS.Dashboard.Dashboard
 ];
 
 export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
@@ -175,7 +175,7 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Dashboard',
-    links: [LINKS.Account.Travel, LINKS.Dashboard.Users, LINKS.Account.ResetPassword, LINKS.Account.Profile],
+    links: [LINKS.Dashboard.Trips, LINKS.Dashboard.Stats, LINKS.Account.Profile],
   },
 ];
 

@@ -1,16 +1,8 @@
-import {
-  Button,
-  Container,
-  Divider,
-  Group,
-  Paper,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
 import { requiredAuth } from '@/lib/auth/helper';
+import type { PageParams } from '@/types/next';
+import { Container, Divider, Group, Paper, Stack, Title, Text, Button } from '@mantine/core';
 
-const RoutePage = async () => {
+const RoutePage = async ({}: PageParams) => {
   const user = await requiredAuth();
   const isEmailNotVerified = user.email && !user.emailVerified;
 
@@ -18,18 +10,11 @@ const RoutePage = async () => {
     <Container>
       {isEmailNotVerified && (
         <Stack>
-          <Title>Dashboard</Title>
+          <Title>Stats</Title>
           <Divider mb="md" />
           <Group>
-            <Paper
-              p="xl"
-              shadow="xl"
-              withBorder
-              w={{ base: '90vw', xs: 'auto' }}
-            >
               <Title order={3}>Thread Created</Title>
               <Text>201</Text>
-            </Paper>
             <Paper
               p="xl"
               shadow="xl"
@@ -52,6 +37,11 @@ const RoutePage = async () => {
         </Stack>
       )}
     </Container>
+    // <Group>
+    //   {trips.map((trip) => (
+    //     <TripCard trip={trip} key={trip.id} />
+    //   ))}
+    // </Group>
   );
 };
 
