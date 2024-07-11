@@ -102,7 +102,7 @@ model Step {
   id          String    @id @unique @default(cuid())
   tripId      String
   trip        Trip? @relation(fields: [tripId], references: [id], onDelete: Cascade)
-  order       Int
+  rank        String
   name        String
   startDate   DateTime?
   endDate     DateTime?

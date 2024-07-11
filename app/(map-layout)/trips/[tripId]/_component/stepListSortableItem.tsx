@@ -40,10 +40,9 @@ export const StepListSortableItem = ({
                 }}
               >
                 <IconGripVertical {...listeners} className="cursor-pointer" />
-                {/* <Burger /> */}
               </div>
               <StepCounter order={order} />
-              <Text fw={500} className="text-base">
+              <Text fw={500} className="text-base select-none">
                 {name}
               </Text>
             </Group>
