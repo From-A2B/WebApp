@@ -1,5 +1,6 @@
 'use client';
 
+import { CheckIcon } from '@/components/icons/check.icon';
 import { updateProfileAction } from '@/features/account/edit-profile.action';
 import type { ProfileFormType } from '@/features/account/edit-profile.schema';
 import { ProfileFormSchema } from '@/features/account/edit-profile.schema';
@@ -8,7 +9,6 @@ import useNotify from '@/hook/useNotify';
 import { Button, Group, Stack, TextInput, Tooltip } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import type { User } from '@prisma/client';
-import { IconCircleCheck } from '@tabler/icons-react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -36,6 +36,7 @@ export const EditProfilForm = ({ defaultValues }: EditProfilFormProps) => {
           SuccessNotify({
             message:
               'You have updated your email. We have sent you a new email verification link.',
+            autoClose: 7000,
           });
         return;
       }
@@ -62,7 +63,7 @@ export const EditProfilForm = ({ defaultValues }: EditProfilFormProps) => {
         leftSection={
           defaultValues.emailVerified && (
             <Tooltip label="Email verified. If you change your email, you will need to verify it again.">
-              <IconCircleCheck color="var(--mantine-color-teal-6)" />
+              <CheckIcon />
             </Tooltip>
           )
         }
