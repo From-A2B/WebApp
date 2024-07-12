@@ -22,7 +22,7 @@ dependencies:
     version: 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
   '@mantine/dates':
     specifier: ^7.11.0
-    version: 7.11.0(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1)
+    version: 7.11.1(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1)
   '@mantine/form':
     specifier: ^7.9.0
     version: 7.9.1(react@18.3.1)
@@ -1027,6 +1027,29 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+  /@lordicon/helpers@1.6.0:
+    resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
+    dev: false
+
+  /@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1):
+    resolution: {integrity: sha512-SqDdc9/ReRpO3D8t1WG+yOKAFwQsewuw9hf6++faJhGk/ZgUOA4mqPke4R/pc0pMhXHOeET9DPgvNi1dmRpxxw==}
+    peerDependencies:
+      lottie-react-native: '*'
+      lottie-web: '*'
+      react: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      lottie-react-native:
+        optional: true
+      lottie-web:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@lordicon/helpers': 1.6.0
+      lottie-web: 5.12.2
+      react: 18.3.1
+    dev: false
 
   /@lordicon/helpers@1.6.0:
     resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
@@ -1090,7 +1113,7 @@ packages:
       - '@types/react'
     dev: false
 
-  '@mantine/dates@7.11.1':
+  /@mantine/dates@7.11.1(@mantine/core@7.9.1)(@mantine/hooks@7.9.1)(dayjs@1.11.11)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-Km0WGaftHPK+oqCjvg2gdzxWsDS7seZdUx6VFQE0m35zouiSaRRFCrfo/NOKGS8ctKC/VsYdFQr+EkDxG+EEjg==}
     peerDependencies:
       '@mantine/core': 7.11.1
@@ -1098,8 +1121,16 @@ packages:
       dayjs: '>=1.0.0'
       react: ^18.2.0
       react-dom: ^18.2.0
+    dependencies:
+      '@mantine/core': 7.9.1(@mantine/hooks@7.9.1)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      '@mantine/hooks': 7.9.1(react@18.3.1)
+      clsx: 2.1.1
+      dayjs: 1.11.11
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
 
-  '@mantine/form@7.9.1':
+  /@mantine/form@7.9.1(react@18.3.1):
     resolution: {integrity: sha512-6Z4LkACT1ouoTvtI9hH/rT+L7qvfKnCypUyaCtYpPkA57ANamK7qkmeXXBmbGGOf8mJB+ZSgOvpDVKKRz5iH3Q==}
     peerDependencies:
       react: ^18.2.0
@@ -1289,6 +1320,7 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
 
   /@next/swc-win32-ia32-msvc@14.2.3:
     resolution: {integrity: sha512-vga40n1q6aYb0CLrM+eEmisfKCR45ixQYXuBXxOOmmoV8sYST9k7E3US32FsY+CkkF7NtzdcebiFT4CHuMSyZw==}

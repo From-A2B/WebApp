@@ -9,26 +9,28 @@ import {
 } from './credentialsProvider';
 import { getNextAuthConfigProviders } from './getNextAuthConfigProvider';
 
-export const { handlers, auth: baseAuth } = NextAuth((req) => ({
-  pages: {
-    signIn: '/auth/signin',
-    signOut: '/auth/signout',
-    error: '/auth/error',
-    verifyRequest: '/auth/verify-request',
-    newUser: '/auth/new-user',
-  },
-  theme: {
-    logo: '/images/logo-text.png',
-  },
-  // adapter: PrismaAdapter(prisma),
-  providers: getNextAuthConfigProviders(),
-  session: {
-    strategy: 'database',
-  },
-  secret: env.NEXTAUTH_SECRET,
-  callbacks: {
-    session(params) {
-      if (params.newSession) return params.session;
+export const { handlers, auth: baseAuth } = NextAuth(
+  (req) =>
+    ({
+      pages: {
+        signIn: '/auth/signin',
+        signOut: '/auth/signout',
+        error: '/auth/error',
+        verifyRequest: '/auth/verify-request',
+        newUser: '/auth/new-user',
+      },
+      theme: {
+        logo: '/images/logo-text.png',
+      },
+      adapter: PrismaAdapter(prisma),
+      providers: getNextAuthConfigProviders(),
+      session: {
+        strategy: 'database',
+      },
+      secret: env.NEXTAUTH_SECRET,
+      callbacks: {
+        session(params) {
+          if (params.newSession) return params.session;
 
           const typedParams = params as unknown as {
             session: Session;

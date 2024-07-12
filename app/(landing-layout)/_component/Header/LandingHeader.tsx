@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import styles from './Header.module.css';
 import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
+import { CreateTripBouton } from '../../../../src/components/trip/createTripBouton';
 
 export const LandingHeader = () => {
   const session = useSession();
@@ -43,6 +44,7 @@ export const LandingHeader = () => {
         <Group>
           <Group gap="0">{links}</Group>
           <SwitchThemeIcon />
+          {session.status === 'authenticated' && <CreateTripBouton />}
           <AuthButtonClient />
         </Group>
       </Group>

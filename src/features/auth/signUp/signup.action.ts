@@ -27,12 +27,15 @@ export const signUpAction = action(
         name,
       };
 
-      // const resendContactId = await setupResendCustomer(userData);
+      // TODO: Setup Stripe
+      // const stripeCustomerId = await setupStripeCustomer(userData);
+      const resendContactId = await setupResendCustomer(userData);
 
       const user = await prisma.user.create({
         data: {
           ...userData,
-          // resendContactId,
+          // stripeCustomerId,
+          resendContactId,
         },
       });
 

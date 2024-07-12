@@ -1,6 +1,13 @@
 'use client';
 
-import { Button, Modal, Stack, TextInput, Textarea } from '@mantine/core';
+import {
+  Button,
+  Modal,
+  Stack,
+  TextInput,
+  Textarea,
+  Title,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { CheckIcon } from '@/components/Icons/checkIcon';
@@ -13,7 +20,6 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import moment from 'moment';
 import { CrossCircleIcon } from '../Icons/crossCircleIcon';
-import { LetterPullup } from '../magicui/letter-pullup';
 
 export type CreateTripModalProps = {
   opened: boolean;
@@ -78,7 +84,7 @@ export const CreateTripModal = ({ opened, close }: CreateTripModalProps) => {
       <Modal.Content>
         <Modal.Header>
           <Modal.Title>
-            <LetterPullup words="Create my trip" className="my-0" />
+            <Title>Create my trip</Title>
           </Modal.Title>
           <Modal.CloseButton
             icon={<CrossCircleIcon isHover={hoveredCloseButton} />}

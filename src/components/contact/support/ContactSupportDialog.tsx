@@ -19,10 +19,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconHelp, IconX } from '@tabler/icons-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-<<<<<<< HEAD
-=======
 import { contactSupportAction } from '../../../features/contact/support/contact-support.action';
->>>>>>> 03871ad (fix de la honte)
 import type { ContactSupportSchemaType } from '../../../features/contact/support/contact-support.schema';
 import { ContactSupportSchema } from '../../../features/contact/support/contact-support.schema';
 
@@ -44,23 +41,21 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
     validate: zodResolver(ContactSupportSchema),
   });
 
-  // const mutation = useMutation({
-  //   mutationFn: (input: ContactSupportSchemaType) =>
-  //     contactSupportAction(input),
-  //   onError: () =>
-  //     ErrorNotify({
-  //       title: 'Error',
-  //       message: 'Failed to send message',
-  //     }),
-  //   onSuccess: () => {
-  //     SuccessNotify({
-  //       title: 'Success',
-  //       message: 'Message sent successfully',
-  //     });
-  //     form.reset();
-  //     closeModal();
-  //   },
-  // });
+  const mutation = useMutation({
+    mutationFn: (input: ContactSupportSchema) => contactSupportAction(input),
+    onError: () =>
+      ErrorNotify({
+        title: 'Error',
+        message: 'Failed to send message',
+      }),
+    onSuccess: () => {
+      SuccessNotify({
+        title: 'Success',
+        message: 'Message sent successfully',
+      });
+      handleCloseModal();
+    },
+  });
 
   const handleOpenModal = () => {
     if (email) form.setFieldValue('email', email);
