@@ -3,11 +3,12 @@
 import { Player } from '@lordicon/react';
 import { useRef } from 'react';
 
+import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-31-check.json';
+import ICON from '@public/assets/wired-outline-35-edit.json';
 
-type CheckIconProps = {
+type EditIconProps = {
   onClick?: () => void;
 
   isHover?: boolean;
@@ -15,15 +16,16 @@ type CheckIconProps = {
   size?: number;
   colorize?: string;
   disabled?: boolean;
-};
-export const CheckIcon = ({
+} & ActionIconProps;
+export const EditIcon = ({
   onClick,
   isHover,
   size = 32,
   loop,
   colorize,
   disabled,
-}: CheckIconProps) => {
+  ...props
+}: EditIconProps) => {
   const [hovered, { open: openHover, close: closeHover }] =
     useDisclosure(false);
 
@@ -43,17 +45,14 @@ export const CheckIcon = ({
       onMouseLeave={closeHover}
       onClick={onClick}
       disabled={disabled}
+      {...props}
     >
       <Player
         ref={playerRef}
         icon={ICON}
         size={size}
         onComplete={handleComplete}
-        colorize={
-          disabled
-            ? 'var(--mantine-color-grey-5)'
-            : colorize || 'var(--mantine-color-teal-6)'
-        }
+        colorize={disabled ? 'var(--mantine-color-grey-5)' : colorize}
       />
     </ActionIcon>
   );

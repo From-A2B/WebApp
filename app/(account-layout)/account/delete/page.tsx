@@ -2,7 +2,6 @@
 
 import { LINKS } from '@/utils/NavigationLinks';
 import {
-  Alert,
   Button,
   Group,
   ModalBody,
@@ -12,6 +11,7 @@ import {
   ModalOverlay,
   ModalRoot,
   ModalTitle,
+  Paper,
   Stack,
   Text,
   Title,
@@ -33,8 +33,9 @@ export default function DeleteProfilePage() {
 
   return (
     <>
-      <Alert variant="default" title="Delete your account" p="xl" my="lg">
+      <Paper radius="lg" withBorder p="xl" my="md">
         <Stack>
+          <Title order={3}>Delete your account</Title>
           <Text c="dimmed">
             Deleting your account means that all your personal data will be
             permanently erased and your ongoing subscription will be terminated.
@@ -44,7 +45,7 @@ export default function DeleteProfilePage() {
             Delete
           </Button>
         </Stack>
-      </Alert>
+      </Paper>
 
       <ModalRoot
         opened={IsConfirmDeleteOpened}
