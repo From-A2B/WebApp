@@ -44,7 +44,6 @@ export const LandingHeader = () => {
         <Group>
           <Group gap="0">{links}</Group>
           <SwitchThemeIcon />
-
           {session.status === 'authenticated' && <CreateTripBouton />}
           <AuthButtonClient />
         </Group>

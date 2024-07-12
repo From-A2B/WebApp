@@ -1,4 +1,4 @@
-'use server';
+// 'use server';
 
 import { sendEmail } from '@/lib/mail/sendEmail';
 import { action } from '@/lib/server-actions/safe-actions';

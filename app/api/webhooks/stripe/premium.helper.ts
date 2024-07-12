@@ -1,17 +1,16 @@
-import { sendEmail } from "@/lib/mail/sendEmail";
-import { prisma } from "@/lib/prisma";
-import { stripe } from "@/lib/stripe";
-import SubscriptionDowngradeEmail from "@email/SubscriptionDowngradeEmail";
-import SubscriptionFailedEmail from "@email/SubscriptionFailedEmail";
-import SuccessUpgradeEmail from "@email/SuccessUpgradeEmail";
-import type { User } from "@prisma/client";
-import { UserPlan } from "@prisma/client";
-import type Stripe from "stripe";
-import { z } from "zod";
+import { prisma } from '@/lib/prisma';
+import { stripe } from '@/lib/stripe';
+import SubscriptionDowngradeEmail from '@email/SubscriptionDowngradeEmail';
+import SubscriptionFailedEmail from '@email/SubscriptionFailedEmail';
+import SuccessUpgradeEmail from '@email/SuccessUpgradeEmail';
+import type { User } from '@prisma/client';
+import { UserPlan } from '@prisma/client';
+import type Stripe from 'stripe';
+import { z } from 'zod';
 
 export const upgradeUserToPlan = async (
   userId: string,
-  plan: UserPlan = "PREMIUM",
+  plan: UserPlan = 'PREMIUM'
 ) => {
   await prisma.user.update({
     where: {
@@ -29,34 +28,16 @@ export const downgradeUserFromPlan = async (userId: string) => {
       id: userId,
     },
     data: {
-      plan: "FREE",
+      plan: 'FREE',
     },
   });
 };
 
-export const notifyUserOfPremiumUpgrade = async (user: User) => {
-  await sendEmail({
-    to: user.email,
-    subject: `Success! You've Unlocked Full Access to Our Features`,
-    react: SuccessUpgradeEmail(),
-  });
-};
+export const notifyUserOfPremiumUpgrade = async (user: User) => {};
 
-export const notifyUserOfPremiumDowngrade = async (user: User) => {
-  await sendEmail({
-    to: user.email,
-    subject: `Important Update: Changes to Your Account Status`,
-    react: SubscriptionDowngradeEmail(),
-  });
-};
+export const notifyUserOfPremiumDowngrade = async (user: User) => {};
 
-export const notifyUserOfPaymentFailure = async (user: User) => {
-  await sendEmail({
-    to: user.email,
-    subject: `Action Needed: Update Your Payment to Continue Enjoying Our Services`,
-    react: SubscriptionFailedEmail(),
-  });
-};
+export const notifyUserOfPaymentFailure = async (user: User) => {};
 
 const PlanSchema = z.nativeEnum(UserPlan);
 
@@ -64,16 +45,16 @@ export const getPlanFromLineItem = async (
   lineItems?:
     | Stripe.LineItem[]
     | Stripe.InvoiceLineItem[]
-    | Stripe.SubscriptionItem[],
+    | Stripe.SubscriptionItem[]
 ): Promise<UserPlan> => {
   if (!lineItems) {
-    return "FREE";
+    return 'FREE';
   }
 
   const productId = lineItems[0].price?.product;
 
   if (!productId) {
-    return "FREE";
+    return 'FREE';
   }
 
   const product = await stripe.products.retrieve(productId as string);
@@ -83,6 +64,6 @@ export const getPlanFromLineItem = async (
   if (safePlan.success) {
     return safePlan.data;
   } else {
-    return "FREE";
+    return 'FREE';
   }
 };

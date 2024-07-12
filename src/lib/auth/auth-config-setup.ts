@@ -1,3 +1,5 @@
+import { env } from '@/lib/env/server';
+import { resend } from '@/lib/mail/resend';
 import { stripe } from '@/lib/stripe';
 import type { User } from 'next-auth';
 import { env } from '../env/server';

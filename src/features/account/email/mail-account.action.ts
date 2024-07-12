@@ -1,9 +1,7 @@
 'use server';
 
 import { requiredAuth } from '@/lib/auth/helper';
-import { env } from '@/lib/env/server';
-import { resend } from '@/lib/mail/resend';
-import { ActionError, authAction } from '@/lib/server-actions/safe-actions';
+import { authAction } from '@/lib/server-actions/safe-actions';
 import { z } from 'zod';
 
 const ToggleSubscribedActionSchema = z.object({
@@ -15,20 +13,20 @@ export const toggleSubscribedAction = authAction(
   async (data) => {
     const user = await requiredAuth();
 
-    if (!user.resendContactId) {
-      throw new ActionError('User has no resend contact');
-    }
+    // if (!user.resendContactId) {
+    //   throw new ActionError('User has no resend contact');
+    // }
 
-    if (!env.RESEND_AUDIENCE_ID) {
-      throw new ActionError('RESEND_AUDIENCE_ID is not set');
-    }
+    // if (!env.RESEND_AUDIENCE_ID) {
+    //   throw new ActionError('RESEND_AUDIENCE_ID is not set');
+    // }
 
-    const updateContact = await resend.contacts.update({
-      audienceId: env.RESEND_AUDIENCE_ID,
-      id: user.resendContactId,
-      unsubscribed: data.unsubscribed,
-    });
+    // const updateContact = await resend.contacts.update({
+    //   audienceId: env.RESEND_AUDIENCE_ID,
+    //   id: user.resendContactId,
+    //   unsubscribed: data.unsubscribed,
+    // });
 
-    return updateContact;
+    // return updateContact;
   }
 );

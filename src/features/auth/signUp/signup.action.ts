@@ -1,6 +1,6 @@
 'use server';
 
-import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
+// import { setupResendCustomer } from '@/lib/auth/auth-config-setup';
 import {
   hashStringWithSalt,
   validatePassword,

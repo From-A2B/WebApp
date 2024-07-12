@@ -1,6 +1,5 @@
 import { env } from '@/lib/env/server';
 import { prisma } from '@/lib/prisma';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { User } from '@prisma/client';
 import type { NextAuthConfig, Session } from 'next-auth';
 import NextAuth from 'next-auth';

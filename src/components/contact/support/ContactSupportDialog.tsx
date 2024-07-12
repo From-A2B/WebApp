@@ -17,10 +17,10 @@ import {
 import { useForm, zodResolver } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHelp, IconX } from '@tabler/icons-react';
-import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { contactSupportAction } from '../../../features/contact/support/contact-support.action';
+import type { ContactSupportSchemaType } from '../../../features/contact/support/contact-support.schema';
 import { ContactSupportSchema } from '../../../features/contact/support/contact-support.schema';
 
 export const ContactSupportDialog = (buttonProps: ButtonProps) => {
@@ -151,8 +151,8 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
                   />
                 </Box>
                 <Button
-                  onClick={() => mutation.mutateAsync(form.values)}
-                  disabled={!form.isValid() || mutation.isPending}
+                // onClick={() => mutation.mutateAsync(form.values)}
+                // disabled={!form.isValid() || mutation.isPending}
                 >
                   Send
                 </Button>

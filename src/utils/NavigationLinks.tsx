@@ -141,7 +141,34 @@ export const LINKS = {
       auth: false,
     },
   },
+  Informations: {
+    Testimonials: {
+      label: 'Testimonials',
+      href: '/testimonials',
+      auth: false,
+    },
+  },
+  Travels: {
+    Create: {
+      label: 'Create travel',
+      href: '/travels/create',
+      auth: true,
+    },
+  },
+  Support: {
+    Contact: {
+      label: 'Contact',
+      href: '/support',
+      auth: false,
+    },
+    FAQ: {
+      label: 'FAQ',
+      href: '/faq',
+      auth: false,
+    },
+  },
 };
+
 
 export const HEADER_LINKS: NavigationLinks = [];
 
