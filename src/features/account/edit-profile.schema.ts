@@ -17,7 +17,7 @@ export const EditPasswordFormSchema = z
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: 'New password and confirm password must match',
-    path: ['newPassword', 'confirmPassword'],
+    path: ['confirmPassword', 'newPassword'],
   });
 
 export type ProfileFormType = z.infer<typeof ProfileFormSchema>;

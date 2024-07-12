@@ -1,8 +1,11 @@
+import { EmailIcon } from '@/components/icons/email.icon';
+import { MoneyIcon } from '@/components/icons/money.icon';
+import { UserIcon } from '@/components/icons/user.icon';
+import { WarnIcon } from '@/components/icons/warn.icon';
 import type { NavigationLinks } from '@/types/NavigationLink.schema';
 import type { NavigationLinksWithGroup } from '@/types/NavigationLinkWithGroup.schema';
 import {
-  IconAlertSquareRounded,
-  IconCoinEuro,
+  IconGavel,
   IconLayoutDashboard,
   IconMail,
   IconUser,
@@ -30,29 +33,29 @@ export const LINKS = {
     },
   },
   Account: {
-    Profile: {
-      label: 'Profile',
+    MyAccount: {
+      label: 'My Account',
       href: '/account',
       auth: true,
-      icon: <IconUser />,
+      icon: <UserIcon colorize="var(--mantine-color-text)" />,
     },
     Delete: {
       label: 'Delete Profile',
       href: '/account/delete',
       auth: true,
-      icon: <IconAlertSquareRounded />,
+      icon: <WarnIcon colorize="var(--mantine-color-text)" />,
     },
     Billing: {
       label: 'Billing',
       href: '/account/billing',
       auth: true,
-      icon: <IconCoinEuro />,
+      icon: <MoneyIcon colorize="var(--mantine-color-text)" />,
     },
     Settings: {
-      label: 'Settings',
+      label: 'Email Settings',
       href: '/account/email',
       auth: true,
-      icon: <IconMail />,
+      icon: <EmailIcon colorize="var(--mantine-color-text)" />,
     },
     VerifyEmail: {
       label: 'Verify Email',
@@ -97,6 +100,7 @@ export const LINKS = {
       label: 'Terms of Service',
       href: '/legal/terms',
       auth: false,
+      icon: <IconGavel />,
     },
   },
   Payment: {
@@ -142,10 +146,10 @@ export const LINKS = {
 export const HEADER_LINKS: NavigationLinks = [];
 
 export const ACCOUNT_LINKS: NavigationLinks = [
-  LINKS.Account.Profile,
-  LINKS.Account.Delete,
-  LINKS.Account.Billing,
+  LINKS.Account.MyAccount,
   LINKS.Account.Settings,
+  LINKS.Account.Billing,
+  LINKS.Account.Delete,
 ];
 
 export const DASHBOARD_LINKS: NavigationLinks = [
@@ -156,7 +160,11 @@ export const DASHBOARD_LINKS: NavigationLinks = [
 export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Personal Information',
-    links: [LINKS.Account.Profile, LINKS.Account.Delete, LINKS.Account.Billing],
+    links: [
+      LINKS.Account.MyAccount,
+      LINKS.Account.Delete,
+      LINKS.Account.Billing,
+    ],
   },
   {
     title: 'Settings',
@@ -174,7 +182,7 @@ export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
 export const FOOTER_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Account',
-    links: [LINKS.Account.Profile, LINKS.Account.Travel],
+    links: [LINKS.Account.MyAccount, LINKS.Account.Travel],
   },
   {
     title: 'Informations',
