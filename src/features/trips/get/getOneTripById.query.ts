@@ -28,7 +28,7 @@ export const GetOneTripByIdQuery = async ({
       steps: {
         select: {
           id: true,
-          order: true,
+          rank: true,
           name: true,
           startDate: true,
           endDate: true,

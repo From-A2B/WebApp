@@ -39,6 +39,7 @@
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/member-ordering": "warn",
     "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/prefer-optional-chain": "warn",
     "@typescript-eslint/prefer-string-starts-ends-with": "error",
     "@typescript-eslint/consistent-type-exports": "error",

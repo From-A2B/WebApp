@@ -5,12 +5,12 @@ export const StepMoveQuerySchema = z.object({
   tripId: z.string(),
   stepId: z.string(),
   userId: z.string(),
-  newRank: z.string(),
+  newRank: z.number(),
 });
 
 export type StepMoveQuerySchema = z.infer<typeof StepMoveQuerySchema>;
 
-export const StepMoveQuery = async ({
+export const StepChangeRankQuery = async ({
   stepId,
   tripId,
   newRank,
@@ -25,7 +25,7 @@ export const StepMoveQuery = async ({
       },
     },
     data: {
-      o,
+      rank: newRank,
     },
   });
 };

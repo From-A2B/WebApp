@@ -45,6 +45,7 @@
       "      onMouseEnter={!isHover ? openHover : () => {}}",
       "      onMouseLeave={closeHover}",
       "      onClick={onClick}",
+      "      size={size}",
       "      disabled={disabled}",
       "    >",
       "      <Player",

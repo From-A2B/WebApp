@@ -95,14 +95,14 @@ model Trip {
   image       String?
 
   user        User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-  steps       Step[]
+  steps       Step[] 
 }
 
 model Step {
   id          String    @id @unique @default(cuid())
   tripId      String
   trip        Trip? @relation(fields: [tripId], references: [id], onDelete: Cascade)
-  order       Int @default()
+  rank        Int
   name        String
   startDate   DateTime?
   endDate     DateTime?

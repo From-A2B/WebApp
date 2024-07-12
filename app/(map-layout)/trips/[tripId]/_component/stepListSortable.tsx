@@ -17,9 +17,12 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { Center, ScrollArea, Stack } from '@mantine/core';
+import { Center, LoadingOverlay, ScrollArea, Stack } from '@mantine/core';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
+import { LoaderDotsIcon } from '~/src/components/icons/loaderDots.icon';
 import type { GetOneTripByIdQuery } from '~/src/features/trips/get/getOneTripById.query';
+import { StepMoveAction } from '~/src/features/trips/steps/stepMove.action';
 import useNotify from '~/src/hook/useNotify';
 import { StepListSortableItem } from './stepListSortableItem';
 
@@ -30,7 +33,9 @@ export type StepListSortableProps = {
 export const StepListSortable = ({ trip }: StepListSortableProps) => {
   const { ErrorNotify } = useNotify();
 
-  const [items, setItems] = useState(trip.steps);
+  const [items, setItems] = useState(
+    trip.steps.sort((a, b) => a.rank - b.rank)
+  );
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -39,6 +44,33 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
     })
   );
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: async ({
+      stepId,
+      upItemRank,
+      downItemRank,
+    }: {
+      stepId: string;
+      upItemRank?: number;
+      downItemRank?: number;
+    }) => StepMoveAction({ stepId, upItemRank, downItemRank }),
+
+    onSuccess({ data, serverError }, { stepId }) {
+      if (serverError) return ErrorNotify({ message: serverError });
+      if (!data) return;
+
+      setItems((prev) => {
+        const activeItem = prev.find((item) => item.id === stepId);
+
+        if (!activeItem) return prev as [];
+
+        activeItem.rank = data;
+
+        return [...prev] as [];
+      });
+    },
+  });
+
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
 
@@ -46,10 +78,19 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
 
     if (active.id !== over.id) {
       setItems((items) => {
-        const oldIdx = items.findIndex((item) => item.id === active.id);
-        const newIdx = items.findIndex((item) => item.id === over.id);
+        const oldIdx: number = items.findIndex((item) => item.id === active.id);
+        const newIdx: number = items.findIndex((item) => item.id === over.id);
 
         const newItems = arrayMove(items, oldIdx, newIdx);
+
+        const upItemRank = newItems[newIdx - 1]?.rank;
+        const downItemRank = newItems[newIdx + 1]?.rank;
+
+        mutate({
+          stepId: String(active.id),
+          upItemRank,
+          downItemRank,
+        });
 
         return newItems;
       });
@@ -57,7 +98,7 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
   };
 
   return (
-    <ScrollArea h="83vh" w="100%">
+    <ScrollArea h="83vh" w="100%" offsetScrollbars>
       <Center>
         <Stack gap="md" w="100%">
           <DndContext
@@ -68,16 +109,25 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
             <SortableContext
               items={items}
               strategy={verticalListSortingStrategy}
+              disabled={isPending}
             >
-              {items.map((step) => (
+              {items.map((step, idx) => (
                 <StepListSortableItem
                   key={step.id}
                   stepId={step.id}
-                  order={step.order}
+                  order={idx + 1}
                   name={step.name}
                 />
               ))}
             </SortableContext>
+            <LoadingOverlay
+              visible={isPending}
+              zIndex={1000}
+              overlayProps={{ radius: 'sm', blur: 2 }}
+              loaderProps={{
+                children: <LoaderDotsIcon size={100} loop forceLoopStart />,
+              }}
+            />
           </DndContext>
         </Stack>
       </Center>

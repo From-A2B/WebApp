@@ -25,13 +25,13 @@ const main = async () => {
         },
       });
 
-      const stepCount = faker.number.int({ min: 20, max: 30 });
+      const stepCount = faker.number.int({ min: 15, max: 30 });
 
       for (let j = 0; j < stepCount; j++) {
         await prisma.step.create({
           data: {
             tripId: trip.id,
-            order: j + 1,
+            rank: j * 1000,
             name: faker.lorem.words(2),
             startDate: faker.date.future(),
             endDate: faker.date.future(),
