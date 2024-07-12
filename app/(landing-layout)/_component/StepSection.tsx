@@ -7,7 +7,7 @@ import {
   Divider,
   useMantineTheme,
 } from '@mantine/core';
-import { TimelineAnimation } from './TimelineAnimation/TimelineAnimation';
+import { TimelineAnimation } from './timelineAnimation/timelineAnimation';
 
 
 export const StepSection = () => {

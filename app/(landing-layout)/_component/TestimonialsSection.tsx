@@ -4,7 +4,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { ClientReviews } from './ClientReviews/ClientReviews';
+import { ClientReviews } from './clientReviews/clientReviews';
 
 export const TestimonialsSection = () => {
   return (

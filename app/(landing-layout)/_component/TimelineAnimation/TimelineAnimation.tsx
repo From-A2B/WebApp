@@ -33,7 +33,7 @@ export const TimelineAnimation = ({ theme }: ({ theme: MantineTheme })) => {
 
   return (
     <Box className="w-full p-4">
-      <Flex align="center" justify="space-between" className="w-full lg:visible">
+      <Flex align="center" justify="space-between" className="w-full" visibleFrom="lg">
         <Box className="h-0.5 w-full animate-step-1" style={{ background: theme.colors.primaryColor[9] }} />
         <Group className="animate-step-1">
           <Center className="w-10 h-10 rounded-full text-white font-bold" style={{ background: theme.colors.primaryColor[9] }}>1</Center>

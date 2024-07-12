@@ -8,7 +8,7 @@ type VideoProps = {
     children?: ReactNode;
 }
 
-export const Video: React.FC<VideoProps> = ({ source, children }) => {
+export const Video = ({ source, children }: VideoProps) => {
     return (
         <Box pos="relative">
             <ReactPlayer
