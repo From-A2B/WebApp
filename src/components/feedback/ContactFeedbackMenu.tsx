@@ -18,7 +18,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
-import { FeedbackReviewInput } from './FeedbackReviewInput';
+import { FeedbackReviewInput } from './feedbackReviewInput';
 
 type SendFeedbackMenuProps = PropsWithChildren;
 

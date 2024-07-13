@@ -16,7 +16,8 @@ import { useForm, zodResolver } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { FeedbackReviewInput } from '~/src/components/feedback/FeedbackReviewInput';
+import { useEffect } from 'react';
+import { FeedbackReviewInput } from '~/src/components/feedback/feedbackReviewInput';
 
 export const FeedbackForm = () => {
   const { ErrorNotify, SuccessNotify } = useNotify();
@@ -34,6 +35,12 @@ export const FeedbackForm = () => {
     },
     validate: zodResolver(SendFeedbackSchema),
   });
+
+  useEffect(() => {
+    if (email) {
+      feedbackForm.setFieldValue('email', email);
+    }
+  }, [email, feedbackForm]);
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (values: SendFeedbackSchemaType) => {

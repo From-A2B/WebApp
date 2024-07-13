@@ -8,7 +8,7 @@ import {
 import { FeedbackForm } from './_component/feedback.form';
 import type { PageParams } from '~/src/types/next';
 import { GetAverageFeedbackRatingQuery } from '~/src/features/feedback/get/getAverageFeedback.query';
-import { FeedbackCarousel } from './_component/FeedbackCarousel';
+import { FeedbackCarousel } from './_component/feedbackCarousel';
 
 const RoutePage = async ({}: PageParams) => {
 

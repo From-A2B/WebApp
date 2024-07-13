@@ -1,7 +1,7 @@
 import type { LayoutParams } from '@/types/next';
 import { AppShell, AppShellMain } from '@mantine/core';
-import { DashboardHeader } from './_component/layout/DashboardHeader';
-import { DashboardNavbar } from './_component/layout/DashboardNavbar';
+import { DashboardHeader } from './_component/layout/dashboardHeader';
+import { DashboardNavbar } from './_component/layout/dashboardNavbar';
 
 export default function RouteLayout({ children }: LayoutParams) {
   return (
