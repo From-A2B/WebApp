@@ -4,7 +4,7 @@ import { adventurer } from '@dicebear/collection';
 import { createAvatar } from '@dicebear/core';
 import { useDisclosure } from '@mantine/hooks';
 import type { User } from 'next-auth';
-import { EditIcon } from '../icons/edit.icon';
+import { EditIcon } from '../../../public/images/edit.icon';
 import { Avatar, AvatarImage } from '../ui/avatar';
 
 type AvatarIconProps = {

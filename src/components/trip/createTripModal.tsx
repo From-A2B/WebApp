@@ -10,8 +10,8 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-import { CheckIcon } from '@/components/Icons/checkIcon';
-import { TrashIcon } from '@/components/Icons/trashIcon';
+import { CheckIcon } from '~/public/images/checkIcon';
+import { TrashIcon } from '~/public/images/trashIcon';
 import { CreateTripAction } from '@/features/trips/create/createTrip.action';
 import { CreateTripSchema } from '@/features/trips/create/createTrip.schema';
 import useNotify from '@/hook/useNotify';
@@ -19,7 +19,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import moment from 'moment';
-import { CrossCircleIcon } from '../Icons/crossCircleIcon';
+import { CrossCircleIcon } from '../../../public/images/crossCircleIcon';
 
 export type CreateTripModalProps = {
   opened: boolean;
