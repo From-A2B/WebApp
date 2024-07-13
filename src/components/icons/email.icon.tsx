@@ -5,9 +5,9 @@ import { useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-31-check.json';
+import ICON from '@public/assets/system-regular-59-email.json';
 
-type CheckIconProps = {
+type EmailIconProps = {
   onClick?: () => void;
 
   isHover?: boolean;
@@ -16,14 +16,14 @@ type CheckIconProps = {
   colorize?: string;
   disabled?: boolean;
 };
-export const CheckIcon = ({
+export const EmailIcon = ({
   onClick,
   isHover,
   size = 32,
   loop,
   colorize,
   disabled,
-}: CheckIconProps) => {
+}: EmailIconProps) => {
   const [hovered, { open: openHover, close: closeHover }] =
     useDisclosure(false);
 
@@ -52,7 +52,7 @@ export const CheckIcon = ({
         colorize={
           disabled
             ? 'var(--mantine-color-grey-5)'
-            : colorize || 'var(--mantine-color-teal-6)'
+            : colorize || 'var(--mantine-primary-color-3)'
         }
       />
     </ActionIcon>

@@ -3,6 +3,7 @@ import {
   IconMoodAngry,
   IconMoodConfuzed,
   IconMoodEmpty,
+  IconMoodHappy,
   IconMoodHeart,
 } from '@tabler/icons-react';
 
@@ -32,6 +33,8 @@ export const FeedbackReviewInput = ({
       case 3:
         return <IconMoodEmpty style={iconStyle} />;
       case 4:
+        return <IconMoodHappy style={iconStyle} />;
+      case 5:
         return <IconMoodHeart style={iconStyle} />;
       default:
         return null;
@@ -61,6 +64,12 @@ export const FeedbackReviewInput = ({
       case 4:
         return (
           <Tooltip label="Satisfied">
+            <IconMoodHappy style={getIconStyle('teal')} />
+          </Tooltip>
+        );
+      case 5:
+        return (
+          <Tooltip label="Extremely Satisfied">
             <IconMoodHeart style={getIconStyle('green')} />
           </Tooltip>
         );
@@ -74,7 +83,7 @@ export const FeedbackReviewInput = ({
       emptySymbol={getEmptyIcon}
       fullSymbol={getFullIcon}
       highlightSelectedOnly
-      count={4}
+      count={5}
       value={value}
       onChange={onChange}
     />

@@ -1,4 +1,4 @@
-import AvatarImage from '@/components/ui/Avatar';
+import { AvatarIcon } from '@/components/profile/avatarIcon';
 import { displayName } from '@/utils/format/displayName';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
@@ -14,11 +14,7 @@ import {
   rem,
   Text,
 } from '@mantine/core';
-import {
-  IconChevronRight,
-  IconSettings,
-  IconShieldLock,
-} from '@tabler/icons-react';
+import { IconChevronRight, IconShieldLock } from '@tabler/icons-react';
 import type { User } from 'next-auth';
 import Link from 'next/link';
 import LogoutMenuItem from './LogoutMenuItem';
@@ -44,7 +40,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
         <MenuTarget>
           {variant === 'minimal' ? (
             <ActionIcon variant="transparent" radius="xl" size="xl">
-              <AvatarImage user={user} />
+              <AvatarIcon user={user} />
             </ActionIcon>
           ) : (
             <Group
@@ -55,7 +51,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
               <Paper>
                 <Group>
                   <ActionIcon variant="transparent" radius="xl" size="xl">
-                    <AvatarImage user={user} />
+                    <AvatarIcon user={user} />
                   </ActionIcon>
                   <Text>{displayName(user)}</Text>
                 </Group>
@@ -73,10 +69,10 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
               />
             }
             component={Link}
-            href={LINKS.Account.Profile.href}
+            href={LINKS.Account.MyAccount.href}
           >
             <Group>
-              <AvatarImage user={user} />
+              <AvatarIcon user={user} />
               <div>
                 <Text fw={500}>{user.name}</Text>
                 <Text size="xs" c="dimmed">
@@ -103,18 +99,6 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
           </MenuItem>
 
           <MenuLabel>Settings</MenuLabel>
-          <MenuItem
-            leftSection={
-              <IconSettings
-                style={{ width: rem(16), height: rem(16) }}
-                stroke={1.5}
-              />
-            }
-            component={Link}
-            href={LINKS.Account.Settings.href}
-          >
-            Settings
-          </MenuItem>
           <LogoutMenuItem />
         </MenuDropdown>
       </Menu>
