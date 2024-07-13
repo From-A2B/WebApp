@@ -1,26 +1,20 @@
 'use server';
 
-import { auth } from '@/lib/auth/helper';
 import { prisma } from '@/lib/prisma';
-import { action } from '@/lib/server-actions/safe-actions';
+import { authAction } from '@/lib/server-actions/safe-actions';
 import { SendFeedbackSchema } from './send-feedback.schema';
 
-export const sendFeedbackAction = action(
+export const sendFeedbackAction = authAction(
   SendFeedbackSchema,
-  async (data) => {
-    const user = await auth();
-
-    const email = user?.email ?? data.email;
-
+  async (data, { user }) => {
     await prisma.feedback.create({
       data: {
         message: data.message,
         review: Number(data.review) || 0,
-        userId: user?.id,
-        email,
+        userId: user.id,
+        email: data.email,
       },
     });
-
 
     return { message: 'Your feedback has been sent.' };
   }

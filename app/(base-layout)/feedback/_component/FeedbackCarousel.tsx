@@ -1,5 +1,7 @@
 'use client';
 
+import type { RandomFeedback } from '@/features/feedback/get/getRamdomFeedback.query';
+import { GetRandomFeedBackAction } from '@/features/feedback/get/getRandomFeedback.action';
 import { Carousel } from '@mantine/carousel';
 import {
   Badge,
@@ -10,16 +12,14 @@ import {
   Rating,
   Text,
 } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
 import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
-import type { RandomFeedback } from '@/features/feedback/get/getRamdomFeedback.query';
-import { GetRandomFeedBackAction } from '@/features/feedback/get/getRandomFeedback.action';
-import { useQuery } from '@tanstack/react-query';
 
 export const FeedbackCarousel = () => {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-  const {data: feedbacks = [], isPending} = useQuery({
+  const { data: feedbacks, isPending } = useQuery({
     queryKey: ['randomFeedback'],
     queryFn: async () => {
       const { data: feedbacks, serverError } = await GetRandomFeedBackAction({
@@ -30,7 +30,7 @@ export const FeedbackCarousel = () => {
         //TODO: Error notify
       }
 
-      return feedbacks
+      return feedbacks;
     },
   });
 
@@ -46,7 +46,8 @@ export const FeedbackCarousel = () => {
           slideGap="md"
           loop
           mt="md"
-          mb="md">
+          mb="md"
+        >
           {feedbacks.map((feedback: RandomFeedback) => (
             <Carousel.Slide key={feedback.userId}>
               <Card shadow="sm" radius="md" withBorder h={190}>

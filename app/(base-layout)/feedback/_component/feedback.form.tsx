@@ -1,15 +1,21 @@
 'use client';
 
-import { Button, Center, Text, Textarea, TextInput, Title } from '@mantine/core';
-import { useForm, zodResolver } from '@mantine/form';
-import { useMediaQuery } from '@mantine/hooks';
-import { useMutation } from '@tanstack/react-query';
-import React, { useEffect } from 'react';
-import useNotify from '@/hook/useNotify';
-import { useSession } from 'next-auth/react';
 import { sendFeedbackAction } from '@/features/feedback/send-feedback.action';
 import type { SendFeedbackSchemaType } from '@/features/feedback/send-feedback.schema';
 import { SendFeedbackSchema } from '@/features/feedback/send-feedback.schema';
+import useNotify from '@/hook/useNotify';
+import {
+  Button,
+  Center,
+  Text,
+  Textarea,
+  TextInput,
+  Title,
+} from '@mantine/core';
+import { useForm, zodResolver } from '@mantine/form';
+import { useMediaQuery } from '@mantine/hooks';
+import { useMutation } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 import { FeedbackReviewInput } from '~/src/components/feedback/FeedbackReviewInput';
 
 export const FeedbackForm = () => {
@@ -22,18 +28,12 @@ export const FeedbackForm = () => {
   const feedbackForm = useForm<SendFeedbackSchemaType>({
     validateInputOnChange: true,
     initialValues: {
-      email: '',
+      email: email || '',
       message: '',
       review: 0,
     },
     validate: zodResolver(SendFeedbackSchema),
   });
-
-  useEffect(() => {
-    if (email) {
-      feedbackForm.setFieldValue('email', email);
-    }
-  }, [email]);
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (values: SendFeedbackSchemaType) => {

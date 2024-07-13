@@ -78,7 +78,7 @@ export const SendFeedbackMenu = ({ children }: SendFeedbackMenuProps) => {
               {...feedbackForm.getInputProps('message')}
             />
           </Stack>
-          <Card.Section bg="var(--mantine-color-dark-8)" mt="xl">
+          <Card.Section mt="xl">
             <Group p="xs" justify="space-between" align="center">
               <FeedbackReviewInput
                 value={feedbackForm.getInputProps('review').value as number}
