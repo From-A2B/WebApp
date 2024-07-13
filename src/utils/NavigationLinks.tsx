@@ -1,7 +1,7 @@
 import { EmailIcon } from '@/components/icons/email.icon';
 import { MoneyIcon } from '@/components/icons/money.icon';
-import { UserIcon } from '~/public/images/user.icon';
-import { WarnIcon } from '~/public/images/warn.icon';
+import { UserIcon } from '@/components/icons/user.icon';
+import { WarnIcon } from '@/components/icons/warn.icon';
 import type { NavigationLinks } from '@/types/NavigationLink.schema';
 import type { NavigationLinksWithGroup } from '@/types/NavigationLinkWithGroup.schema';
 import {

@@ -1,3 +1,5 @@
+'use client';
+
 import { FeaturesSection } from './_component/featuresSection';
 import { GlobeSection } from './_component/globeSection';
 import { HeroImageBackground } from './_component/hero/heroHeader';

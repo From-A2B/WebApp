@@ -10,8 +10,8 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-import { CheckIcon } from '~/public/images/checkIcon';
-import { TrashIcon } from '~/public/images/trashIcon';
+import { CheckIcon } from '@/components/icons/check.icon';
+import { TrashIcon } from '@/components/icons/trash.icon';
 import { CreateTripAction } from '@/features/trips/create/createTrip.action';
 import { CreateTripSchema } from '@/features/trips/create/createTrip.schema';
 import useNotify from '@/hook/useNotify';

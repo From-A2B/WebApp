@@ -5,13 +5,13 @@ import Image from "next/image";
 export const ReviewCard = ({
   img,
   name,
-  username,
-  body,
+  createAt,
+  message,
 }: {
   img: string;
-  name: string;
-  username: string;
-  body: string;
+  name: string | undefined | null;
+  createAt: Date;
+  message: string;
 }) => {
   return (
     <figure
@@ -30,10 +30,10 @@ export const ReviewCard = ({
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+          <p className="text-xs font-medium dark:text-white/40">{createAt.toDateString()}</p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
+      <blockquote className="mt-2 text-sm">{message}</blockquote>
     </figure>
   );
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { TrashIcon } from '~/public/images/trash.icon';
+import { TrashIcon } from '@/components/icons/trash.icon';
 import useNotify from '@/hook/useNotify';
 import { SiteConfig } from '@/utils/site-config';
 import type { ButtonProps } from '@mantine/core';

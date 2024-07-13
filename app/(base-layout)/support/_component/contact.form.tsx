@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckIcon } from '@/components/icons/check.icon';
-import { TrashIcon } from '~/public/images/trash.icon';
+import { TrashIcon } from '@/components/icons/trash.icon';
 import { contactSupportAction } from '@/features/contact/support/contact-support.action';
 import { ContactSupportSchema } from '@/features/contact/support/contact-support.schema';
 import useNotify from '@/hook/useNotify';

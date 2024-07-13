@@ -2,7 +2,7 @@
 
 import { Button, Container, Text, Title, Overlay, Flex } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import { Video } from '~/src/components/video/video';
+import { Video } from '@/components/video/video';
 import { LINKS } from '@/utils/NavigationLinks';
 
 export const HeroImageBackground: React.FC = () => {
