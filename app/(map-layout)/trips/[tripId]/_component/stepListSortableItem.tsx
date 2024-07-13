@@ -2,9 +2,17 @@
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Box, Group, Paper, Text, useMantineColorScheme } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Paper,
+  Text,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { IconGripVertical } from '@tabler/icons-react';
 import { CogWheelIcon } from '~/src/components/icons/cogwheel.icon';
+import { StepMenu } from '~/src/components/step/stepMenu';
 import { StepCounter } from './stepCounter';
 
 export type StepListSortableItemProps = {
@@ -19,6 +27,7 @@ export const StepListSortableItem = ({
   order,
 }: StepListSortableItemProps) => {
   const { colorScheme } = useMantineColorScheme();
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: stepId });
 
@@ -47,15 +56,18 @@ export const StepListSortableItem = ({
               </Text>
             </Group>
           </Box>
-          <CogWheelIcon
-            {...listeners}
-            loop
-            colorize={
-              colorScheme === 'dark'
-                ? undefined
-                : 'var(--mantine-primary-color-9)'
-            }
-          />
+          <StepMenu>
+            <ActionIcon variant="transparent">
+              <CogWheelIcon
+                loop
+                colorize={
+                  colorScheme === 'dark'
+                    ? undefined
+                    : 'var(--mantine-primary-color-9)'
+                }
+              />
+            </ActionIcon>
+          </StepMenu>
         </Group>
       </Paper>
     </div>

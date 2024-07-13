@@ -1,15 +1,13 @@
 'use client';
 
 import { Player } from '@lordicon/react';
-import type { ForwardedRef } from 'react';
 import { useRef } from 'react';
 
-import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-63-settings-cog.json';
+import ICON from '@public/assets/wired-outline-245-edit-document.json';
 
-type CogWheelIconProps = {
+type EditDocumentIconProps = {
   onClick?: () => void;
 
   isHover?: boolean;
@@ -17,17 +15,15 @@ type CogWheelIconProps = {
   size?: number;
   colorize?: string;
   disabled?: boolean;
-} & ActionIconProps;
-export const CogWheelIcon = ({
+};
+export const EditDocumentIcon = ({
   onClick,
   isHover,
   size = 32,
   loop,
   colorize,
   disabled,
-
-  ...props
-}: CogWheelIconProps) => {
+}: EditDocumentIconProps) => {
   const [hovered, { open: openHover, close: closeHover }] =
     useDisclosure(false);
 
@@ -46,8 +42,8 @@ export const CogWheelIcon = ({
       onMouseEnter={!isHover ? openHover : () => {}}
       onMouseLeave={closeHover}
       onClick={onClick}
+      size={size}
       disabled={disabled}
-      {...props}
     >
       <Player
         ref={playerRef}
