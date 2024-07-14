@@ -1,17 +1,23 @@
 import { transportModeList } from '@/features/steps/add/transportMode.enum';
 import {
-  CloseButton,
   Combobox,
   Group,
   Input,
   InputBase,
+  InputBaseProps,
   useCombobox,
 } from '@mantine/core';
 import { useState } from 'react';
+import { TrashIcon } from '../icons/trash.icon';
 
-export type TransportModeInputProps = {};
+export type TransportModeInputProps = {
+  selectedValue: (value: string) => void;
+} & InputBaseProps;
 
-export const TransportModeInput = ({}: TransportModeInputProps) => {
+export const TransportModeInput = ({
+  selectedValue,
+  ...props
+}: TransportModeInputProps) => {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
@@ -33,6 +39,7 @@ export const TransportModeInput = ({}: TransportModeInputProps) => {
       withinPortal={false}
       onOptionSubmit={(val) => {
         setValue(val);
+        selectedValue(val);
         combobox.closeDropdown();
       }}
     >
@@ -48,20 +55,23 @@ export const TransportModeInput = ({}: TransportModeInputProps) => {
           }
           rightSection={
             value !== null ? (
-              <CloseButton
-                size="sm"
-                onMouseDown={(event) => event.preventDefault()}
-                onClick={() => setValue(null)}
-                aria-label="Clear value"
-              />
+              <TrashIcon onClick={() => setValue(null)} />
             ) : (
               <Combobox.Chevron />
             )
           }
           onClick={() => combobox.toggleDropdown()}
           rightSectionPointerEvents={value === null ? 'none' : 'all'}
+          {...props}
         >
-          {value || <Input.Placeholder>Pick value</Input.Placeholder>}
+          {value || (
+            <Input.Placeholder>
+              {transportModeList
+                .map((t) => t.name)
+                .join(', ')
+                .concat(', ...')}
+            </Input.Placeholder>
+          )}
         </InputBase>
       </Combobox.Target>
 

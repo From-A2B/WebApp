@@ -1,15 +1,17 @@
 'use client';
 
+import { AddStepSchema } from '@/features/steps/add/addStep.schema';
 import { GetStepAfterByIdAction } from '@/features/steps/get/getStepAfterById.action';
 import { GetStepBeforeByIdAction } from '@/features/steps/get/getStepBeforeById.action';
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
 import { Button, Group, Modal, Stack, TextInput, Title } from '@mantine/core';
+import { useForm, zodResolver } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import { CrossCircleIcon } from '../icons/crossCircle.icon';
-import { TransportModeInput } from './TransportModeInput';
 import { StepsBreadCrumb } from './breadCrumb/stepsBreadCrumb';
+import { TransportModeInput } from './transportModeInput';
 
 export type AddStepModalProps = {};
 
@@ -21,7 +23,6 @@ export const AddStepModal = ({}: AddStepModalProps) => {
   const stepId = useStepStore((s) => s.currentStepId);
   const addStepBefore = useStepStore((s) => s.addStepBefore);
   const addStepAfter = useStepStore((s) => s.addStepAfter);
-  const newStepName = useStepStore((s) => s.newStepName);
   const SetNewStepName = useStepStore((s) => s.SetNewStepName);
 
   const { data: stepBefore, isPending: isPendingStepBefore } = useQuery({
@@ -66,6 +67,26 @@ export const AddStepModal = ({}: AddStepModalProps) => {
     enabled: !!stepId,
   });
 
+  const addStepForm = useForm<AddStepSchema>({
+    initialValues: {
+      name: '',
+      rank: -10000,
+      description: '',
+      latitude: 0,
+      longitude: 0,
+    },
+    validateInputOnChange: true,
+    validate: zodResolver(AddStepSchema),
+  });
+
+  const handleChangeName = (name: string) => {
+    addStepForm.setFieldValue('name', name);
+    SetNewStepName(name);
+  };
+  // const handleChangeTransportMode = (transport: string) => {
+  //   addStepForm.setFieldValue('')
+  // }
+
   return (
     <Modal.Root
       opened={addStepModalOpened}
@@ -99,17 +120,24 @@ export const AddStepModal = ({}: AddStepModalProps) => {
               withAsterisk
               label="Step name"
               placeholder="New step name"
-              onChange={(e) => SetNewStepName(e.target.value)}
+              {...addStepForm.getInputProps('name')}
+              onChange={(e) => handleChangeName(e.target.value)}
             />
-            <TextInput label="Description" />
+            <TextInput
+              label="Description"
+              {...addStepForm.getInputProps('description')}
+            />
             <TextInput withAsterisk label="Destination" />
-            <TextInput withAsterisk label="Choose you're transport mode" />
-            <TransportModeInput />
+            <TransportModeInput
+              withAsterisk
+              label="Choose you're transport mode"
+              selectedValue={() => {}}
+            />
             <Group justify="end">
               <Button color="var(--mantine-color-red-5)" variant="outline">
                 Cancel
               </Button>
-              <Button>Add</Button>
+              <Button disabled={!addStepForm.isValid()}>Add</Button>
             </Group>
           </Stack>
         </Modal.Body>

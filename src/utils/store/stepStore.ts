@@ -24,7 +24,7 @@ export const useStepStore = create<StepStore>()((set) => ({
   addStepBefore: false,
   addStepAfter: false,
 
-  addStepModalOpened: true,
+  addStepModalOpened: false,
   CloseAddStepModal() {
     set(() => ({
       addStepBefore: false,
