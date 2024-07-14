@@ -8,6 +8,7 @@ import { useStepStore } from '@/utils/store/stepStore';
 import { Button, Group, Modal, Stack, TextInput, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { CrossCircleIcon } from '../icons/crossCircle.icon';
+import { TransportModeInput } from './TransportModeInput';
 import { StepsBreadCrumb } from './breadCrumb/stepsBreadCrumb';
 
 export type AddStepModalProps = {};
@@ -103,6 +104,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
             <TextInput label="Description" />
             <TextInput withAsterisk label="Destination" />
             <TextInput withAsterisk label="Choose you're transport mode" />
+            <TransportModeInput />
             <Group justify="end">
               <Button color="var(--mantine-color-red-5)" variant="outline">
                 Cancel
