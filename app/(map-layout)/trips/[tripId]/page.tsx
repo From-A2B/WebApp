@@ -1,10 +1,10 @@
+import { MapContainer } from '@/components/map/mapContainer';
+import { IsTripExistByIdQuery } from '@/features/trips/isTripExistById.query';
+import { requiredAuth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
+import { LINKS } from '@/utils/NavigationLinks';
 import { Group } from '@mantine/core';
 import { notFound, redirect } from 'next/navigation';
-import { MapContainer } from '~/src/components/map/mapContainer';
-import { IsTripExistByIdQuery } from '~/src/features/trips/isTripExistById.query';
-import { requiredAuth } from '~/src/lib/auth/helper';
-import { LINKS } from '~/src/utils/NavigationLinks';
 import { TripDetailList } from './_component/tripDetailList';
 
 type tripParams = PageParams<{ tripId: string }>;

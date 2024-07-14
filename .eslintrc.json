@@ -29,7 +29,7 @@
         "vars": "all",
         "args": "after-used",
         "ignoreRestSiblings": true,
-        "argsIgnorePattern": "props",
+        "argsIgnorePattern": ["props", "^_"],
         "varsIgnorePattern": "^_"
       }
     ],

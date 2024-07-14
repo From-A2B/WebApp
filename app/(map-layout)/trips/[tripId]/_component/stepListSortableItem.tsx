@@ -1,5 +1,7 @@
 'use client';
 
+import { CogWheelIcon } from '@/components/icons/cogwheel.icon';
+import { StepMenu } from '@/components/step/stepMenu';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import {
@@ -11,9 +13,7 @@ import {
   useMantineColorScheme,
 } from '@mantine/core';
 import { IconGripVertical } from '@tabler/icons-react';
-import { CogWheelIcon } from '~/src/components/icons/cogwheel.icon';
-import { StepMenu } from '~/src/components/step/stepMenu';
-import { StepCounter } from './stepCounter';
+import { StepCounter } from '../../../../../src/components/step/stepCounter';
 
 export type StepListSortableItemProps = {
   stepId: string;
@@ -56,7 +56,7 @@ export const StepListSortableItem = ({
               </Text>
             </Group>
           </Box>
-          <StepMenu>
+          <StepMenu stepId={stepId}>
             <ActionIcon variant="transparent">
               <CogWheelIcon
                 loop

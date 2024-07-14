@@ -1,9 +1,9 @@
 'use client';
 
+import { env } from '@/lib/env/client';
 import { Box } from '@mantine/core';
 import { useState } from 'react';
 import { Map } from 'react-map-gl';
-import { env } from '~/src/lib/env/client';
 
 export type MapContainerProps = {};
 

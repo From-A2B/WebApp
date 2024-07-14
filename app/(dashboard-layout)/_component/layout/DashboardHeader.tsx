@@ -1,10 +1,10 @@
 import AuthButton from '@/components/auth/AuthButton';
-import { SendFeedbackMenu } from '~/src/components/feedback/contactFeedbackMenu';
+import { SendFeedbackMenu } from '@/components/feedback/ContactFeedbackMenu';
 import { SiteName } from '@/components/layout/SiteName';
 import { LINKS } from '@/utils/NavigationLinks';
 import { AppShellHeader, Box, Button, Container, Group } from '@mantine/core';
 import Link from 'next/link';
-import { DashboardNavigationMobile } from './dashboardNavigationMobile';
+import { DashboardNavigationMobile } from './DashboardNavigationMobile';
 
 export const DashboardHeader = () => {
   return (

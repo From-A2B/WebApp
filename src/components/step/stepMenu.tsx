@@ -3,14 +3,20 @@
 import { Menu } from '@mantine/core';
 import { IconArrowBarToLeft, IconArrowBarToRight } from '@tabler/icons-react';
 
+import { EditDocumentIcon } from '@/components/icons/editDocument.icon';
+import { TrashIcon } from '@/components/icons/trash.icon';
+import { useStepStore } from '@/utils/store/stepStore';
 import { useDisclosure } from '@mantine/hooks';
 import type { PropsWithChildren } from 'react';
-import { EditDocumentIcon } from '../icons/editDocument.icon';
-import { TrashIcon } from '../icons/trash.icon';
 
-export type StepMenuProps = PropsWithChildren<{}>;
+export type StepMenuProps = PropsWithChildren<{
+  stepId: string;
+}>;
 
-export const StepMenu = ({ children }: StepMenuProps) => {
+export const StepMenu = ({ children, stepId }: StepMenuProps) => {
+  const AddStepBefore = useStepStore((s) => s.AddStepBefore);
+  const AddStepAfter = useStepStore((s) => s.AddStepAfter);
+
   const [deleteHovered, { open: openDeleteHover, close: closeDeleteHover }] =
     useDisclosure(false);
   const [editHovered, { open: openDeleteEdit, close: closeDeleteEdit }] =
@@ -41,10 +47,16 @@ export const StepMenu = ({ children }: StepMenuProps) => {
 
         <Menu.Divider />
         <Menu.Label>New step</Menu.Label>
-        <Menu.Item leftSection={<IconArrowBarToRight />} disabled>
+        <Menu.Item
+          leftSection={<IconArrowBarToRight />}
+          onClick={() => AddStepBefore({ stepId })}
+        >
           Add before
         </Menu.Item>
-        <Menu.Item leftSection={<IconArrowBarToLeft />} disabled>
+        <Menu.Item
+          leftSection={<IconArrowBarToLeft />}
+          onClick={() => AddStepAfter({ stepId })}
+        >
           Add after
         </Menu.Item>
       </Menu.Dropdown>

@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-8-account.json';
+import ICON from '@/assets/system-regular-8-account.json';
 
 type UserIconProps = {
   onClick?: () => void;

@@ -1,8 +1,8 @@
 'use client';
 
+import { PlusCircleIcon } from '@/components/icons/plusCircle.icon';
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { PlusCircleIcon } from '~/src/components/icons/plusCircle.icon';
 import { CreateTripModal } from './createTripModal';
 
 type createTripBoutonProps = {};

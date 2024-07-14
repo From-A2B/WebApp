@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-716-spinner-three-dots.json';
+import ICON from '@/assets/system-regular-716-spinner-three-dots.json';
 
 type LoaderDotsIconProps = {
   onClick?: () => void;

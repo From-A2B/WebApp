@@ -1,5 +1,7 @@
 'use client';
 
+import { GetOneTripByIdAction } from '@/features/trips/get/getOneTripById.action';
+import useNotify from '@/hook/useNotify';
 import {
   Alert,
   Center,
@@ -11,8 +13,6 @@ import {
 } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import { GetOneTripByIdAction } from '~/src/features/trips/get/getOneTripById.action';
-import useNotify from '~/src/hook/useNotify';
 import { StepListSortable } from './stepListSortable';
 
 export type TripDetailListProps = {

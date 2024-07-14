@@ -2,6 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 'use client';
 
+import { LoaderDotsIcon } from '@/components/icons/loaderDots.icon';
+import { AddStepModal } from '@/components/step/addStepModal';
+import { StepMoveAction } from '@/features/steps/update/stepMove.action';
+import type { GetOneTripByIdQuery } from '@/features/trips/get/getOneTripById.query';
+import useNotify from '@/hook/useNotify';
 import type { DragEndEvent } from '@dnd-kit/core';
 import {
   DndContext,
@@ -20,10 +25,6 @@ import {
 import { Center, LoadingOverlay, ScrollArea, Stack } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
-import { LoaderDotsIcon } from '~/src/components/icons/loaderDots.icon';
-import type { GetOneTripByIdQuery } from '~/src/features/trips/get/getOneTripById.query';
-import { StepMoveAction } from '~/src/features/trips/steps/stepMove.action';
-import useNotify from '~/src/hook/useNotify';
 import { StepListSortableItem } from './stepListSortableItem';
 
 export type StepListSortableProps = {
@@ -98,39 +99,42 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
   };
 
   return (
-    <ScrollArea h="83vh" w="100%" offsetScrollbars>
-      <Center>
-        <Stack gap="md" w="100%">
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={items}
-              strategy={verticalListSortingStrategy}
-              disabled={isPending}
+    <>
+      <ScrollArea h="83vh" w="100%" offsetScrollbars>
+        <Center>
+          <Stack gap="md" w="100%">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
             >
-              {items.map((step, idx) => (
-                <StepListSortableItem
-                  key={step.id}
-                  stepId={step.id}
-                  order={idx + 1}
-                  name={step.name}
-                />
-              ))}
-            </SortableContext>
-            <LoadingOverlay
-              visible={isPending}
-              zIndex={1000}
-              overlayProps={{ radius: 'sm', blur: 2 }}
-              loaderProps={{
-                children: <LoaderDotsIcon size={100} loop forceLoopStart />,
-              }}
-            />
-          </DndContext>
-        </Stack>
-      </Center>
-    </ScrollArea>
+              <SortableContext
+                items={items}
+                strategy={verticalListSortingStrategy}
+                disabled={isPending}
+              >
+                {items.map((step, idx) => (
+                  <StepListSortableItem
+                    key={step.id}
+                    stepId={step.id}
+                    order={idx + 1}
+                    name={step.name}
+                  />
+                ))}
+              </SortableContext>
+              <LoadingOverlay
+                visible={isPending}
+                zIndex={1000}
+                overlayProps={{ radius: 'sm', blur: 2 }}
+                loaderProps={{
+                  children: <LoaderDotsIcon size={100} loop forceLoopStart />,
+                }}
+              />
+            </DndContext>
+          </Stack>
+        </Center>
+      </ScrollArea>
+      <AddStepModal />
+    </>
   );
 };

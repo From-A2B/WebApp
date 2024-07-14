@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/wired-outline-49-plus-circle.json';
+import ICON from '@/assets/wired-outline-49-plus-circle.json';
 
 type PlusCircleIconProps = {
   onClick?: () => void;

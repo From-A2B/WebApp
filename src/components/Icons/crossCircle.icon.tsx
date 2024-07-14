@@ -3,9 +3,10 @@
 import { Player } from '@lordicon/react';
 import { useRef } from 'react';
 
+import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-29-cross.json';
+import ICON from '@/assets/system-regular-29-cross.json';
 
 type CrossCircleIconProps = {
   onClick?: () => void;
@@ -15,7 +16,7 @@ type CrossCircleIconProps = {
   size?: number;
   colorize?: string;
   disabled?: boolean;
-};
+} & ActionIconProps;
 export const CrossCircleIcon = ({
   onClick,
   isHover,
@@ -23,6 +24,7 @@ export const CrossCircleIcon = ({
   loop,
   colorize,
   disabled,
+  ...props
 }: CrossCircleIconProps) => {
   const [hovered, { open: openHover, close: closeHover }] =
     useDisclosure(false);
@@ -43,6 +45,8 @@ export const CrossCircleIcon = ({
       onMouseLeave={closeHover}
       onClick={onClick}
       disabled={disabled}
+      size={size}
+      {...props}
     >
       <Player
         ref={playerRef}
