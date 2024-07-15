@@ -40,6 +40,7 @@ export const LINKS = {
       label: 'My Account',
       href: '/account',
       auth: true,
+      description: 'See my profile',
       icon: <UserIcon colorize="var(--mantine-color-text)" />,
     },
     Delete: {
@@ -84,6 +85,7 @@ export const LINKS = {
       label: 'Dashboard',
       href: '/dashboard',
       auth: true,
+      description: "Manage your dashboard",
       icon: <IconLayoutDashboard />,
     },
     Trips: {
@@ -91,11 +93,19 @@ export const LINKS = {
       href: '/dashboard/trips',
       auth: true,
       icon: <IconUsers />,
+      description: "Manage your trips",
+    },
+    TripDetails: {
+      label: 'Trips',
+      href: '/dashboard/trips/{id}',
+      auth: true,
+      icon: <IconUsers />,
     },
     Stats: {
       label: 'Stats',
       href: '/dashboard/stats',
       auth: true,
+      description: "See your stats",
       icon: <IconChartDots3 />,
     }
   },
@@ -150,6 +160,13 @@ export const LINKS = {
       auth: false,
     },
   },
+  TripDetail: {
+    Contact: {
+      label: 'Contact',
+      href: '/support',
+      auth: false,
+    },
+  }
 };
 
 export const HEADER_LINKS: NavigationLinks = [];
@@ -183,7 +200,7 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Dashboard',
-    links: [LINKS.Dashboard.Trips, LINKS.Dashboard.Stats, LINKS.Account.Profile],
+    links: [LINKS.Dashboard.Trips, LINKS.Dashboard.Stats, LINKS.Account.MyAccount],
   },
 ];
 

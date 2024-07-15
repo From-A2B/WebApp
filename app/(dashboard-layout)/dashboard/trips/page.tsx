@@ -12,6 +12,7 @@ import {
   Text,
   Button,
 } from '@mantine/core';
+import { LINKS } from '~/src/utils/NavigationLinks';
 
 const RoutePage = async ({}: PageParams) => {
   const user = await requiredAuth();
@@ -27,7 +28,7 @@ const RoutePage = async ({}: PageParams) => {
           <Divider mb="md" />
           <Group>
             {trips.length > 0 && trips.map((trip) => (
-              <TripCard trip={trip} key={trip.id} url={`/${trip.id}`}/>
+              <TripCard trip={trip} key={trip.id} url={LINKS.Dashboard.TripDetails.href}/>
             ))}
           </Group>
         </Stack>

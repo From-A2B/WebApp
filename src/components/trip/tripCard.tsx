@@ -1,6 +1,7 @@
 import { Paper, Title, Text, Image, Group } from '@mantine/core';
-import {IconCalendarEvent} from '@tabler/icons-react';
+import { IconCalendarEvent } from '@tabler/icons-react';
 import type { Trip } from '@prisma/client';
+import Link from 'next/link';
 
 export type TripCardProps = {
   trip: Trip;
@@ -9,19 +10,17 @@ export type TripCardProps = {
 
 export const TripCard = ({
   trip: { description, endDate, id, image, name, startDate, userId },
-  url
+  url,
 }: TripCardProps) => {
   return (
-    <a href={window.location.pathname + url}>
-      <Paper withBorder p="xl">
-        <Title>{name}</Title>
-        <Text>{description}</Text>
-        <Group align='middle' mt={5}>
-          <IconCalendarEvent />
-          <Text>{startDate.toDateString()}</Text>
-        </Group>
-        {image && <Image src={image} alt={name} />}
-      </Paper>
-    </a>
+    <Paper component={Link} href={url.replace('{id}', id)} withBorder p="xl">
+      <Title style={{ color: 'black' }}>{name}</Title>
+      <Text style={{ color: 'black' }}>{description}</Text>
+      <Group style={{ color: 'black' }} align="middle" mt={5}>
+        <IconCalendarEvent />
+        <Text>{startDate.toDateString()}</Text>
+      </Group>
+      {image && <Image src={image} alt={name} />}
+    </Paper>
   );
 };
