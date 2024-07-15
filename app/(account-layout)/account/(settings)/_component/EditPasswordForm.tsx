@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 import styles from './EditPassword.module.css';
 
 export const EditPasswordForm = () => {
-  const form = useForm({
+  const form = useForm<EditPasswordFormType>({
     validateInputOnChange: true,
     initialValues: {
       currentPassword: '',
@@ -66,7 +66,7 @@ export const EditPasswordForm = () => {
               />
               <Button
                 onClick={() => mutateAsync(form.values)}
-                disabled={isPending}
+                disabled={!form.isValid()}
                 loading={isPending}
               >
                 Save

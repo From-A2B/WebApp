@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { searchParamsCache } from '@/lib/searchParams';
 import type { PageParams } from '@/types/next';
+import { LINKS } from '@/utils/NavigationLinks';
 import { Badge, Button, Paper, Title } from '@mantine/core';
 import { redirect } from 'next/navigation';
 
@@ -8,14 +9,7 @@ const RoutePage = async ({ searchParams }: PageParams) => {
   const { success, token } = searchParamsCache.parse(searchParams);
 
   if (success) {
-    return (
-      <Paper radius="lg" p="xl" withBorder my="md">
-        <Title order={2}>Email verified</Title>
-        <Button component="a" href="/account">
-          Account
-        </Button>
-      </Paper>
-    );
+    redirect(LINKS.Account.Settings.href);
   }
 
   if (!token) {

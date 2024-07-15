@@ -38,7 +38,10 @@ export default function RootLayout({
   children?: React.ReactNode;
 }> & { modal?: ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="bg-[light-dark(var(--mantine-color-gray-1),var(--mantine-color-dark-7))]"
+    >
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
         <meta

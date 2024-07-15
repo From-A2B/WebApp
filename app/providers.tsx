@@ -16,6 +16,7 @@ import './globals.scss';
 import '@mantine/core/styles.css';
 import '@mantine/core/styles.layer.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/carousel/styles.css';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
