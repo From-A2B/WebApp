@@ -1,28 +1,28 @@
 'use client';
 
-import { ContactSupportDialog } from '@/components/contact/support/ContactSupportDialog';
+import SignInButton from '@/components/auth/SignInButton';
 import { logger } from '@/lib/logger';
 import type { ErrorParams } from '@/types/next';
-import { Container, Paper, Stack, Title } from '@mantine/core';
-import { Button } from '@react-email/components';
+import { Alert } from '@mantine/core';
+import { Container } from '@react-email/components';
+import { IconAlertTriangle } from '@tabler/icons-react';
 import { useEffect } from 'react';
 
-const RouteError = ({ error, reset }: ErrorParams) => {
+const RouteError = ({ error }: ErrorParams) => {
   useEffect(() => {
     logger.error(error);
   }, [error]);
 
   return (
     <Container>
-      <Stack>
-        <Paper p="xl" shadow="xs" withBorder>
-          <Stack>
-            <Title>Sorry, something went wrong. Please try again later.</Title>
-            <Button onClick={reset}>Try Again</Button>
-            <ContactSupportDialog />
-          </Stack>
-        </Paper>
-      </Stack>
+      <Alert
+        variant="light"
+        color="var(--mantine-color-red-6)"
+        icon={<IconAlertTriangle />}
+        title="You need to be authenticated to access this resource."
+      >
+        <SignInButton fullWidth variant="filled" />
+      </Alert>
     </Container>
   );
 };

@@ -22,8 +22,8 @@ export const DashboardNavbar = () => {
             component={Link}
             href={LINKS.Dashboard.Dashboard.href}
             c="inherit"
-            bg="var(--mantine-color-dark-6)"
             p="xs"
+            withBorder
           >
             <Group>
               {LINKS.Dashboard.Dashboard.icon}

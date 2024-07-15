@@ -19,6 +19,7 @@
     "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
     "no-await-in-loop": 1,
     "no-return-await": 1,
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "no-eval": 1,
     "no-implied-eval": 1,
     "prefer-promise-reject-errors": 1,
@@ -28,7 +29,7 @@
         "vars": "all",
         "args": "after-used",
         "ignoreRestSiblings": true,
-        "argsIgnorePattern": "props",
+        "argsIgnorePattern": ["props", "^_"],
         "varsIgnorePattern": "^_"
       }
     ],
@@ -38,6 +39,7 @@
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/member-ordering": "warn",
     "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/prefer-optional-chain": "warn",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
