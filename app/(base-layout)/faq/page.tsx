@@ -1,3 +1,5 @@
+'use client';
+
 import { LINKS } from '@/utils/NavigationLinks';
 import {
   Accordion,
