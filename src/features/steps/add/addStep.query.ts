@@ -12,7 +12,16 @@ export type AddStepQuerySchema = z.infer<typeof AddStepQuerySchema>;
 
 export const AddStepQuery = async ({
   tripId,
-  newStep: { latitude, longitude, name, description, endDate, startDate, rank },
+  newStep: {
+    latitude,
+    longitude,
+    name,
+    description,
+    endDate,
+    startDate,
+    rank,
+    transportMode,
+  },
 }: AddStepQuerySchema) => {
   const newStep = await prisma.step.create({
     data: {
@@ -24,6 +33,7 @@ export const AddStepQuery = async ({
       description,
       latitude,
       longitude,
+      transportMode,
     },
   });
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { GetStepOrderAction } from '@/features/steps/get/getStepOrder.action';
+import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
 import { Group } from '@mantine/core';
@@ -24,7 +25,7 @@ export const StepsBreadCrumb = ({
 
   const { data: beforeStepOrder, isPending: isPendingBeforeStepOrder } =
     useQuery({
-      queryKey: ['tuche'],
+      queryKey: stepKeysFactory.stepBeforeOrder(beforeStep?.id!),
       queryFn: async () => {
         const { data, serverError } = await GetStepOrderAction({
           stepId: beforeStep!.id,
@@ -44,7 +45,7 @@ export const StepsBreadCrumb = ({
     });
   const { data: afterStepOrder, isPending: isPendingAfterStepOrder } = useQuery(
     {
-      queryKey: ['tuchee'],
+      queryKey: stepKeysFactory.stepAfterOrder(afterStep?.id!),
       queryFn: async () => {
         const { data, serverError } = await GetStepOrderAction({
           stepId: afterStep!.id,

@@ -9,7 +9,7 @@ import { AddStepSchema } from './addStep.schema';
 
 const AddStepAfterSchema = z.object({
   tripId: z.string(),
-  beforeStepId: z.string(),
+  beforeStepId: z.string().optional(),
   afterStepId: z.string().optional(),
   newStep: AddStepSchema,
 });
@@ -17,12 +17,18 @@ const AddStepAfterSchema = z.object({
 export const AddStepAfterAction = authAction(
   AddStepAfterSchema,
   async ({ tripId, beforeStepId, afterStepId, newStep }, { user }) => {
-    const beforeStep = await GetStepByIdQuery({
-      stepId: beforeStepId,
-      userId: user.id,
-    });
+    let beforeStep;
 
-    if (!beforeStep || beforeStep.tripId !== tripId)
+    if (beforeStepId)
+      beforeStep = await GetStepByIdQuery({
+        stepId: beforeStepId,
+        userId: user.id,
+      });
+
+    if (
+      (beforeStepId && !beforeStep) ||
+      (beforeStepId && beforeStep?.tripId !== tripId)
+    )
       throw new ActionError(
         `The search stage does not exist or is not present in the current trip`
       );
@@ -42,7 +48,7 @@ export const AddStepAfterAction = authAction(
         `The search stage does not exist or is not present in the current trip`
       );
 
-    const newRank = getMiddleRank(beforeStep.rank, afterStep?.rank);
+    const newRank = getMiddleRank(beforeStep?.rank, afterStep?.rank);
 
     const step: AddStepSchema = { ...newStep, rank: newRank };
 

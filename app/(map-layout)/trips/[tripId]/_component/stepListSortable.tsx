@@ -4,8 +4,9 @@
 
 import { LoaderDotsIcon } from '@/components/icons/loaderDots.icon';
 import { AddStepModal } from '@/components/step/addStepModal';
+import { GetAllStepsByTripIdAction } from '@/features/steps/get/getAllStepsByTripId.action';
+import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import { StepMoveAction } from '@/features/steps/update/stepMove.action';
-import type { GetOneTripByIdQuery } from '@/features/trips/get/getOneTripById.query';
 import useNotify from '@/hook/useNotify';
 import type { DragEndEvent } from '@dnd-kit/core';
 import {
@@ -23,20 +24,42 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Center, LoadingOverlay, ScrollArea, Stack } from '@mantine/core';
-import { useMutation } from '@tanstack/react-query';
+import { Step } from '@prisma/client';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { StepListSortableItem } from './stepListSortableItem';
 
 export type StepListSortableProps = {
-  trip: GetOneTripByIdQuery;
+  tripId: string;
 };
 
-export const StepListSortable = ({ trip }: StepListSortableProps) => {
+export const StepListSortable = ({ tripId }: StepListSortableProps) => {
   const { ErrorNotify } = useNotify();
 
-  const [items, setItems] = useState(
-    trip.steps.sort((a, b) => a.rank - b.rank)
-  );
+  const {} = useQuery({
+    queryKey: stepKeysFactory.byTripId(tripId),
+    queryFn: async () => {
+      const { data: steps, serverError } = await GetAllStepsByTripIdAction({
+        tripId,
+      });
+
+      if (serverError)
+        return ErrorNotify({
+          title: serverError,
+        });
+
+      if (!steps)
+        return ErrorNotify({
+          title: 'An error occurred while retrieving the steps',
+        });
+
+      setItems(steps);
+
+      return steps;
+    },
+  });
+
+  const [items, setItems] = useState<Step[]>([]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -117,6 +140,7 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
                   <StepListSortableItem
                     key={step.id}
                     stepId={step.id}
+                    tripId={tripId}
                     order={idx + 1}
                     name={step.name}
                   />

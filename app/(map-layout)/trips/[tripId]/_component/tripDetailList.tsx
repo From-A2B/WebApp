@@ -1,6 +1,7 @@
 'use client';
 
 import { GetOneTripByIdAction } from '@/features/trips/get/getOneTripById.action';
+import { tripKeysFactory } from '@/features/trips/tripKeys.factory';
 import useNotify from '@/hook/useNotify';
 import {
   Alert,
@@ -27,7 +28,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
     isPending: isFetchingTrip,
     error,
   } = useQuery({
-    queryKey: ['toto'],
+    queryKey: tripKeysFactory.byId(tripId),
     queryFn: async () => {
       const { data: trip, serverError } = await GetOneTripByIdAction({
         tripId,
@@ -77,7 +78,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
       <Center>
         <Title ta="center">{trip.name}</Title>
       </Center>
-      <StepListSortable trip={trip} />
+      <StepListSortable tripId={tripId} />
     </Stack>
   );
 };

@@ -11,9 +11,10 @@ import type { PropsWithChildren } from 'react';
 
 export type StepMenuProps = PropsWithChildren<{
   stepId: string;
+  tripId: string;
 }>;
 
-export const StepMenu = ({ children, stepId }: StepMenuProps) => {
+export const StepMenu = ({ children, stepId, tripId }: StepMenuProps) => {
   const AddStepBefore = useStepStore((s) => s.AddStepBefore);
   const AddStepAfter = useStepStore((s) => s.AddStepAfter);
 
@@ -49,13 +50,13 @@ export const StepMenu = ({ children, stepId }: StepMenuProps) => {
         <Menu.Label>New step</Menu.Label>
         <Menu.Item
           leftSection={<IconArrowBarToRight />}
-          onClick={() => AddStepBefore({ stepId })}
+          onClick={() => AddStepBefore({ stepId, tripId })}
         >
           Add before
         </Menu.Item>
         <Menu.Item
           leftSection={<IconArrowBarToLeft />}
-          onClick={() => AddStepAfter({ stepId })}
+          onClick={() => AddStepAfter({ stepId, tripId })}
         >
           Add after
         </Menu.Item>

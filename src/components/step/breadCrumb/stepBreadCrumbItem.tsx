@@ -13,11 +13,22 @@ export const StepBreadCrumbItem = ({
   order,
 }: StepBreadCrumbItemProps) => {
   return (
-    <Paper withBorder py="sm" px="md" shadow="xl" className="w-44">
+    <Paper
+      withBorder
+      py="sm"
+      px="md"
+      shadow="xl"
+      className="w-44 max-w-44 min-w-44"
+    >
       <Stack gap={0} align="center">
         <StepCounter order={order} />
 
-        <Text fw={600} fs="italic" className="select-none">
+        <Text
+          fw={600}
+          fs="italic"
+          className="select-none max-w-40
+          text-ellipsis overflow-hidden"
+        >
           {name}
         </Text>
       </Stack>

@@ -1,17 +1,20 @@
 'use client';
 
 import { AddStepSchema } from '@/features/steps/add/addStep.schema';
+import { AddStepAfterAction } from '@/features/steps/add/addStepAfter.action';
 import { GetStepAfterByIdAction } from '@/features/steps/get/getStepAfterById.action';
 import { GetStepBeforeByIdAction } from '@/features/steps/get/getStepBeforeById.action';
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
+import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import useNotify from '@/hook/useNotify';
 import { TransportMode } from '@/types/transportMode.type';
 import { useStepStore } from '@/utils/store/stepStore';
 import { PlaceData } from '@googlemaps/google-maps-services-js';
 import { Button, Group, Modal, Stack, TextInput, Title } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { CrossCircleIcon } from '../icons/crossCircle.icon';
+import { TrashIcon } from '../icons/trash.icon';
 import { StepsBreadCrumb } from './breadCrumb/stepsBreadCrumb';
 import { DestinationInput } from './destinationInput';
 import { TransportModeInput } from './transportModeInput';
@@ -19,17 +22,20 @@ import { TransportModeInput } from './transportModeInput';
 export type AddStepModalProps = {};
 
 export const AddStepModal = ({}: AddStepModalProps) => {
-  const { ErrorNotify } = useNotify();
+  const queryClient = useQueryClient();
+
+  const { ErrorNotify, SuccessNotify } = useNotify();
 
   const addStepModalOpened = useStepStore((s) => s.addStepModalOpened);
   const CloseAddStepModal = useStepStore((s) => s.CloseAddStepModal);
   const stepId = useStepStore((s) => s.currentStepId);
+  const tripId = useStepStore((s) => s.currentTripId);
   const addStepBefore = useStepStore((s) => s.addStepBefore);
   const addStepAfter = useStepStore((s) => s.addStepAfter);
   const SetNewStepName = useStepStore((s) => s.SetNewStepName);
 
   const { data: stepBefore, isPending: isPendingStepBefore } = useQuery({
-    queryKey: ['tata'],
+    queryKey: stepKeysFactory.stepBefore(stepId!),
     queryFn: async () => {
       const { data, serverError } = addStepBefore
         ? await GetStepBeforeByIdAction({
@@ -49,10 +55,8 @@ export const AddStepModal = ({}: AddStepModalProps) => {
   });
 
   const { data: stepAfter, isPending: isPendingStepAfter } = useQuery({
-    queryKey: ['titi'],
+    queryKey: stepKeysFactory.stepAfter(stepId!),
     queryFn: async () => {
-      if (!addStepAfter && !stepBefore) return null;
-
       const { data, serverError } = addStepAfter
         ? await GetStepAfterByIdAction({
             stepId: stepId!,
@@ -88,8 +92,17 @@ export const AddStepModal = ({}: AddStepModalProps) => {
     SetNewStepName(name);
   };
 
-  const handleChangeLocation = (place: Partial<PlaceData>) => {
-    console.debug('🚀 ~ handleChangeLocation ~ place:', place);
+  const handleChangeLocation = (place: Partial<PlaceData> | null) => {
+    if (!place) {
+      addStepForm.setFieldValue('latitude', 0);
+      addStepForm.setFieldError('latitude', '');
+
+      addStepForm.setFieldValue('longitude', 0);
+      addStepForm.setFieldError('longitude', '');
+
+      return;
+    }
+
     if (!place.geometry)
       return ErrorNotify({
         message:
@@ -105,10 +118,46 @@ export const AddStepModal = ({}: AddStepModalProps) => {
     addStepForm.setFieldValue('transportMode', transport);
   };
 
+  const handleClearFormName = () => {
+    SetNewStepName('New Step');
+    addStepForm.setFieldValue('name', '');
+    addStepForm.setFieldError('name', '');
+  };
+
+  const handleClearFormDescription = () => {
+    addStepForm.setFieldValue('description', '');
+    addStepForm.setFieldError('description', '');
+  };
+
   const handleCloseModal = () => {
     addStepForm.reset();
     CloseAddStepModal();
   };
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async () => {
+      const { serverError } = await AddStepAfterAction({
+        beforeStepId: stepBefore?.id,
+        afterStepId: stepAfter?.id,
+        tripId: tripId || stepBefore?.tripId! || stepAfter?.tripId!,
+        newStep: addStepForm.values,
+      });
+
+      if (serverError)
+        return ErrorNotify({ title: 'An error occurred when adding the step' });
+    },
+    onSuccess() {
+      SuccessNotify({ title: 'The step was well added' });
+      handleCloseModal();
+      console.debug(
+        "🚀 ~ onSuccess ~ stepKeysFactory.byTripId(tripId || '');:",
+        stepKeysFactory.byTripId(tripId || '')
+      );
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(tripId || ''),
+      });
+    },
+  });
 
   return (
     <Modal.Root
@@ -131,8 +180,10 @@ export const AddStepModal = ({}: AddStepModalProps) => {
         </Modal.Header>
         <Modal.Body>
           <StepsBreadCrumb
-            beforeStep={stepBefore || undefined}
-            afterStep={stepAfter || undefined}
+            beforeStep={
+              isPendingStepBefore ? undefined : stepBefore || undefined
+            }
+            afterStep={isPendingStepAfter ? undefined : stepAfter || undefined}
           />
 
           <Stack>
@@ -140,11 +191,21 @@ export const AddStepModal = ({}: AddStepModalProps) => {
               withAsterisk
               label="Step name"
               placeholder="New step name"
+              rightSection={
+                !!addStepForm.values.name.length && (
+                  <TrashIcon onClick={handleClearFormName} />
+                )
+              }
               {...addStepForm.getInputProps('name')}
               onChange={(e) => handleChangeName(e.target.value)}
             />
             <TextInput
               label="Description"
+              rightSection={
+                !!addStepForm.values.description?.length && (
+                  <TrashIcon onClick={handleClearFormDescription} />
+                )
+              }
               {...addStepForm.getInputProps('description')}
             />
             <DestinationInput
@@ -152,6 +213,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
             />
             <TransportModeInput
               withAsterisk
+              defaultValue="Car"
               label="Choose you're transport mode"
               selectedValue={(value) => handleChangeTransportMode(value)}
             />
@@ -160,12 +222,13 @@ export const AddStepModal = ({}: AddStepModalProps) => {
                 color="var(--mantine-color-red-5)"
                 variant="outline"
                 onClick={handleCloseModal}
+                disabled={isPending}
               >
                 Cancel
               </Button>
               <Button
-                disabled={!addStepForm.isValid()}
-                onClick={() => console.log(addStepForm.values)}
+                disabled={!addStepForm.isValid() || isPending}
+                onClick={() => mutate()}
               >
                 Add
               </Button>

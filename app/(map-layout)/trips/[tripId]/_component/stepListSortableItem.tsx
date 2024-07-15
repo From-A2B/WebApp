@@ -17,6 +17,7 @@ import { StepCounter } from '../../../../../src/components/step/stepCounter';
 
 export type StepListSortableItemProps = {
   stepId: string;
+  tripId: string;
   order: number;
   name: string;
 };
@@ -25,6 +26,7 @@ export const StepListSortableItem = ({
   stepId,
   name,
   order,
+  tripId,
 }: StepListSortableItemProps) => {
   const { colorScheme } = useMantineColorScheme();
 
@@ -56,7 +58,7 @@ export const StepListSortableItem = ({
               </Text>
             </Group>
           </Box>
-          <StepMenu stepId={stepId}>
+          <StepMenu stepId={stepId} tripId={tripId}>
             <ActionIcon variant="transparent">
               <CogWheelIcon
                 loop

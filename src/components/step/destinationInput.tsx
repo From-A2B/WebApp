@@ -6,19 +6,21 @@ import {
   PlaceData,
 } from '@googlemaps/google-maps-services-js';
 import { Autocomplete } from '@mantine/core';
-import { useDebouncedState } from '@mantine/hooks';
+import { useDebouncedValue } from '@mantine/hooks';
 import { IconCircleCheck } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { SearchIcon } from '../icons/search.icon';
+import { TrashIcon } from '../icons/trash.icon';
 
 export type DestinationInputProps = {
-  onChange: (place: Partial<PlaceData>) => void;
+  onChange: (place: Partial<PlaceData> | null) => void;
 };
 
 export const DestinationInput = ({ onChange }: DestinationInputProps) => {
   const { ErrorNotify } = useNotify();
 
-  const [addressValue, setAddressValue] = useDebouncedState('', 500);
+  const [addressValue, setAddressValue] = useState('');
+  const [addressValueDebounced] = useDebouncedValue(addressValue, 500);
 
   const [places, setPlaces] = useState<PlaceAutocompleteResult[]>([]);
   const [selectedPlace, setSelectedPlace] = useState<Partial<PlaceData> | null>(
@@ -62,10 +64,16 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
         onChange(places[0]);
       }
     })();
-  }, [addressValue]);
+  }, [addressValueDebounced]);
 
   //! BUG
   // TODO: Pourquoi l'auto complete souvent n'affiche aucune valeur ou une seuls alors que plusieurs lui sont donner Exemple : 'Lyon Saint Ex' -> N'affiche que une seule valeur alors que 5 ont été trouvé
+
+  const handleClearAddressValue = () => {
+    setAddressValue('');
+    setSelectedPlace(null);
+    onChange(null);
+  };
 
   const handleChange = (value: string) => {
     setAddressValue(value);
@@ -74,6 +82,7 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
   return (
     <Autocomplete
       withAsterisk
+      value={addressValue}
       leftSection={
         !addressValue.length ? null : !selectedPlace ? (
           <SearchIcon
@@ -85,6 +94,9 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
         ) : (
           <IconCircleCheck color="var(--mantine-primary-color-7)" />
         )
+      }
+      rightSection={
+        !!addressValue.length && <TrashIcon onClick={handleClearAddressValue} />
       }
       label="Destination"
       data={places.map((place) => place.description)}

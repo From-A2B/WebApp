@@ -2,13 +2,26 @@ import { create } from 'zustand';
 
 type StepStore = {
   currentStepId?: string;
+  currentTripId?: string;
   addStepBefore: boolean;
   addStepAfter: boolean;
 
   addStepModalOpened: boolean;
   CloseAddStepModal: () => void;
-  AddStepBefore: ({ stepId }: { stepId: string }) => void;
-  AddStepAfter: ({ stepId }: { stepId: string }) => void;
+  AddStepBefore: ({
+    stepId,
+    tripId,
+  }: {
+    stepId: string;
+    tripId: string;
+  }) => void;
+  AddStepAfter: ({
+    stepId,
+    tripId,
+  }: {
+    stepId: string;
+    tripId: string;
+  }) => void;
 
   editSepModalOpened: boolean;
   OpenEditStepModal: (currentStepId: string) => void;
@@ -30,20 +43,23 @@ export const useStepStore = create<StepStore>()((set) => ({
       addStepBefore: false,
       addStepAfter: false,
       currentStepId: undefined,
+      currentTripId: undefined,
       addStepModalOpened: false,
       newStepName: 'New Step',
     }));
   },
-  AddStepBefore({ stepId }) {
+  AddStepBefore({ stepId, tripId }) {
     set(() => ({
       currentStepId: stepId,
+      currentTripId: tripId,
       addStepBefore: true,
       addStepModalOpened: true,
     }));
   },
-  AddStepAfter({ stepId }) {
+  AddStepAfter({ stepId, tripId }) {
     set(() => ({
       currentStepId: stepId,
+      currentTripId: tripId,
       addStepAfter: true,
       addStepModalOpened: true,
     }));

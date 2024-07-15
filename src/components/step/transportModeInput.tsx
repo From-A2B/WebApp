@@ -12,10 +12,12 @@ import { useState } from 'react';
 import { TrashIcon } from '../icons/trash.icon';
 
 export type TransportModeInputProps = {
+  defaultValue?: TransportMode;
   selectedValue: (value: TransportMode) => void;
 } & InputBaseProps;
 
 export const TransportModeInput = ({
+  defaultValue,
   selectedValue,
   ...props
 }: TransportModeInputProps) => {
@@ -23,7 +25,7 @@ export const TransportModeInput = ({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<string | null>(defaultValue || null);
 
   const options = transportModeList.map((option) => (
     <Combobox.Option value={option.name} key={option.name}>
