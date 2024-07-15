@@ -1,4 +1,5 @@
 import { transportModeList } from '@/features/steps/add/transportMode.enum';
+import { TransportMode } from '@/types/transportMode.type';
 import {
   Combobox,
   Group,
@@ -11,7 +12,7 @@ import { useState } from 'react';
 import { TrashIcon } from '../icons/trash.icon';
 
 export type TransportModeInputProps = {
-  selectedValue: (value: string) => void;
+  selectedValue: (value: TransportMode) => void;
 } & InputBaseProps;
 
 export const TransportModeInput = ({
@@ -39,7 +40,7 @@ export const TransportModeInput = ({
       withinPortal={false}
       onOptionSubmit={(val) => {
         setValue(val);
-        selectedValue(val);
+        selectedValue(TransportMode.parse(val));
         combobox.closeDropdown();
       }}
     >
