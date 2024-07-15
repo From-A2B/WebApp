@@ -5,8 +5,10 @@ type StepStore = {
   currentTripId?: string;
   addStepBefore: boolean;
   addStepAfter: boolean;
+  currentStepName?: string;
 
   addStepModalOpened: boolean;
+  deleteModalOpened: boolean;
   CloseAddStepModal: () => void;
   AddStepBefore: ({
     stepId,
@@ -29,6 +31,17 @@ type StepStore = {
 
   newStepName: string;
   SetNewStepName: (value: string) => void;
+
+  OpenDeleteModal: ({
+    tripId,
+    stepId,
+    stepName,
+  }: {
+    tripId: string;
+    stepId: string;
+    stepName: string;
+  }) => void;
+  CloseDeleteModal: () => void;
 
   Clear: () => void;
 };
@@ -79,6 +92,24 @@ export const useStepStore = create<StepStore>()((set) => ({
     }));
   },
 
+  deleteModalOpened: false,
+  OpenDeleteModal({ tripId, stepId, stepName }) {
+    set(() => ({
+      currentTripId: tripId,
+      currentStepId: stepId,
+      currentStepName: stepName,
+      deleteModalOpened: true,
+    }));
+  },
+
+  CloseDeleteModal() {
+    set(() => ({
+      currentStepId: undefined,
+      currentStepName: undefined,
+      deleteModalOpened: false,
+    }));
+  },
+
   newStepName: 'New Step',
   SetNewStepName(value: string) {
     set(() => ({
@@ -89,6 +120,7 @@ export const useStepStore = create<StepStore>()((set) => ({
   Clear() {
     set(() => ({
       currentStepId: undefined,
+      currentStepName: undefined,
 
       addStepModalOpened: false,
       editSepModalOpened: false,

@@ -58,7 +58,7 @@ export const StepListSortableItem = ({
               </Text>
             </Group>
           </Box>
-          <StepMenu stepId={stepId} tripId={tripId}>
+          <StepMenu stepId={stepId} tripId={tripId} name={name}>
             <ActionIcon variant="transparent">
               <CogWheelIcon
                 loop

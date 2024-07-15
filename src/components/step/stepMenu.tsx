@@ -12,11 +12,13 @@ import type { PropsWithChildren } from 'react';
 export type StepMenuProps = PropsWithChildren<{
   stepId: string;
   tripId: string;
+  name: string;
 }>;
 
-export const StepMenu = ({ children, stepId, tripId }: StepMenuProps) => {
+export const StepMenu = ({ children, stepId, name, tripId }: StepMenuProps) => {
   const AddStepBefore = useStepStore((s) => s.AddStepBefore);
   const AddStepAfter = useStepStore((s) => s.AddStepAfter);
+  const OpenDeleteModal = useStepStore((s) => s.OpenDeleteModal);
 
   const [deleteHovered, { open: openDeleteHover, close: closeDeleteHover }] =
     useDisclosure(false);
@@ -41,7 +43,7 @@ export const StepMenu = ({ children, stepId, tripId }: StepMenuProps) => {
           leftSection={<TrashIcon isHover={deleteHovered} loop />}
           onMouseEnter={openDeleteHover}
           onMouseLeave={closeDeleteHover}
-          disabled
+          onClick={() => OpenDeleteModal({ tripId, stepId, stepName: name })}
         >
           Delete
         </Menu.Item>
