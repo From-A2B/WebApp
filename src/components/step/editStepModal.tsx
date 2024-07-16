@@ -7,10 +7,11 @@ import { EditStepDescAction } from '@/features/steps/update/edit/description/edi
 import { EditStepDescSchema } from '@/features/steps/update/edit/description/editStepDesc.schema';
 import { EditStepNameAction } from '@/features/steps/update/edit/name/editStepName.action';
 import { EditStepNameSchema } from '@/features/steps/update/edit/name/editStepName.schema';
+import { EditStepTransportModeAction } from '@/features/steps/update/edit/transportMode/editStepTransportMode.action';
+import { EditStepTransportModeSchema } from '@/features/steps/update/edit/transportMode/editStepTransportMode.schema';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
 import {
-  Button,
   Fieldset,
   Group,
   Modal,
@@ -120,7 +121,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
   const [nameDebounced] = useDebouncedValue<string>(
     stepNameForm.values.name,
-    300
+    500
   );
   useEffect(() => {
     if (stepNameForm.isValid()) changeName();
@@ -174,7 +175,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
   const [descDebounced] = useDebouncedValue<string>(
     stepDescForm.values.description,
-    300
+    1000
   );
   useEffect(() => {
     if (stepDescForm.isValid()) changeDesc();
@@ -184,7 +185,6 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     if (!step) return null;
 
     const { description } = step;
-    console.debug('🚀 ~ descValidationIcon ~ step:', step.description);
     let { description: formDesc } = stepDescForm.values;
 
     formDesc = formDesc === undefined ? '' : formDesc;
@@ -196,6 +196,60 @@ export const EditStepModal = ({}: EditStepModalProps) => {
   }, [step?.description, stepDescForm.values.description]);
 
   //#endregion
+
+  //#region StepTransportMode
+  const stepTransportModeForm = useForm<EditStepTransportModeSchema>({
+    initialValues: {
+      stepId: '',
+      transportMode: 'Car',
+    },
+    validateInputOnChange: true,
+    validate: zodResolver(EditStepTransportModeSchema),
+  });
+
+  const { mutate: changeTransportMode } = useMutation({
+    mutationFn: async () => {
+      const { data, serverError } = await EditStepTransportModeAction({
+        stepId: stepTransportModeForm.values.stepId,
+        transportMode: stepTransportModeForm.values.transportMode,
+      });
+
+      if (serverError) return ErrorNotify({ title: serverError });
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+      });
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id!),
+      });
+    },
+  });
+
+  const [transportModeDebounced] = useDebouncedValue<string>(
+    stepTransportModeForm.values.transportMode,
+    100
+  );
+  useEffect(() => {
+    if (stepTransportModeForm.isValid()) changeTransportMode();
+  }, [transportModeDebounced]);
+
+  const transportModeValidationIcon = useMemo(() => {
+    if (!step) return null;
+
+    const { transportMode } = step;
+    const { transportMode: formTransportMode } = stepTransportModeForm.values;
+
+    if (transportMode !== formTransportMode)
+      return <IconCircleDashedCheck color="var(--mantine-color-orange-7)" />;
+
+    return <IconCircleCheck color="var(--mantine-primary-color-7)" />;
+  }, [step?.transportMode, stepTransportModeForm.values.transportMode]);
+
+  //#endregion
+
   useEffect(() => {
     if (!step) return;
 
@@ -207,6 +261,11 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     stepDescForm.setValues({
       stepId: step.id,
       description: step.description || undefined,
+    });
+
+    stepTransportModeForm.setValues({
+      stepId: step.id,
+      transportMode: step.transportMode,
     });
   }, [step]);
 
@@ -251,10 +310,13 @@ export const EditStepModal = ({}: EditStepModalProps) => {
             <TransportModeInput
               label="Choose your mode of transport"
               withAsterisk
-              selectedValue={() => {}}
+              defaultValue={stepTransportModeForm.values.transportMode}
+              selectedValue={(value) =>
+                stepTransportModeForm.setFieldValue('transportMode', value)
+              }
+              rightSection={transportModeValidationIcon}
             />
           </Fieldset>
-          <Button disabled={!stepNameForm.isValid()}>Form Valid</Button>
         </Modal.Body>
       </Modal.Content>
     </Modal.Root>
