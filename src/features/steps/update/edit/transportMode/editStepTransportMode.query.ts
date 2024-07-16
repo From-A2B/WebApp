@@ -16,7 +16,7 @@ export const EditStepTransportModeQuery = async ({
   stepId,
   transportMode,
 }: EditStepTransportModeQuerySchema) => {
-  return await prisma.step.update({
+  return prisma.step.update({
     where: { id: stepId },
     data: {
       transportMode,

@@ -7,6 +7,6 @@ import { EditStepNameSchema } from './editStepName.schema';
 export const EditStepNameAction = authAction(
   EditStepNameSchema,
   async ({ stepId, name }, _) => {
-    return await EditStepNameQuery({ stepId, name });
+    return EditStepNameQuery({ stepId, name });
   }
 );

@@ -14,7 +14,7 @@ const primaryColor: MantineColorsTuple = [
   '#40efb1',
   '#34d59b',
   '#27bd89',
-  '#0aa374'
+  '#0aa374',
 ];
 
 const themeOverride = createTheme({

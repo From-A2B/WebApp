@@ -30,9 +30,9 @@ export const DeleteStepModal = ({}: DeleteStepModalProps) => {
           title: 'An error has occurred while deleting the step',
         });
     },
-    onSuccess() {
+    onSuccess: async () => {
       SuccessNotify({ title: 'Step as been deleted' });
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: stepKeysFactory.byTripId(tripId || ''),
       });
       CloseDeleteModal();

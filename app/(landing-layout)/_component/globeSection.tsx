@@ -16,23 +16,34 @@ export const GlobeSection = () => {
     <Container size="xl">
       <Grid gutter="xl">
         <GridCol span={{ xs: 12, md: 6 }} mt={{ base: 20, md: 0 }}>
-          <Box pos="relative" ta="center" flex="flex" className='pb-40 pt-8'>
-            <Globe className='w-64' />
+          <Box pos="relative" ta="center" flex="flex" className="pb-40 pt-8">
+            <Globe className="w-64" />
           </Box>
         </GridCol>
         <GridCol span={{ xs: 12, md: 6 }}>
-          <Title order={1} c="teal" fw={900} my="lg">Interact with the map</Title>
-          <Group dir="row" gap="md" mt={{ xs: 20, md: 0 }} wrap="nowrap" align="center">
+          <Title order={1} c="teal" fw={900} my="lg">
+            Interact with the map
+          </Title>
+          <Group
+            dir="row"
+            gap="md"
+            mt={{ xs: 20, md: 0 }}
+            wrap="nowrap"
+            align="center"
+          >
             <Text>
-              <strong className="text-xl">Destination</strong><br />
+              <strong className="text-xl">Destination</strong>
+              <br />
               Choose your destination
             </Text>
             <Text>
-              <strong className="text-xl">Dates</strong><br />
+              <strong className="text-xl">Dates</strong>
+              <br />
               Select the dates that suit you
             </Text>
             <Text>
-              <strong className="text-xl">Details</strong><br />
+              <strong className="text-xl">Details</strong>
+              <br />
               Add the details of your step
             </Text>
           </Group>

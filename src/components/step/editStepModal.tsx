@@ -15,7 +15,7 @@ import { EditStepTransportModeAction } from '@/features/steps/update/edit/transp
 import { EditStepTransportModeSchema } from '@/features/steps/update/edit/transportMode/editStepTransportMode.schema';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
-import { PlaceData } from '@googlemaps/google-maps-services-js';
+import type { PlaceData } from '@googlemaps/google-maps-services-js';
 import {
   Fieldset,
   Group,
@@ -115,12 +115,12 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId || ''),
       });
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byId(step?.id!),
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id || ''),
       });
     },
   });
@@ -170,12 +170,12 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId || ''),
       });
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byId(step?.id!),
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id || ''),
       });
     },
   });
@@ -193,8 +193,9 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     if (!step) return null;
 
     const { description } = step;
-    let { description: formDesc } = stepDescForm.values;
+    let formDesc: string | undefined = stepDescForm.values.description;
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     formDesc = formDesc === undefined ? '' : formDesc;
 
     if (description !== formDesc)
@@ -230,12 +231,12 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId || ''),
       });
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byId(step?.id!),
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id || ''),
       });
     },
   });
@@ -251,10 +252,10 @@ export const EditStepModal = ({}: EditStepModalProps) => {
   }, [destinationDebounced]);
 
   const { data: placeDetails, isPending } = useQuery({
-    queryKey: PlaceKeysFactory.byId(step?.placeId!),
+    queryKey: PlaceKeysFactory.byId(step?.placeId || ''),
     queryFn: async () => {
       const { data, serverError } = await GetPlaceDetailsAction({
-        placeId: step?.placeId!,
+        placeId: step?.placeId || '',
       });
 
       if (serverError) return ErrorNotify({ title: serverError });
@@ -297,12 +298,12 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId || ''),
       });
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byId(step?.id!),
+      await queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id || ''),
       });
     },
   });

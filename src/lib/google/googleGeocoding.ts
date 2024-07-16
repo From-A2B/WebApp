@@ -1,5 +1,5 @@
-import { GetLocationFromAddressSchema } from '@/types/address/getLocationFromAddress.schema';
-import { ReverseGeocodeSchema } from '@/types/address/reverseGeocode.schema';
+import type { GetLocationFromAddressSchema } from '@/types/address/getLocationFromAddress.schema';
+import type { ReverseGeocodeSchema } from '@/types/address/reverseGeocode.schema';
 import { Client } from '@googlemaps/google-maps-services-js';
 import { env } from '../env/server';
 

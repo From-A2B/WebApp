@@ -11,7 +11,7 @@ export const AuthHeader = () => {
         </Group>
         <Group visibleFrom="sm">
           {/* <AuthButtonClient /> */}
-            <SwitchThemeIcon />
+          <SwitchThemeIcon />
         </Group>
       </Group>
     </AppShellHeader>

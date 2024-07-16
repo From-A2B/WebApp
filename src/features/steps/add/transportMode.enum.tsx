@@ -1,4 +1,4 @@
-import { TransportModesSchema } from '@/types/transportMode.schema';
+import type { TransportModesSchema } from '@/types/transportMode.schema';
 import {
   IconBike,
   IconCar,

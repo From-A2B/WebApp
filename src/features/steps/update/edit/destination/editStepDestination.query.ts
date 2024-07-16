@@ -17,7 +17,7 @@ export const EditStepDestinationQuery = async ({
   lat,
   lng,
 }: EditStepDestinationQuerySchema) => {
-  return await prisma.step.update({
+  return prisma.step.update({
     where: {
       id: stepId,
     },

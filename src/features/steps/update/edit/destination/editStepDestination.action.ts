@@ -7,6 +7,6 @@ import { EditStepDestinationSchema } from './editStepDestination.schema';
 export const EditStepDestinationAction = authAction(
   EditStepDestinationSchema,
   async ({ stepId, lat, lng }) => {
-    return await EditStepDestinationQuery({ stepId, lat, lng });
+    return EditStepDestinationQuery({ stepId, lat, lng });
   }
 );

@@ -7,6 +7,6 @@ import { EditStepTransportModeSchema } from './editStepTransportMode.schema';
 export const EditStepTransportModeAction = authAction(
   EditStepTransportModeSchema,
   async ({ stepId, transportMode }, _) => {
-    return await EditStepTransportModeQuery({ stepId, transportMode });
+    return EditStepTransportModeQuery({ stepId, transportMode });
   }
 );

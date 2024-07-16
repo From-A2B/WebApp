@@ -7,9 +7,9 @@ import { GetStepBeforeByIdAction } from '@/features/steps/get/getStepBeforeById.
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
 import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import useNotify from '@/hook/useNotify';
-import { TransportMode } from '@/types/transportMode.type';
+import type { TransportMode } from '@/types/transportMode.type';
 import { useStepStore } from '@/utils/store/stepStore';
-import { PlaceData } from '@googlemaps/google-maps-services-js';
+import type { PlaceData } from '@googlemaps/google-maps-services-js';
 import { Button, Group, Modal, Stack, TextInput, Title } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -144,17 +144,17 @@ export const AddStepModal = ({}: AddStepModalProps) => {
       const { serverError } = await AddStepAction({
         beforeStepId: stepBefore?.id,
         afterStepId: stepAfter?.id,
-        tripId: tripId || stepBefore?.tripId! || stepAfter?.tripId!,
+        tripId: tripId || '',
         newStep: addStepForm.values,
       });
 
       if (serverError)
         return ErrorNotify({ title: 'An error occurred when adding the step' });
     },
-    onSuccess() {
+    onSuccess: async () => {
       SuccessNotify({ title: 'The step was well added' });
       handleCloseModal();
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: stepKeysFactory.byTripId(tripId || ''),
       });
     },

@@ -24,9 +24,11 @@ export const FeedbackCarousel = () => {
   const { data: feedbacks, error } = useQuery({
     queryKey: ['randomFeedback'],
     queryFn: async () => {
-      const { data: feedbackData, serverError } = await GetRandomFeedBackAction({
-        take: 50,
-      });
+      const { data: feedbackData, serverError } = await GetRandomFeedBackAction(
+        {
+          take: 50,
+        }
+      );
 
       if (!feedbackData || serverError) {
         ErrorNotify({

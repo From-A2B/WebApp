@@ -1,13 +1,7 @@
 import { transportModeList } from '@/features/steps/add/transportMode.enum';
 import { TransportMode } from '@/types/transportMode.type';
-import {
-  Combobox,
-  Group,
-  Input,
-  InputBase,
-  InputBaseProps,
-  useCombobox,
-} from '@mantine/core';
+import type { InputBaseProps } from '@mantine/core';
+import { Combobox, Group, Input, InputBase, useCombobox } from '@mantine/core';
 import { useState } from 'react';
 import { TrashIcon } from '../icons/trash.icon';
 

@@ -5,7 +5,7 @@ import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
 import { Group } from '@mantine/core';
-import { Step } from '@prisma/client';
+import type { Step } from '@prisma/client';
 import { IconChevronsRight } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import { StepBreadCrumbItem } from './stepBreadCrumbItem';
@@ -25,7 +25,7 @@ export const StepsBreadCrumb = ({
 
   const { data: beforeStepOrder, isPending: isPendingBeforeStepOrder } =
     useQuery({
-      queryKey: stepKeysFactory.stepBeforeOrder(beforeStep?.id!),
+      queryKey: stepKeysFactory.stepBeforeOrder(beforeStep?.id || ''),
       queryFn: async () => {
         const { data, serverError } = await GetStepOrderAction({
           stepId: beforeStep!.id,
@@ -45,7 +45,7 @@ export const StepsBreadCrumb = ({
     });
   const { data: afterStepOrder, isPending: isPendingAfterStepOrder } = useQuery(
     {
-      queryKey: stepKeysFactory.stepAfterOrder(afterStep?.id!),
+      queryKey: stepKeysFactory.stepAfterOrder(afterStep?.id || ''),
       queryFn: async () => {
         const { data, serverError } = await GetStepOrderAction({
           stepId: afterStep!.id,

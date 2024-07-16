@@ -2,6 +2,7 @@ import { AvatarIcon } from '@/components/profile/avatarIcon';
 import { requiredAuth } from '@/lib/auth/helper';
 import { prisma } from '@/lib/prisma';
 import type { PageParams } from '@/types/next';
+import { UserDisplayNameSchema } from '@/types/userDisplayName.schema';
 import { displayName } from '@/utils/format/displayName';
 import { Group, Paper, Stack, Title } from '@mantine/core';
 import { EditPasswordForm } from './_component/EditPasswordForm';
@@ -24,7 +25,9 @@ const Page = async ({}: PageParams) => {
       <Stack>
         <Group>
           <AvatarIcon user={user} />
-          <Title order={3}>{displayName(user)}</Title>
+          <Title order={3}>
+            {displayName(UserDisplayNameSchema.parse(user))}
+          </Title>
         </Group>
 
         <EditProfilForm defaultValues={user} />

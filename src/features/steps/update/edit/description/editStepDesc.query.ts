@@ -13,7 +13,7 @@ export const EditStepDescQuery = async ({
   stepId,
   description,
 }: EditStepDescQuerySchema) => {
-  return await prisma.step.update({
+  return prisma.step.update({
     where: {
       id: stepId,
     },

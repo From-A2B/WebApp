@@ -26,7 +26,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Center, LoadingOverlay, ScrollArea, Stack } from '@mantine/core';
-import { Step } from '@prisma/client';
+import type { Step } from '@prisma/client';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { StepListSortableItem } from './stepListSortableItem';

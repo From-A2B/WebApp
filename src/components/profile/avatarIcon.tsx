@@ -1,11 +1,11 @@
 'use client';
 
+import { EditIcon } from '@/components/icons/edit.icon';
+import { Avatar, AvatarImage } from '@/components/ui/Avatar';
 import { adventurer } from '@dicebear/collection';
 import { createAvatar } from '@dicebear/core';
 import { useDisclosure } from '@mantine/hooks';
 import type { User } from 'next-auth';
-import { EditIcon } from '../icons/edit.icon';
-import { Avatar, AvatarImage } from '../ui/avatar';
 
 type AvatarIconProps = {
   user: User;

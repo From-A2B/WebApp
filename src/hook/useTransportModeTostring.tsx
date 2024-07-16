@@ -1,4 +1,4 @@
-import { TransportModeSchema } from '@/types/transportMode.schema';
+import type { TransportModeSchema } from '@/types/transportMode.schema';
 
 export const useTransportModeToString = (
   transportMode: TransportModeSchema

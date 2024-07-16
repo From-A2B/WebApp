@@ -1,4 +1,5 @@
 import { AvatarIcon } from '@/components/profile/avatarIcon';
+import { UserDisplayNameSchema } from '@/types/userDisplayName.schema';
 import { displayName } from '@/utils/format/displayName';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
@@ -53,7 +54,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
                   <ActionIcon variant="transparent" radius="xl" size="xl">
                     <AvatarIcon user={user} />
                   </ActionIcon>
-                  <Text>{displayName(user)}</Text>
+                  <Text>{displayName(UserDisplayNameSchema.parse(user))}</Text>
                 </Group>
               </Paper>
             </Group>

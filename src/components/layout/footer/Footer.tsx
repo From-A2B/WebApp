@@ -34,8 +34,7 @@ const Footer = () => {
           className={styles.social}
           justify="flex-end"
           wrap="nowrap"
-        >
-        </Group>
+        ></Group>
       </Container>
     </footer>
   );

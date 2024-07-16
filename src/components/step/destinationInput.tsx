@@ -1,11 +1,12 @@
 import { GetPlaceTextSearchAction } from '@/features/place/getPlaceTextSearch.action';
 import { GetPlacesAutocompleteAction } from '@/features/place/getPlacesAutocomplete.action';
 import useNotify from '@/hook/useNotify';
-import {
+import type {
   PlaceAutocompleteResult,
   PlaceData,
 } from '@googlemaps/google-maps-services-js';
-import { Autocomplete, AutocompleteProps } from '@mantine/core';
+import type { AutocompleteProps } from '@mantine/core';
+import { Autocomplete } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { IconCircleCheck } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
@@ -35,6 +36,8 @@ export const DestinationInput = ({
   useEffect(() => {
     if (!addressValue.length) setPlaces([]);
     if (!addressValue || addressValue === '') return;
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     (async () => {
       const { data: predictionResponse, serverError } =
         await GetPlacesAutocompleteAction({ query: addressValue });
