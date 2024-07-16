@@ -1,13 +1,12 @@
 'use client';
 
 import { Player } from '@lordicon/react';
-import type { ForwardedRef } from 'react';
 import { useRef } from 'react';
 
+import ICON from '@/assets/system-regular-63-settings-cog.json';
 import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@/assets/system-regular-63-settings-cog.json';
 
 type CogWheelIconProps = {
   onClick?: () => void;

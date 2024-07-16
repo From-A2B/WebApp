@@ -1,17 +1,18 @@
 'use client';
 
 import { Player } from '@lordicon/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
+import ICON from '@/assets/wired-outline-245-edit-document.json';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@/assets/wired-outline-245-edit-document.json';
 
 type EditDocumentIconProps = {
   onClick?: () => void;
 
   isHover?: boolean;
   loop?: boolean;
+  forceLoopStart?: boolean;
   size?: number;
   colorize?: string;
   disabled?: boolean;
@@ -21,6 +22,7 @@ export const EditDocumentIcon = ({
   isHover,
   size = 32,
   loop,
+  forceLoopStart,
   colorize,
   disabled,
 }: EditDocumentIconProps) => {
@@ -32,8 +34,13 @@ export const EditDocumentIcon = ({
   if ((isHover || hovered) && !playerRef.current?.isPlaying)
     playerRef.current?.playFromBeginning();
 
+  useEffect(() => {
+    playerRef.current?.playFromBeginning();
+  }, []);
+
   const handleComplete = () => {
-    if ((isHover || hovered) && loop) playerRef.current?.playFromBeginning();
+    if (((isHover || hovered) && loop) || (loop && forceLoopStart))
+      playerRef.current?.playFromBeginning();
   };
 
   return (
