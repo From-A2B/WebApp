@@ -1,9 +1,7 @@
 import AuthButton from '@/components/auth/AuthButton';
 import { SiteName } from '@/components/layout/SiteName';
 import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
-import { LINKS } from '@/utils/NavigationLinks';
-import { AppShellHeader, Box, Container, Group } from '@mantine/core';
-import Link from 'next/link';
+import { AppShellHeader, Container, Group } from '@mantine/core';
 
 type BaseHeaderProps = {
   size?: string;
@@ -15,14 +13,7 @@ export const BaseHeader = ({ size, fluid }: BaseHeaderProps) => {
     <AppShellHeader>
       <Container size={size ? size : '90vh'} h="100%" fluid={fluid}>
         <Group h="100%" justify="space-between" px="md">
-          <Box
-            component={Link}
-            href={LINKS.Landing.Landing.href}
-            td="inherit"
-            c="inherit"
-          >
             <SiteName />
-          </Box>
           <Group>
             <SwitchThemeIcon />
             <AuthButton />

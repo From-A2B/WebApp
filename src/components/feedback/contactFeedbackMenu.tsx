@@ -20,9 +20,9 @@ import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 import { FeedbackReviewInput } from './feedbackReviewInput';
 
-type SendFeedbackMenuProps = PropsWithChildren;
+type ContactFeedbackMenuProps = PropsWithChildren;
 
-export const SendFeedbackMenu = ({ children }: SendFeedbackMenuProps) => {
+export const ContactFeedbackMenu = ({ children }: ContactFeedbackMenuProps) => {
   const { ErrorNotify, SuccessNotify } = useNotify();
   const [opened, setOpened] = useState(false);
 
