@@ -74,6 +74,7 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY}}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID}}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
+          NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_TOKEN }}
 
       - name: Archive compiled files
         uses: actions/upload-artifact@v3
