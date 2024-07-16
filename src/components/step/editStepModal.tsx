@@ -3,6 +3,8 @@
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
 import { GetStepOrderAction } from '@/features/steps/get/getStepOrder.action';
 import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
+import { EditStepDescAction } from '@/features/steps/update/edit/description/editStepDesc.action';
+import { EditStepDescSchema } from '@/features/steps/update/edit/description/editStepDesc.schema';
 import { EditStepNameAction } from '@/features/steps/update/edit/name/editStepName.action';
 import { EditStepNameSchema } from '@/features/steps/update/edit/name/editStepName.schema';
 import useNotify from '@/hook/useNotify';
@@ -15,6 +17,7 @@ import {
   Stack,
   Text,
   TextInput,
+  Textarea,
   Title,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
@@ -95,7 +98,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     validate: zodResolver(EditStepNameSchema),
   });
 
-  const { mutate: changeName, isPending: isPendingChangeName } = useMutation({
+  const { mutate: changeName } = useMutation({
     mutationFn: async () => {
       const { data, serverError } = await EditStepNameAction({
         ...stepNameForm.values,
@@ -138,12 +141,72 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
   //#endregion
 
+  //#region StepDescription
+  const stepDescForm = useForm<EditStepDescSchema>({
+    initialValues: {
+      stepId: '',
+      description: '',
+    },
+    validateInputOnChange: true,
+    validate: zodResolver(EditStepDescSchema),
+  });
+
+  const { mutate: changeDesc } = useMutation({
+    mutationFn: async () => {
+      const { data, serverError } = await EditStepDescAction({
+        stepId: stepDescForm.values.stepId,
+        description: stepDescForm.values.description || '',
+      });
+
+      if (serverError) return ErrorNotify({ title: serverError });
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+      });
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id!),
+      });
+    },
+  });
+
+  const [descDebounced] = useDebouncedValue<string>(
+    stepDescForm.values.description,
+    300
+  );
+  useEffect(() => {
+    if (stepDescForm.isValid()) changeDesc();
+  }, [descDebounced]);
+
+  const descValidationIcon = useMemo(() => {
+    if (!step) return null;
+
+    const { description } = step;
+    console.debug('🚀 ~ descValidationIcon ~ step:', step.description);
+    let { description: formDesc } = stepDescForm.values;
+
+    formDesc = formDesc === undefined ? '' : formDesc;
+
+    if (description !== formDesc)
+      return <IconCircleDashedCheck color="var(--mantine-color-orange-7)" />;
+
+    return <IconCircleCheck color="var(--mantine-primary-color-7)" />;
+  }, [step?.description, stepDescForm.values.description]);
+
+  //#endregion
   useEffect(() => {
     if (!step) return;
 
     stepNameForm.setValues({
       name: step.name,
       stepId: step.id,
+    });
+
+    stepDescForm.setValues({
+      stepId: step.id,
+      description: step.description || undefined,
     });
   }, [step]);
 
@@ -174,7 +237,11 @@ export const EditStepModal = ({}: EditStepModalProps) => {
                 rightSection={nameValidationIcon}
                 {...stepNameForm.getInputProps('name')}
               />
-              <TextInput label="Description" />
+              <Textarea
+                label="Description"
+                rightSection={descValidationIcon}
+                {...stepDescForm.getInputProps('description')}
+              />
             </Stack>
           </Fieldset>
           <Fieldset legend="Location">
