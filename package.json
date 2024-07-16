@@ -14,7 +14,7 @@
     "start": "next start",
     "stripe-webhooks": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "ts": "tsc --noEmit",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "pi-build": "prisma generate && prisma migrate deploy && next build",
     "seed": "pnpx prisma db seed"
   },
   "dependencies": {

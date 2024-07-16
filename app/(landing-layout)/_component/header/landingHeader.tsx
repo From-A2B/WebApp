@@ -2,13 +2,12 @@
 
 import AuthButtonClient from '@/components/auth/AuthButtonClient';
 import { SiteName } from '@/components/layout/SiteName';
+import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 import type { NavigationLink } from '@/types/NavigationLink.schema';
 import { HEADER_LINKS } from '@/utils/NavigationLinks';
 import { AppShell, Group, UnstyledButton } from '@mantine/core';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import styles from './Header.module.css';
-import { SwitchThemeIcon } from '@/components/layout/switchThemeIcon/SwitchThemeIcon';
 import { CreateTripBouton } from '../../../../src/components/trip/createTripBouton';
 
 export const LandingHeader = () => {
@@ -20,13 +19,7 @@ export const LandingHeader = () => {
     }
 
     return (
-      <UnstyledButton
-        p="xs"
-        key={link.label}
-        className={styles.control}
-        component={Link}
-        href={link.href}
-      >
+      <UnstyledButton p="xs" key={link.label} component={Link} href={link.href}>
         <Group gap="3px">
           {link.icon}
           {link.label}
