@@ -3,9 +3,9 @@
 import { Player } from '@lordicon/react';
 import { useRef } from 'react';
 
+import ICON from '@/assets/system-regular-55-error.json';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-55-error.json';
 
 type WarnIconProps = {
   onClick?: () => void;

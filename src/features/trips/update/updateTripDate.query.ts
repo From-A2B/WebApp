@@ -5,28 +5,29 @@ import { z } from 'zod';
 export const updateTripDateQuerySchema = z.object({
   tripId: z.string(),
   startDate: z.date(),
-  endDate: z.date()
+  endDate: z.date(),
 });
 
-export type updateTripDateQuerySchema = z.infer<typeof updateTripDateQuerySchema>;
+export type updateTripDateQuerySchema = z.infer<
+  typeof updateTripDateQuerySchema
+>;
 
-export const updateTripDateQuery = async ({endDate,startDate,tripId}  : updateTripDateQuerySchema) => {
+export const updateTripDateQuery = async ({
+  endDate,
+  startDate,
+  tripId,
+}: updateTripDateQuerySchema) => {
   await prisma.trip.update({
     where: {
-      id: tripId
+      id: tripId,
     },
     data: {
       startDate,
-      endDate
-    }
-  })
+      endDate,
+    },
+  });
 };
 
 export type updateTripDateQuery = NonNullable<
   Prisma.PromiseReturnType<typeof updateTripDateQuery>
 >;
-
-export type { };
-= updateTripDateQuery extends (infer U)[]
-  ? U
-  : never;

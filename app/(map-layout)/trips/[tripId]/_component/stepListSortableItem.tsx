@@ -1,14 +1,23 @@
 'use client';
 
+import { CogWheelIcon } from '@/components/icons/cogwheel.icon';
+import { StepMenu } from '@/components/step/stepMenu';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Box, Group, Paper, Text, useMantineColorScheme } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Paper,
+  Text,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { IconGripVertical } from '@tabler/icons-react';
-import { CogWheelIcon } from '~/src/components/icons/cogwheel.icon';
-import { StepCounter } from './stepCounter';
+import { StepCounter } from '../../../../../src/components/step/stepCounter';
 
 export type StepListSortableItemProps = {
   stepId: string;
+  tripId: string;
   order: number;
   name: string;
 };
@@ -17,8 +26,10 @@ export const StepListSortableItem = ({
   stepId,
   name,
   order,
+  tripId,
 }: StepListSortableItemProps) => {
   const { colorScheme } = useMantineColorScheme();
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: stepId });
 
@@ -47,15 +58,18 @@ export const StepListSortableItem = ({
               </Text>
             </Group>
           </Box>
-          <CogWheelIcon
-            {...listeners}
-            loop
-            colorize={
-              colorScheme === 'dark'
-                ? undefined
-                : 'var(--mantine-primary-color-9)'
-            }
-          />
+          <StepMenu stepId={stepId} tripId={tripId} name={name}>
+            <ActionIcon variant="transparent">
+              <CogWheelIcon
+                loop
+                colorize={
+                  colorScheme === 'dark'
+                    ? undefined
+                    : 'var(--mantine-primary-color-9)'
+                }
+              />
+            </ActionIcon>
+          </StepMenu>
         </Group>
       </Paper>
     </div>

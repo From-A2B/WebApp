@@ -1,4 +1,3 @@
-
 import { prisma } from '@/lib/prisma';
 import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
@@ -7,9 +6,13 @@ export const GetRandomFeedbackQuerySchema = z.object({
   take: z.number().optional().default(50),
 });
 
-export type GetRandomFeedbackQuerySchema = z.infer<typeof GetRandomFeedbackQuerySchema>;
+export type GetRandomFeedbackQuerySchema = z.infer<
+  typeof GetRandomFeedbackQuerySchema
+>;
 
-export const GetRandomFeedbackQuery = async ({take}: GetRandomFeedbackQuerySchema) => {
+export const GetRandomFeedbackQuery = async ({
+  take,
+}: GetRandomFeedbackQuerySchema) => {
   const feedback = await prisma.feedback.findManyRandom(take, {
     select: {
       id: true,
@@ -19,8 +22,8 @@ export const GetRandomFeedbackQuery = async ({take}: GetRandomFeedbackQuerySchem
       createdAt: true,
       user: {
         select: {
-          name:true 
-        }
+          name: true,
+        },
       },
     },
   });

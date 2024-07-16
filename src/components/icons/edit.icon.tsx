@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import type { ActionIconProps } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/wired-outline-35-edit.json';
+import ICON from '@/assets/wired-outline-35-edit.json';
 
 type EditIconProps = {
   onClick?: () => void;

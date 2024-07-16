@@ -1,5 +1,6 @@
 'use client';
 
+import { FeedbackReviewInput } from '@/components/feedback/feedbackReviewInput';
 import { sendFeedbackAction } from '@/features/feedback/send-feedback.action';
 import type { SendFeedbackSchemaType } from '@/features/feedback/send-feedback.schema';
 import { SendFeedbackSchema } from '@/features/feedback/send-feedback.schema';
@@ -17,7 +18,6 @@ import { useMediaQuery } from '@mantine/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { FeedbackReviewInput } from '@/components/feedback/feedbackReviewInput';
 
 export const FeedbackForm = () => {
   const { ErrorNotify, SuccessNotify } = useNotify();

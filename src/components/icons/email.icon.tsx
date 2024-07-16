@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-59-email.json';
+import ICON from '@/assets/system-regular-59-email.json';
 
 type EmailIconProps = {
   onClick?: () => void;

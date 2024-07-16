@@ -1,17 +1,10 @@
-import {
-  Center,
-  Container,
-  Rating,
-  Text,
-  Title,
-} from '@mantine/core';
-import { FeedbackForm } from './_component/feedback.form';
-import type { PageParams } from '@/types/next';
 import { GetAverageFeedbackRatingQuery } from '@/features/feedback/get/getAverageFeedback.query';
+import type { PageParams } from '@/types/next';
+import { Center, Container, Rating, Text, Title } from '@mantine/core';
+import { FeedbackForm } from './_component/feedback.form';
 import { FeedbackCarousel } from './_component/feedbackCarousel';
 
 const RoutePage = async ({}: PageParams) => {
-
   const averageRating = await GetAverageFeedbackRatingQuery();
 
   return (

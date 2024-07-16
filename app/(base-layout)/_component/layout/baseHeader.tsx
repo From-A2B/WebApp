@@ -13,7 +13,7 @@ export const BaseHeader = ({ size, fluid }: BaseHeaderProps) => {
     <AppShellHeader>
       <Container size={size ? size : '90vh'} h="100%" fluid={fluid}>
         <Group h="100%" justify="space-between" px="md">
-            <SiteName />
+          <SiteName />
           <Group>
             <SwitchThemeIcon />
             <AuthButton />

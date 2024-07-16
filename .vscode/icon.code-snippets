@@ -9,7 +9,7 @@
       "",
       "import { ActionIcon } from '@mantine/core';",
       "import { useDisclosure } from '@mantine/hooks';",
-      "import ICON from '@public/assets/$2';",
+      "import ICON from '@/assets/$2';",
       "",
       "type $1Props = {",
       "  onClick?: () => void;",

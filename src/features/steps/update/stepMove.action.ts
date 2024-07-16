@@ -1,9 +1,9 @@
 'use server';
 
 import { ActionError, authAction } from '@/lib/server-actions/safe-actions';
+import { getMiddleRank } from '@/utils/getMiddleRank';
 import { z } from 'zod';
-import { getMiddleRank } from '~/src/utils/getMiddleRank';
-import { GetStepByIdQuery } from './getStepById.query';
+import { GetStepByIdQuery } from '../get/getStepById.query';
 import { StepChangeRankQuery } from './stepChangeRank.query';
 
 const StepMoveSchema = z.object({

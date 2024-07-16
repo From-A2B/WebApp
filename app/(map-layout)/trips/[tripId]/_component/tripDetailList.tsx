@@ -1,5 +1,9 @@
 'use client';
 
+import { GetOneTripByIdAction } from '@/features/trips/get/getOneTripById.action';
+import { tripKeysFactory } from '@/features/trips/tripKeys.factory';
+import useNotify from '@/hook/useNotify';
+import { cn } from '@/lib/utils';
 import {
   Alert,
   Center,
@@ -11,15 +15,14 @@ import {
 } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
-import { GetOneTripByIdAction } from '~/src/features/trips/get/getOneTripById.action';
-import useNotify from '~/src/hook/useNotify';
 import { StepListSortable } from './stepListSortable';
 
 export type TripDetailListProps = {
   tripId: string;
+  className?: string;
 };
 
-export const TripDetailList = ({ tripId }: TripDetailListProps) => {
+export const TripDetailList = ({ tripId, className }: TripDetailListProps) => {
   const { ErrorNotify } = useNotify();
 
   const {
@@ -27,7 +30,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
     isPending: isFetchingTrip,
     error,
   } = useQuery({
-    queryKey: ['toto'],
+    queryKey: tripKeysFactory.byId(tripId),
     queryFn: async () => {
       const { data: trip, serverError } = await GetOneTripByIdAction({
         tripId,
@@ -40,7 +43,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
 
   if (isFetchingTrip)
     return (
-      <Center flex={1}>
+      <Center className={cn(className)}>
         <Stack gap="xl">
           <Center>
             <Skeleton height={32} width="20vw" animate />
@@ -77,7 +80,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
       <Center>
         <Title ta="center">{trip.name}</Title>
       </Center>
-      <StepListSortable trip={trip} />
+      <StepListSortable tripId={tripId} />
     </Stack>
   );
 };

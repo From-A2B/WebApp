@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 import { ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import ICON from '@public/assets/system-regular-39-trash.json';
+import ICON from '@/assets/system-regular-39-trash.json';
 
 type TrashIconProps = {
   onClick?: () => void;

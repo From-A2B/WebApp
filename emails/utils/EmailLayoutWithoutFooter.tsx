@@ -10,7 +10,7 @@ import {
   Text,
 } from '@react-email/components';
 import type { PropsWithChildren } from 'react';
-import tailwindConfig from '~/tailwind.config';
+import tailwindConfig from '../../tailwind.config';
 
 export const EmailLayoutWithoutFooter = ({ children }: PropsWithChildren) => {
   const baseUrl = getServerUrl();

@@ -1,13 +1,15 @@
 'use client';
 
+import { env } from '@/lib/env/client';
 import { Box } from '@mantine/core';
 import { useState } from 'react';
 import { Map } from 'react-map-gl';
-import { env } from '~/src/lib/env/client';
 
-export type MapContainerProps = {};
+export type MapContainerProps = {
+  className?: string;
+};
 
-export const MapContainer = ({}: MapContainerProps) => {
+export const MapContainer = ({ className }: MapContainerProps) => {
   const [viewState, setViewState] = useState({
     longitude: 4.860200783597507,
     latitude: 45.73050608112574,
@@ -18,7 +20,8 @@ export const MapContainer = ({}: MapContainerProps) => {
 
   return (
     <>
-      <Box pos="relative" h={'90vh'} w={'50vw'} flex={2}>
+      <Box pos="relative" h={'90vh'} w={{ BASE: '100vw', md: '65vw' }}>
+        {/* <Box pos="relative" className={cn(className)}> */}
         <Map
           {...viewState}
           onMove={(evt) => setViewState(evt.viewState)}

@@ -12,7 +12,7 @@ import {
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
 import type { PropsWithChildren } from 'react';
-import tailwindConfig from '~/tailwind.config';
+import tailwindConfig from '../../tailwind.config';
 
 export const EmailLayout = ({ children }: PropsWithChildren) => {
   const baseUrl = getServerUrl();

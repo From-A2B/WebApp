@@ -12,7 +12,7 @@ const RoutePage = async ({}: PageParams) => {
   return (
     <Group>
       {trips.map((trip) => (
-        <TripCard trip={trip} key={trip.id} />
+        <TripCard id={trip.id} name={trip.name} key={trip.id} />
       ))}
     </Group>
   );

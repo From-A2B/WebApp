@@ -2,6 +2,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 'use client';
 
+import { LoaderDotsIcon } from '@/components/icons/loaderDots.icon';
+import { AddStepModal } from '@/components/step/addStepModal';
+import { DeleteStepModal } from '@/components/step/deleteStepModal';
+import { EditStepModal } from '@/components/step/editStepModal';
+import { GetAllStepsByTripIdAction } from '@/features/steps/get/getAllStepsByTripId.action';
+import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
+import { StepMoveAction } from '@/features/steps/update/stepMove.action';
+import useNotify from '@/hook/useNotify';
 import type { DragEndEvent } from '@dnd-kit/core';
 import {
   DndContext,
@@ -18,24 +26,42 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Center, LoadingOverlay, ScrollArea, Stack } from '@mantine/core';
-import { useMutation } from '@tanstack/react-query';
+import type { Step } from '@prisma/client';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { LoaderDotsIcon } from '~/src/components/icons/loaderDots.icon';
-import type { GetOneTripByIdQuery } from '~/src/features/trips/get/getOneTripById.query';
-import { StepMoveAction } from '~/src/features/trips/steps/stepMove.action';
-import useNotify from '~/src/hook/useNotify';
 import { StepListSortableItem } from './stepListSortableItem';
 
 export type StepListSortableProps = {
-  trip: GetOneTripByIdQuery;
+  tripId: string;
 };
 
-export const StepListSortable = ({ trip }: StepListSortableProps) => {
+export const StepListSortable = ({ tripId }: StepListSortableProps) => {
   const { ErrorNotify } = useNotify();
 
-  const [items, setItems] = useState(
-    trip.steps.sort((a, b) => a.rank - b.rank)
-  );
+  useQuery({
+    queryKey: stepKeysFactory.byTripId(tripId),
+    queryFn: async () => {
+      const { data: steps, serverError } = await GetAllStepsByTripIdAction({
+        tripId,
+      });
+
+      if (serverError)
+        return ErrorNotify({
+          title: serverError,
+        });
+
+      if (!steps)
+        return ErrorNotify({
+          title: 'An error occurred while retrieving the steps',
+        });
+
+      setItems(steps);
+
+      return steps;
+    },
+  });
+
+  const [items, setItems] = useState<Step[]>([]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -98,39 +124,45 @@ export const StepListSortable = ({ trip }: StepListSortableProps) => {
   };
 
   return (
-    <ScrollArea h="83vh" w="100%" offsetScrollbars>
-      <Center>
-        <Stack gap="md" w="100%">
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext
-              items={items}
-              strategy={verticalListSortingStrategy}
-              disabled={isPending}
+    <>
+      <ScrollArea h="83vh" w="100%" offsetScrollbars>
+        <Center>
+          <Stack gap="md" w="100%">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
             >
-              {items.map((step, idx) => (
-                <StepListSortableItem
-                  key={step.id}
-                  stepId={step.id}
-                  order={idx + 1}
-                  name={step.name}
-                />
-              ))}
-            </SortableContext>
-            <LoadingOverlay
-              visible={isPending}
-              zIndex={1000}
-              overlayProps={{ radius: 'sm', blur: 2 }}
-              loaderProps={{
-                children: <LoaderDotsIcon size={100} loop forceLoopStart />,
-              }}
-            />
-          </DndContext>
-        </Stack>
-      </Center>
-    </ScrollArea>
+              <SortableContext
+                items={items}
+                strategy={verticalListSortingStrategy}
+                disabled={isPending}
+              >
+                {items.map((step, idx) => (
+                  <StepListSortableItem
+                    key={step.id}
+                    stepId={step.id}
+                    tripId={tripId}
+                    order={idx + 1}
+                    name={step.name}
+                  />
+                ))}
+              </SortableContext>
+              <LoadingOverlay
+                visible={isPending}
+                zIndex={1000}
+                overlayProps={{ radius: 'sm', blur: 2 }}
+                loaderProps={{
+                  children: <LoaderDotsIcon size={100} loop forceLoopStart />,
+                }}
+              />
+            </DndContext>
+          </Stack>
+        </Center>
+      </ScrollArea>
+      <AddStepModal />
+      <DeleteStepModal />
+      <EditStepModal />
+    </>
   );
 };
