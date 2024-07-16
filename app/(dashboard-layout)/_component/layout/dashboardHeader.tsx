@@ -1,10 +1,10 @@
 import AuthButton from '@/components/auth/AuthButton';
-import { ContactFeedBackMenu } from '@/components/feedback/ContactFeedbackMenu';
+import { ContactFeedbackMenu } from '@/components/feedback/contactFeedbackMenu';
 import { SiteName } from '@/components/layout/SiteName';
 import { LINKS } from '@/utils/NavigationLinks';
 import { AppShellHeader, Box, Button, Container, Group } from '@mantine/core';
 import Link from 'next/link';
-import { DashboardNavigationMobile } from './DashboardNavigationMobile';
+import { DashboardNavigationMobile } from './dashboardNavigationMobile';
 
 export const DashboardHeader = () => {
   return (
@@ -21,16 +21,16 @@ export const DashboardHeader = () => {
           </Box>
           <Group>
             <AuthButton />
-            <ContactFeedBackMenu>
+            <ContactFeedbackMenu>
               <Button variant="outline">Feedback</Button>
-            </ContactFeedBackMenu>
+            </ContactFeedbackMenu>
             <DashboardNavigationMobile />
           </Group>
         </Group>
         <Group align="center" justify="end" h="100%" visibleFrom="md">
-          <ContactFeedBackMenu>
+          <ContactFeedbackMenu>
             <Button variant="outline">Feedback</Button>
-          </ContactFeedBackMenu>
+          </ContactFeedbackMenu>
         </Group>
       </Container>
     </AppShellHeader>

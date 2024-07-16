@@ -116,9 +116,9 @@ export const LINKS = {
     },
   },
   Informations: {
-    Testimonials: {
-      label: 'Testimonials',
-      href: '/testimonials',
+    Feedback: {
+      label: 'Feedback',
+      href: '/feedback',
       auth: false,
     },
   },
@@ -186,7 +186,7 @@ export const FOOTER_LINKS: NavigationLinksWithGroup = [
   },
   {
     title: 'Informations',
-    links: [LINKS.Informations.Testimonials, LINKS.Travels.Create],
+    links: [LINKS.Informations.Feedback, LINKS.Travels.Create],
   },
   {
     title: 'Support',

@@ -1,8 +1,8 @@
 'use client';
 
-import { contactSupportAction } from '@/features/feedback/contact-feedback.action';
-import type { ContactFeedbackSchemaType } from '@/features/feedback/contact-feedback.schema';
-import { ContactFeedbackSchema } from '@/features/feedback/contact-feedback.schema';
+import { sendFeedbackAction } from '@/features/feedback/send-feedback.action';
+import type { SendFeedbackSchemaType } from '@/features/feedback/send-feedback.schema';
+import { SendFeedbackSchema } from '@/features/feedback/send-feedback.schema';
 import useNotify from '@/hook/useNotify';
 import {
   Button,
@@ -18,30 +18,30 @@ import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
-import { FeedbackReviewInput } from './FeedbackReviewInput';
+import { FeedbackReviewInput } from './feedbackReviewInput';
 
-type ContactFeedBackMenuProps = PropsWithChildren;
+type ContactFeedbackMenuProps = PropsWithChildren;
 
-export const ContactFeedBackMenu = ({ children }: ContactFeedBackMenuProps) => {
+export const ContactFeedbackMenu = ({ children }: ContactFeedbackMenuProps) => {
   const { ErrorNotify, SuccessNotify } = useNotify();
   const [opened, setOpened] = useState(false);
 
   const session = useSession();
   const email = session.data?.user.email ?? '';
 
-  const feedbackForm = useForm<ContactFeedbackSchemaType>({
+  const feedbackForm = useForm<SendFeedbackSchemaType>({
     validateInputOnChange: true,
     initialValues: {
       email: email,
       message: '',
       review: 0,
     },
-    validate: zodResolver(ContactFeedbackSchema),
+    validate: zodResolver(SendFeedbackSchema),
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: async (values: ContactFeedbackSchemaType) => {
-      const { data, serverError } = await contactSupportAction(values);
+    mutationFn: async (values: SendFeedbackSchemaType) => {
+      const { data, serverError } = await sendFeedbackAction(values);
 
       if (!data) {
         ErrorNotify({ title: serverError });
@@ -78,7 +78,7 @@ export const ContactFeedBackMenu = ({ children }: ContactFeedBackMenuProps) => {
               {...feedbackForm.getInputProps('message')}
             />
           </Stack>
-          <Card.Section bg="var(--mantine-color-dark-8)" mt="xl">
+          <Card.Section mt="xl">
             <Group p="xs" justify="space-between" align="center">
               <FeedbackReviewInput
                 value={feedbackForm.getInputProps('review').value as number}
