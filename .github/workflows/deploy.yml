@@ -1,0 +1,16 @@
+name: Build And Publish Image
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    types: [opened, closed, synchronize]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  setup_tag:
+    name: Setup dockerTag
+    runs-on: ubuntu-latest
