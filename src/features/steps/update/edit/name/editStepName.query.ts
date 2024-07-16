@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 export const EditStepNameQuerySchema = z.object({
   stepId: z.string(),
-  name: z.string().min(3),
+  name: z.string(),
 });
 
 export type EditStepNameQuerySchema = z.infer<typeof EditStepNameQuerySchema>;

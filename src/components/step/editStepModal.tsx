@@ -3,7 +3,8 @@
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
 import { GetStepOrderAction } from '@/features/steps/get/getStepOrder.action';
 import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
-import { EditStepNameSchema } from '@/features/steps/update/edit/name/editStepName.action';
+import { EditStepNameAction } from '@/features/steps/update/edit/name/editStepName.action';
+import { EditStepNameSchema } from '@/features/steps/update/edit/name/editStepName.schema';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
 import {
@@ -17,7 +18,14 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useDebouncedValue } from '@mantine/hooks';
+import {
+  IconCircleCheck,
+  IconCircleDashedCheck,
+  IconCircleDashedX,
+} from '@tabler/icons-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useMemo } from 'react';
 import { CrossCircleIcon } from '../icons/crossCircle.icon';
 import { DestinationInput } from './destinationInput';
 import { StepCounter } from './stepCounter';
@@ -75,41 +83,69 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
   const handleCloseModal = () => {
     CloseEditModal();
-
-    if (!step?.id)
-      queryClient.invalidateQueries({
-        queryKey: stepKeysFactory.byTripId(step?.id!),
-      });
   };
 
   //#region StepName
   const stepNameForm = useForm<EditStepNameSchema>({
     initialValues: {
-      name: step?.name || '',
-      stepId: step?.id || '',
+      stepId: '',
+      name: '',
     },
     validateInputOnChange: true,
     validate: zodResolver(EditStepNameSchema),
   });
 
-  // const { mutate: changeName, isPending: isPendingChangeName } = useMutation({
-  //   mutationFn: async () => {
-  //     const { data, serverError } = await EditStepNameAction({
-  //       ...stepNameForm.values,
-  //     });
+  const { mutate: changeName, isPending: isPendingChangeName } = useMutation({
+    mutationFn: async () => {
+      const { data, serverError } = await EditStepNameAction({
+        ...stepNameForm.values,
+      });
 
-  //     if (serverError) return ErrorNotify({ title: serverError });
+      if (serverError) return ErrorNotify({ title: serverError });
 
-  //     return data;
-  //   },
-  // });
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+      });
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id!),
+      });
+    },
+  });
 
-  // const [nameDebounced] = useDebouncedValue(stepNameForm.values.name, 300);
-  // useEffect(() => {
-  //   if (stepNameForm.isValid()) changeName();
-  // }, [nameDebounced]);
+  const [nameDebounced] = useDebouncedValue<string>(
+    stepNameForm.values.name,
+    300
+  );
+  useEffect(() => {
+    if (stepNameForm.isValid()) changeName();
+  }, [nameDebounced]);
+
+  const nameValidationIcon = useMemo(() => {
+    if (!step || !stepNameForm.values.name)
+      return <IconCircleDashedX color="var(--mantine-color-red-7)" />;
+
+    const { name } = step;
+    const { name: formName } = stepNameForm.values;
+
+    if (name !== formName)
+      return <IconCircleDashedCheck color="var(--mantine-color-orange-7)" />;
+
+    return <IconCircleCheck color="var(--mantine-primary-color-7)" />;
+  }, [step, stepNameForm.values.name]);
 
   //#endregion
+
+  useEffect(() => {
+    if (!step) return;
+
+    stepNameForm.setValues({
+      name: step.name,
+      stepId: step.id,
+    });
+  }, [step]);
 
   return (
     <Modal.Root opened={editModalOpened} onClose={handleCloseModal} centered>
@@ -135,6 +171,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
               <TextInput
                 label="Step name"
                 withAsterisk
+                rightSection={nameValidationIcon}
                 {...stepNameForm.getInputProps('name')}
               />
               <TextInput label="Description" />
@@ -150,7 +187,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
               selectedValue={() => {}}
             />
           </Fieldset>
-          <Button disabled={!stepNameForm.isValid()}>Test form</Button>
+          <Button disabled={!stepNameForm.isValid()}>Form Valid</Button>
         </Modal.Body>
       </Modal.Content>
     </Modal.Root>

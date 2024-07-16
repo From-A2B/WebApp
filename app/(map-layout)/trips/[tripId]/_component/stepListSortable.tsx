@@ -38,7 +38,7 @@ export type StepListSortableProps = {
 export const StepListSortable = ({ tripId }: StepListSortableProps) => {
   const { ErrorNotify } = useNotify();
 
-  const {} = useQuery({
+  useQuery({
     queryKey: stepKeysFactory.byTripId(tripId),
     queryFn: async () => {
       const { data: steps, serverError } = await GetAllStepsByTripIdAction({
