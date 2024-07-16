@@ -3,16 +3,41 @@ import type { Prisma } from '@prisma/client';
 import { z } from 'zod';
 
 export const GetOneTripByIdQuerySchema = z.object({
-  tripId: z.string()
+  tripId: z.string(),
 });
 
-export type GetOneTripByIdQuerySchema = z.infer<typeof GetOneTripByIdQuerySchema>;
+export type GetOneTripByIdQuerySchema = z.infer<
+  typeof GetOneTripByIdQuerySchema
+>;
 
-export const GetOneTripByIdQuery = async ({tripId}: GetOneTripByIdQuerySchema) => {
+export const GetOneTripByIdQuery = async ({
+  tripId,
+}: GetOneTripByIdQuerySchema) => {
   const trip = await prisma.trip.findFirst({
     where: {
-      id: tripId
-    }
+      id: tripId,
+    },
+
+    select: {
+      id: true,
+      name: true,
+      startDate: true,
+      endDate: true,
+      description: true,
+      image: true,
+      steps: {
+        select: {
+          id: true,
+          rank: true,
+          name: true,
+          startDate: true,
+          endDate: true,
+          description: true,
+          latitude: true,
+          longitude: true,
+        },
+      },
+    },
   });
 
   return trip;
@@ -21,7 +46,3 @@ export const GetOneTripByIdQuery = async ({tripId}: GetOneTripByIdQuerySchema) =
 export type GetOneTripByIdQuery = NonNullable<
   Prisma.PromiseReturnType<typeof GetOneTripByIdQuery>
 >;
-
-export type  = GetOneTripByIdQuery extends (infer U)[]
-  ? U
-  : never;

@@ -1,12 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import {
-  Box,
-  Stack,
-  Title,
-  useMantineColorScheme,
-} from '@mantine/core';
+import { Box, Stack, Title, useMantineColorScheme } from '@mantine/core';
 import { IconMail, IconMapPin, IconPhone, IconSun } from '@tabler/icons-react';
 import { InformationContactField } from './informationContactField';
 

@@ -43,6 +43,7 @@ module.exports = {
         'mantine-color-default-color': 'var(--mantine-color-default-color)',
         'mantine-color-default-border': 'var(--mantine-color-default-border)',
         'mantine-color-dimmed': 'var(--mantine-color-dimmed)',
+        'mantine-color-black': 'var(--mantine-color-black)',
 
         'mantine-color-dark-text': 'var(--mantine-color-dark-text)',
         'mantine-color-dark-filled': 'var(--mantine-color-dark-filled)',

@@ -95,6 +95,20 @@ model Trip {
   image       String?
 
   user        User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  steps       Step[] 
+}
+
+model Step {
+  id          String    @id @unique @default(cuid())
+  tripId      String
+  trip        Trip? @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  rank        Int
+  name        String
+  startDate   DateTime?
+  endDate     DateTime?
+  description String?
+  latitude    Decimal
+  longitude   Decimal
 }
 
 
