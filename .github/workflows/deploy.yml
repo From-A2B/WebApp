@@ -120,3 +120,25 @@ jobs:
           platforms: linux/amd64,linux/arm
           tags: ghcr.io/from-a2b-map:${{ needs.setup_tag.outputs.docker_tag }}
           push: true
+
+  CD:
+    name: Update Portainer Service
+    runs-on: ubuntu-latest
+    needs: CI
+    if: ${{ needs.CI.result == 'success' }}
+    steps:
+      - name: Send POST request to Portainer webhook
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.action }}" == "closed" ]]; then
+            case "${{ github.ref }}" in
+              "refs/heads/develop")
+                curl -X POST -H "Content-Type: application/json" -d '{}' ${{ secrets.FROMA2B_PORTAINER_WEBHOOK_DEV }}
+                ;;
+              "refs/heads/main")
+                curl -X POST -H "Content-Type: application/json" -d '{}' ${{ secrets.FROMA2B_PORTAINER_WEBHOOK_STAGING }}
+                ;;
+              "refs/tags/*")
+                curl -X POST -H "Content-Type: application/json" -d '{}' ${{ secrets.FROMA2B_PORTAINER_WEBHOOK_RELEASE }}
+                ;;
+            esac
+          fi
