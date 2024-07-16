@@ -20,6 +20,7 @@ export const AddStepQuery = async ({
     endDate,
     startDate,
     rank,
+    placeId,
     transportMode,
   },
 }: AddStepQuerySchema) => {
@@ -33,6 +34,7 @@ export const AddStepQuery = async ({
       description,
       latitude,
       longitude,
+      placeId,
       transportMode,
     },
   });

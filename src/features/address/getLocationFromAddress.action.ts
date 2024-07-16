@@ -7,7 +7,6 @@ import { GetLocationFromAddressSchema } from '@/types/address/getLocationFromAdd
 export const GetLocationFromAddressAction = authAction(
   GetLocationFromAddressSchema,
   async ({ address }, _) => {
-    const locations = await GoogleGeoCoding().GetLocationAsync({ address });
-    console.debug('🚀 ~ locations:', locations);
+    const locations = await GoogleGeoCoding.GetLocationAsync({ address });
   }
 );

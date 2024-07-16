@@ -9,6 +9,7 @@ export const AddStepSchema = z.object({
   description: z.string().optional(),
   latitude: z.number().refine((value) => value != 0),
   longitude: z.number().refine((value) => value != 0),
+  placeId: z.string().min(3),
   transportMode: TransportMode,
 });
 

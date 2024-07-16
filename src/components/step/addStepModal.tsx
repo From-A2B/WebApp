@@ -1,7 +1,7 @@
 'use client';
 
+import { AddStepAction } from '@/features/steps/add/addStep.action';
 import { AddStepSchema } from '@/features/steps/add/addStep.schema';
-import { AddStepAfterAction } from '@/features/steps/add/addStepAfter.action';
 import { GetStepAfterByIdAction } from '@/features/steps/get/getStepAfterById.action';
 import { GetStepBeforeByIdAction } from '@/features/steps/get/getStepBeforeById.action';
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
@@ -81,6 +81,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
       description: undefined,
       latitude: 0,
       longitude: 0,
+      placeId: '',
       transportMode: 'Car',
     },
     validateInputOnChange: true,
@@ -100,10 +101,13 @@ export const AddStepModal = ({}: AddStepModalProps) => {
       addStepForm.setFieldValue('longitude', 0);
       addStepForm.setFieldError('longitude', '');
 
+      addStepForm.setFieldValue('placeId', '');
+      addStepForm.setFieldError('placeId', '');
+
       return;
     }
 
-    if (!place.geometry)
+    if (!place.geometry || !place.place_id)
       return ErrorNotify({
         message:
           'impossible to retrieve the location of this place, please choose another one',
@@ -112,6 +116,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
     const { location } = place.geometry;
     addStepForm.setFieldValue('latitude', location.lat);
     addStepForm.setFieldValue('longitude', location.lng);
+    addStepForm.setFieldValue('placeId', place.place_id);
   };
 
   const handleChangeTransportMode = (transport: TransportMode) => {
@@ -136,7 +141,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      const { serverError } = await AddStepAfterAction({
+      const { serverError } = await AddStepAction({
         beforeStepId: stepBefore?.id,
         afterStepId: stepAfter?.id,
         tripId: tripId || stepBefore?.tripId! || stepAfter?.tripId!,
@@ -209,7 +214,7 @@ export const AddStepModal = ({}: AddStepModalProps) => {
               {...addStepForm.getInputProps('description')}
             />
             <DestinationInput
-              onChange={(place) => handleChangeLocation(place)}
+              onChangeDestination={(place) => handleChangeLocation(place)}
             />
             <TransportModeInput
               withAsterisk

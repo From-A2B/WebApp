@@ -1,20 +1,26 @@
 'use client';
 
+import { GetPlaceDetailsAction } from '@/features/place/getPlaceDetails.action';
+import { PlaceKeysFactory } from '@/features/place/placeKeys.factory';
 import { GetStepByIdAction } from '@/features/steps/get/getStepById.action';
 import { GetStepOrderAction } from '@/features/steps/get/getStepOrder.action';
 import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import { EditStepDescAction } from '@/features/steps/update/edit/description/editStepDesc.action';
 import { EditStepDescSchema } from '@/features/steps/update/edit/description/editStepDesc.schema';
+import { EditStepDestinationAction } from '@/features/steps/update/edit/destination/editStepDestination.action';
+import { EditStepDestinationSchema } from '@/features/steps/update/edit/destination/editStepDestination.schema';
 import { EditStepNameAction } from '@/features/steps/update/edit/name/editStepName.action';
 import { EditStepNameSchema } from '@/features/steps/update/edit/name/editStepName.schema';
 import { EditStepTransportModeAction } from '@/features/steps/update/edit/transportMode/editStepTransportMode.action';
 import { EditStepTransportModeSchema } from '@/features/steps/update/edit/transportMode/editStepTransportMode.schema';
 import useNotify from '@/hook/useNotify';
 import { useStepStore } from '@/utils/store/stepStore';
+import { PlaceData } from '@googlemaps/google-maps-services-js';
 import {
   Fieldset,
   Group,
   Modal,
+  Skeleton,
   Stack,
   Text,
   TextInput,
@@ -197,6 +203,76 @@ export const EditStepModal = ({}: EditStepModalProps) => {
 
   //#endregion
 
+  //#region StepDestination
+  const stepDestinationForm = useForm<EditStepDestinationSchema>({
+    initialValues: {
+      stepId: '',
+      lat: 0,
+      lng: 0,
+      placeId: '',
+    },
+    validateInputOnChange: true,
+    validate: zodResolver(EditStepDestinationSchema),
+  });
+
+  const { mutate: changeDestination } = useMutation({
+    mutationFn: async () => {
+      const { data, serverError } = await EditStepDestinationAction({
+        stepId: stepDestinationForm.values.stepId,
+        lat: stepDestinationForm.values.lat,
+        lng: stepDestinationForm.values.lng,
+        placeId: stepDestinationForm.values.placeId,
+      });
+
+      if (serverError) return ErrorNotify({ title: serverError });
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byTripId(step?.tripId!),
+      });
+      queryClient.invalidateQueries({
+        queryKey: stepKeysFactory.byId(step?.id!),
+      });
+    },
+  });
+
+  const [destinationDebounced] = useDebouncedValue<string>(
+    stepDestinationForm.values.placeId,
+    100
+  );
+  useEffect(() => {
+    if (stepDestinationForm.isValid()) changeDestination();
+  }, [destinationDebounced]);
+
+  const { data: placeDetails, isPending } = useQuery({
+    queryKey: PlaceKeysFactory.byId(step?.placeId!),
+    queryFn: async () => {
+      const { data, serverError } = await GetPlaceDetailsAction({
+        placeId: step?.placeId!,
+      });
+
+      if (serverError) return ErrorNotify({ title: serverError });
+      if (!data) return ErrorNotify({});
+
+      console.debug('🚀 ~ queryFn: ~ data:', data);
+      return data.result;
+    },
+
+    enabled: !!step && !!step.placeId,
+  });
+
+  const handleChangeDestination = (place: Partial<PlaceData> | null) => {
+    stepDestinationForm.setValues({
+      lat: place?.geometry?.location.lat,
+      lng: place?.geometry?.location.lng,
+      placeId: place?.place_id,
+    });
+  };
+
+  //#endregion
+
   //#region StepTransportMode
   const stepTransportModeForm = useForm<EditStepTransportModeSchema>({
     initialValues: {
@@ -263,6 +339,13 @@ export const EditStepModal = ({}: EditStepModalProps) => {
       description: step.description || undefined,
     });
 
+    stepDestinationForm.setValues({
+      stepId: step.id,
+      lat: Number(step.latitude),
+      lng: Number(step.longitude),
+      placeId: step.placeId,
+    });
+
     stepTransportModeForm.setValues({
       stepId: step.id,
       transportMode: step.transportMode,
@@ -304,7 +387,15 @@ export const EditStepModal = ({}: EditStepModalProps) => {
             </Stack>
           </Fieldset>
           <Fieldset legend="Location">
-            <DestinationInput onChange={() => {}} />
+            {isPending ? (
+              <Skeleton height={55} />
+            ) : (
+              <DestinationInput
+                value={placeDetails?.formatted_address}
+                onChangeDestination={(place) => handleChangeDestination(place)}
+                rightSection={null}
+              />
+            )}
           </Fieldset>
           <Fieldset legend="Mode of transport">
             <TransportModeInput

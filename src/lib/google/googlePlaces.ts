@@ -1,4 +1,5 @@
 import { AutocompletePlacesSchema } from '@/types/place/autocompletePlaces.schema';
+import { PlaceDetailsSchema } from '@/types/place/placeDetails.schema';
 import { PlaceTextSearchSchema } from '@/types/place/placeTextSearch.schema';
 import { Client } from '@googlemaps/google-maps-services-js';
 import { env } from '../env/server';
@@ -22,6 +23,15 @@ export class GooglePlaces {
       params: {
         key: env.GOOGLE_MAPS_API_KEY,
         query,
+      },
+    });
+  }
+
+  public static async getPlaceDetails({ placeId }: PlaceDetailsSchema) {
+    return await googleClient.placeDetails({
+      params: {
+        key: env.GOOGLE_MAPS_API_KEY,
+        place_id: placeId,
       },
     });
   }

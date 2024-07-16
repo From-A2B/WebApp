@@ -109,6 +109,7 @@ model Step {
   description   String?
   latitude      Decimal
   longitude     Decimal
+  placeId       String @default("")
   transportMode TransportMode @default(Car)
 }
 enum TransportMode {

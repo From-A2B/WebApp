@@ -5,7 +5,7 @@ import {
   PlaceAutocompleteResult,
   PlaceData,
 } from '@googlemaps/google-maps-services-js';
-import { Autocomplete } from '@mantine/core';
+import { Autocomplete, AutocompleteProps } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { IconCircleCheck } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
@@ -13,13 +13,19 @@ import { SearchIcon } from '../icons/search.icon';
 import { TrashIcon } from '../icons/trash.icon';
 
 export type DestinationInputProps = {
-  onChange: (place: Partial<PlaceData> | null) => void;
-};
+  value?: string;
+  onChangeDestination: (place: Partial<PlaceData> | null) => void;
+} & AutocompleteProps;
 
-export const DestinationInput = ({ onChange }: DestinationInputProps) => {
+export const DestinationInput = ({
+  value,
+  onChangeDestination,
+
+  ...props
+}: DestinationInputProps) => {
   const { ErrorNotify } = useNotify();
 
-  const [addressValue, setAddressValue] = useState('');
+  const [addressValue, setAddressValue] = useState(value || '');
   const [addressValueDebounced] = useDebouncedValue(addressValue, 500);
 
   const [places, setPlaces] = useState<PlaceAutocompleteResult[]>([]);
@@ -61,7 +67,7 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
 
         const { results: places } = placeResponse;
         setSelectedPlace(places[0]);
-        onChange(places[0]);
+        onChangeDestination(places[0]);
       }
     })();
   }, [addressValueDebounced]);
@@ -72,7 +78,7 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
   const handleClearAddressValue = () => {
     setAddressValue('');
     setSelectedPlace(null);
-    onChange(null);
+    onChangeDestination(null);
   };
 
   const handleChange = (value: string) => {
@@ -101,6 +107,7 @@ export const DestinationInput = ({ onChange }: DestinationInputProps) => {
       label="Destination"
       data={places.map((place) => place.description)}
       onChange={(value) => handleChange(value)}
+      {...props}
     />
   );
 };

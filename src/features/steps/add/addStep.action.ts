@@ -7,15 +7,15 @@ import { GetStepByIdQuery } from '../get/getStepById.query';
 import { AddStepQuery } from './addStep.query';
 import { AddStepSchema } from './addStep.schema';
 
-const AddStepAfterSchema = z.object({
+const AddStepActionSchema = z.object({
   tripId: z.string(),
   beforeStepId: z.string().optional(),
   afterStepId: z.string().optional(),
   newStep: AddStepSchema,
 });
 
-export const AddStepAfterAction = authAction(
-  AddStepAfterSchema,
+export const AddStepAction = authAction(
+  AddStepActionSchema,
   async ({ tripId, beforeStepId, afterStepId, newStep }, { user }) => {
     let beforeStep;
 
