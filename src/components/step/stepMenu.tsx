@@ -19,6 +19,7 @@ export const StepMenu = ({ children, stepId, name, tripId }: StepMenuProps) => {
   const AddStepBefore = useStepStore((s) => s.AddStepBefore);
   const AddStepAfter = useStepStore((s) => s.AddStepAfter);
   const OpenDeleteModal = useStepStore((s) => s.OpenDeleteModal);
+  const OpenEditModal = useStepStore((s) => s.OpenEditModal);
 
   const [deleteHovered, { open: openDeleteHover, close: closeDeleteHover }] =
     useDisclosure(false);
@@ -34,7 +35,7 @@ export const StepMenu = ({ children, stepId, name, tripId }: StepMenuProps) => {
           leftSection={<EditDocumentIcon isHover={editHovered} loop />}
           onMouseEnter={openDeleteEdit}
           onMouseLeave={closeDeleteEdit}
-          disabled
+          onClick={() => OpenEditModal({ stepId })}
         >
           Edit
         </Menu.Item>

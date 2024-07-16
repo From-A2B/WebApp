@@ -5,6 +5,7 @@
 import { LoaderDotsIcon } from '@/components/icons/loaderDots.icon';
 import { AddStepModal } from '@/components/step/addStepModal';
 import { DeleteStepModal } from '@/components/step/deleteStepModal';
+import { EditStepModal } from '@/components/step/editStepModal';
 import { GetAllStepsByTripIdAction } from '@/features/steps/get/getAllStepsByTripId.action';
 import { stepKeysFactory } from '@/features/steps/stepKeys.factory';
 import { StepMoveAction } from '@/features/steps/update/stepMove.action';
@@ -161,6 +162,7 @@ export const StepListSortable = ({ tripId }: StepListSortableProps) => {
       </ScrollArea>
       <AddStepModal />
       <DeleteStepModal />
+      <EditStepModal />
     </>
   );
 };
