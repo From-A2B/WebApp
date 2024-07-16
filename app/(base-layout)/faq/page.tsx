@@ -20,9 +20,9 @@ const RoutePage = () => {
         <AccordionItem value="reset-password">
           <AccordionControl>How do I reset my password?</AccordionControl>
           <AccordionPanel>
-            To reset your password, click on the "Forgot Password?" link on
-            the login page. You will receive an email with instructions to
-            reset your password.
+            To reset your password, click on the "Forgot Password?" link on the
+            login page. You will receive an email with instructions to reset
+            your password.
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem value="another-account">
@@ -45,16 +45,15 @@ const RoutePage = () => {
         <AccordionItem value="credit-card">
           <AccordionControl>How do I delete my account?</AccordionControl>
           <AccordionPanel>
-            To delete your account, please contact our support team. We will
-            be happy to help you delete your account.
+            To delete your account, please contact our support team. We will be
+            happy to help you delete your account.
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem value="payment">
           <AccordionControl>Is my personal data secure?</AccordionControl>
           <AccordionPanel>
             Yes, we take the security of your personal data very seriously. We
-            use advanced security measures to protect your personal
-            information.
+            use advanced security measures to protect your personal information.
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem value="change-email">
@@ -62,8 +61,8 @@ const RoutePage = () => {
             How can I change my email address?
           </AccordionControl>
           <AccordionPanel>
-            You can change your email address in your account settings. Log
-            into your account and click on "Edit Account Settings".
+            You can change your email address in your account settings. Log into
+            your account and click on "Edit Account Settings".
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

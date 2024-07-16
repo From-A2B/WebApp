@@ -24,6 +24,15 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatar.vercel.sh',
+        port: '',
+      }
+    ],
+  },
 };
 
 export default nextConfig;
