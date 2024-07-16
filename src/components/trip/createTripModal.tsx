@@ -19,7 +19,7 @@ import { DatePickerInput } from '@mantine/dates';
 import { useForm, zodResolver } from '@mantine/form';
 import { useMutation } from '@tanstack/react-query';
 import moment from 'moment';
-import { CrossCircleIcon } from '../icons/crossCircle.icon';
+import { CrossCircleIcon } from '@/components/icons/crossCircle.icon';
 
 export type CreateTripModalProps = {
   opened: boolean;

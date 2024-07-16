@@ -48,44 +48,42 @@ export const FeedbackCarousel = () => {
   }
 
   return (
-    <>
-      <Carousel
-        slideSize="70%"
-        plugins={[autoplay.current]}
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
-        height={200}
-        slideGap="md"
-        loop
-        mt="md"
-        mb="md"
-      >
-        {feedbacks.map((feedback: RandomFeedback) => (
-          <Carousel.Slide key={feedback.userId}>
-            <Card shadow="sm" radius="md" withBorder h={190}>
-              <Card.Section mah="70%">
-                <Text size="md" m={20}>
-                  {feedback.message}
+    <Carousel
+      slideSize="70%"
+      plugins={[autoplay.current]}
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
+      height={200}
+      slideGap="md"
+      loop
+      mt="md"
+      mb="md"
+    >
+      {feedbacks.map((feedback: RandomFeedback) => (
+        <Carousel.Slide key={feedback.userId}>
+          <Card shadow="sm" radius="md" withBorder h={190}>
+            <Card.Section mah="70%">
+              <Text size="md" m={20}>
+                {feedback.message}
+              </Text>
+            </Card.Section>
+            <Group mt="auto" justify="space-between">
+              <Group>
+                <Badge bg="dark">{feedback.user?.name}</Badge>
+                <Text size="sm" c="dimmed">
+                  {new Date(feedback.createdAt).toLocaleDateString()}
                 </Text>
-              </Card.Section>
-              <Group mt="auto" justify="space-between">
-                <Group>
-                  <Badge bg="dark">{feedback.user?.name}</Badge>
-                  <Text size="sm" c="dimmed">
-                    {new Date(feedback.createdAt).toLocaleDateString()}
-                  </Text>
-                </Group>
-                <Rating
-                  color="teal"
-                  value={feedback.review || 0}
-                  readOnly
-                  title="Rating given by the customer"
-                />
               </Group>
-            </Card>
-          </Carousel.Slide>
-        ))}
-      </Carousel>
-    </>
+              <Rating
+                color="teal"
+                value={feedback.review || 0}
+                readOnly
+                title="Rating given by the customer"
+              />
+            </Group>
+          </Card>
+        </Carousel.Slide>
+      ))}
+    </Carousel>
   );
 };

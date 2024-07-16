@@ -9,8 +9,35 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   const users = await prisma.user.findMany();
+  const userCount = faker.number.int({ min: 30, max: 60 });
+
+  for (let i = 0; i < userCount; i++) {
+    users.push(
+      await prisma.user.create({
+        data: {
+          email: faker.internet.email(),
+          createdAt: faker.date.past(),
+          name: faker.internet.displayName(),
+        },
+      })
+    );
+  }
 
   for (const user of users) {
+    const feedbackCount = faker.number.int({ min: 1, max: 5 });
+
+    for (let i = 0; i < feedbackCount; i++) {
+      await prisma.feedback.create({
+        data: {
+          review: faker.number.int({ min: 0, max: 5 }),
+          message: faker.lorem.lines({ min: 1, max: 3 }),
+          email: user.email,
+          userId: user.id,
+          createdAt: faker.date.past({ years: 3 }),
+        },
+      });
+    }
+
     const tripCount = faker.number.int({ min: 5, max: 10 });
 
     for (let i = 0; i < tripCount; i++) {
