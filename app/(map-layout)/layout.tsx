@@ -7,6 +7,7 @@ const RouteLayout = ({ children }: LayoutParams) => {
     <AppShell header={{ height: 60 }} padding="md">
       <MapHeader fluid />
       <AppShellMain
+        px={0}
         style={{
           background:
             'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7)',

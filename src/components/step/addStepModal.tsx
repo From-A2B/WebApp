@@ -154,10 +154,6 @@ export const AddStepModal = ({}: AddStepModalProps) => {
     onSuccess() {
       SuccessNotify({ title: 'The step was well added' });
       handleCloseModal();
-      console.debug(
-        "🚀 ~ onSuccess ~ stepKeysFactory.byTripId(tripId || '');:",
-        stepKeysFactory.byTripId(tripId || '')
-      );
       queryClient.invalidateQueries({
         queryKey: stepKeysFactory.byTripId(tripId || ''),
       });

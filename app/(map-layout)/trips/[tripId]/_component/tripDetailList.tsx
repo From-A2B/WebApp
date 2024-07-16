@@ -3,6 +3,7 @@
 import { GetOneTripByIdAction } from '@/features/trips/get/getOneTripById.action';
 import { tripKeysFactory } from '@/features/trips/tripKeys.factory';
 import useNotify from '@/hook/useNotify';
+import { cn } from '@/lib/utils';
 import {
   Alert,
   Center,
@@ -18,9 +19,10 @@ import { StepListSortable } from './stepListSortable';
 
 export type TripDetailListProps = {
   tripId: string;
+  className?: string;
 };
 
-export const TripDetailList = ({ tripId }: TripDetailListProps) => {
+export const TripDetailList = ({ tripId, className }: TripDetailListProps) => {
   const { ErrorNotify } = useNotify();
 
   const {
@@ -41,7 +43,7 @@ export const TripDetailList = ({ tripId }: TripDetailListProps) => {
 
   if (isFetchingTrip)
     return (
-      <Center flex={1}>
+      <Center className={cn(className)}>
         <Stack gap="xl">
           <Center>
             <Skeleton height={32} width="20vw" animate />

@@ -3,7 +3,7 @@ import { IsTripExistByIdQuery } from '@/features/trips/isTripExistById.query';
 import { requiredAuth } from '@/lib/auth/helper';
 import type { PageParams } from '@/types/next';
 import { LINKS } from '@/utils/NavigationLinks';
-import { Group } from '@mantine/core';
+import { Grid, GridCol } from '@mantine/core';
 import { notFound, redirect } from 'next/navigation';
 import { TripDetailList } from './_component/tripDetailList';
 
@@ -18,10 +18,18 @@ const RoutePage = async ({ params: { tripId } }: tripParams) => {
   if (!isTripExist) return notFound();
 
   return (
-    <Group justify="space-between" align="start">
-      <TripDetailList tripId={tripId} />
-      <MapContainer />
-    </Group>
+    // <div className="grid grid-cols-3">
+    //   <TripDetailList tripId={tripId} className="col-span-1 " />
+    //   <MapContainer className="h-auto col-span-2" />
+    // </div>
+    <Grid>
+      <GridCol span={{ BASE: 12, md: 4 }}>
+        <TripDetailList tripId={tripId} />
+      </GridCol>
+      <GridCol span={{ BASE: 12, md: 8 }}>
+        <MapContainer />
+      </GridCol>
+    </Grid>
   );
 };
 

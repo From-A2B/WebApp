@@ -44,7 +44,7 @@ import { TransportModeInput } from './transportModeInput';
 export type EditStepModalProps = {};
 
 export const EditStepModal = ({}: EditStepModalProps) => {
-  const { ErrorNotify, SuccessNotify } = useNotify();
+  const { ErrorNotify } = useNotify();
   const queryClient = useQueryClient();
 
   const editModalOpened = useStepStore((s) => s.editModalOpened);
@@ -130,6 +130,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     500
   );
   useEffect(() => {
+    if (!step) return;
     if (stepNameForm.isValid()) changeName();
   }, [nameDebounced]);
 
@@ -184,6 +185,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     1000
   );
   useEffect(() => {
+    if (!step) return;
     if (stepDescForm.isValid()) changeDesc();
   }, [descDebounced]);
 
@@ -243,6 +245,8 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     100
   );
   useEffect(() => {
+    if (!step) return;
+
     if (stepDestinationForm.isValid()) changeDestination();
   }, [destinationDebounced]);
 
@@ -256,7 +260,6 @@ export const EditStepModal = ({}: EditStepModalProps) => {
       if (serverError) return ErrorNotify({ title: serverError });
       if (!data) return ErrorNotify({});
 
-      console.debug('🚀 ~ queryFn: ~ data:', data);
       return data.result;
     },
 
@@ -309,6 +312,7 @@ export const EditStepModal = ({}: EditStepModalProps) => {
     100
   );
   useEffect(() => {
+    if (!step) return;
     if (stepTransportModeForm.isValid()) changeTransportMode();
   }, [transportModeDebounced]);
 

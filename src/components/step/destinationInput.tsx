@@ -42,13 +42,8 @@ export const DestinationInput = ({
       if (!predictionResponse || serverError) return ErrorNotify({});
 
       const { predictions: placesPrediction } = predictionResponse;
-      console.debug('🚀 ~ placesPrediction:', placesPrediction);
 
       if (placesPrediction.length === 0) return;
-      console.debug(
-        '🚀 ~ placesPrediction.length === 0:',
-        placesPrediction.length === 0
-      );
       setPlaces(placesPrediction);
 
       const currentPlace: PlaceAutocompleteResult | undefined =
@@ -63,7 +58,6 @@ export const DestinationInput = ({
           });
 
         if (!placeResponse || serverError) return ErrorNotify({});
-        console.debug('🚀🚀🚀🚀 ~ placeResponse:', placeResponse);
 
         const { results: places } = placeResponse;
         setSelectedPlace(places[0]);
